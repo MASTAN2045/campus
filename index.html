@@ -557,7 +557,7 @@ button {
 /* Main summary card */
 
 .today-summary-card {
-    background: var(--surface);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 22px;
@@ -588,7 +588,7 @@ button {
 .today-direction {
     padding: 16px;
     border-radius: 14px;
-    background: var(--surface-2);
+    background: var(--bg);
     border: 1px solid var(--border);
 }
 
@@ -899,170 +899,318 @@ button {
     cursor: pointer;
 }
 
+/* =========================================================
+   CALENDAR - RESPONSIVE / UNIFORM
+   ========================================================= */
+
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
-    grid-auto-rows: minmax(100px, 1fr);
+
+    /* Uniform row height on every device */
+    grid-auto-rows: clamp(72px, 9vw, 105px);
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 
     border: 1px solid var(--border);
-    border-radius: 15px;
+    border-radius: 16px;
+
     overflow: hidden;
 
-    background: var(--border);
-    gap: 1px;
-}
+    background: var(--card);
 
-.day {
-    min-height: 100px;
-    padding: 9px;
+    /* IMPORTANT:
+       Do not use gaps for cell separation.
+       Use actual borders instead.
+    */
+    gap: 0;
 
     box-sizing: border-box;
-
-    cursor: pointer;
-    background: var(--card);
-    color: var(--text);
 }
 
-.empty-day {
-    cursor: default;
-    background: var(--card);
-}
 
-.day:hover {
-    background: #202837;
-}
+/* =========================================================
+   WEEKDAY HEADER
+   ========================================================= */
 
-.day-number {
-    font-size: 12px;
-    font-weight: 750;
-}
-
-.today {
-    background: var(--primary-light);
-    color: var(--text);
-}
-
-/* Weekday names */
-.weekday {
+.calendar .weekday {
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    min-height: 42px;
+    min-width: 0;
+    width: 100%;
+
     padding: 8px;
 
     background: var(--card);
     color: var(--muted);
-    font-size: 11px;
-    font-weight: 750;
+
+    font-size: clamp(11px, 1.2vw, 14px);
+    font-weight: 700;
+
     text-align: center;
+
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 
     box-sizing: border-box;
 }
 
-/* Date cell */
-.day {
-    min-height: 100px;
-    padding: 9px;
 
+/* =========================================================
+   DATE CELLS
+   ========================================================= */
+
+.calendar .day {
     position: relative;
+
+    min-width: 0;
+    width: 100%;
+    min-height: 0;
+
+    padding: 8px;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
-    box-sizing: border-box;
+    text-align: center;
 
     background: var(--card);
     color: var(--text);
+
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    box-sizing: border-box;
+
+    overflow: hidden;
 }
 
-/* Date number */
-.day-number {
-    font-size: 12px;
-    font-weight: 750;
+
+/* =========================================================
+   CLOSE THE RIGHT EDGE
+   ========================================================= */
+
+.calendar > *:nth-child(7n) {
+    border-right: none;
+}
+
+
+/* =========================================================
+   CLOSE THE BOTTOM EDGE
+   Last 7 cells are always the final calendar row
+   ========================================================= */
+
+.calendar > *:nth-last-child(-n + 7) {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   EMPTY CELLS
+   ========================================================= */
+
+.calendar .empty-day {
+    background: var(--card);
+
+    cursor: default;
+
+    /* Keep the border even when there is no date */
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   DATE NUMBER
+   ========================================================= */
+
+.calendar .day-number {
+    font-size: clamp(12px, 1.5vw, 16px);
+
+    font-weight: 700;
+
+    line-height: 1;
+
     text-align: center;
+
+    flex-shrink: 0;
 }
 
-/* Event/holiday text */
-.event-dot {
+
+/* =========================================================
+   HOLIDAY / EVENT TEXT
+   ========================================================= */
+
+.calendar .event-dot {
+    width: 100%;
+    max-width: 100%;
+
     margin-top: 8px;
+
+    font-size: clamp(7px, 1.1vw, 10px);
+
+    line-height: 1.25;
+
     text-align: center;
+
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    word-break: normal;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 
-/* =========================
-   HOLIDAY
-========================= */
 
-/* Light theme */
-.holiday {
+/* =========================================================
+   TODAY
+   ========================================================= */
+
+.calendar .today {
+    background: var(--primary-light);
+}
+
+
+/* =========================================================
+   HOLIDAY
+   ========================================================= */
+
+.calendar .holiday {
     background: #fff1f1;
     color: #c62828;
 }
 
-.holiday .day-number {
+.calendar .holiday .day-number {
     color: #d32f2f;
 }
 
-.holiday .event-dot {
+.calendar .holiday .event-dot {
     color: #d32f2f;
 }
 
 
-/* Dark theme */
-[data-theme="dark"] .holiday {
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] .calendar .holiday {
     background: #3a2027;
     color: #ff6b6b;
 }
 
-[data-theme="dark"] .holiday .day-number {
+[data-theme="dark"] .calendar .holiday .day-number {
     color: #ff5c5c;
 }
 
-[data-theme="dark"] .holiday .event-dot {
+[data-theme="dark"] .calendar .holiday .event-dot {
     color: #ff6b6b;
 }
 
-.event-dot {
-    margin-top: 9px;
-    font-size: 9px;
-    color: var(--danger);
-    line-height: 1.4;
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.calendar .day:hover {
+    background: #202837;
 }
 
-.event-academic {
-    color: var(--primary);
+.calendar .empty-day:hover {
+    background: var(--card);
 }
 
-/* =========================
-   EMPTY / ALERT
-========================= */
+/* =========================================================
+   PHONE CALENDAR
+   ========================================================= */
 
-.alert {
-    padding: 15px;
-    border-radius: 13px;
-    margin-bottom: 15px;
-    font-size: 13px;
+@media (max-width: 600px) {
+
+    .calendar {
+        grid-auto-rows: clamp(64px, 17vw, 78px);
+        border-radius: 15px;
+    }
+
+    .calendar .weekday {
+        min-height: 52px;
+
+        padding: 5px;
+
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .calendar .day {
+        padding: 5px;
+    }
+
+    .calendar .day-number {
+        font-size: 13px;
+    }
+
+    .calendar .event-dot {
+        margin-top: 6px;
+
+        font-size: 8px;
+        line-height: 1.2;
+
+        -webkit-line-clamp: 3;
+    }
+}
+@media (max-width: 380px) {
+
+    .calendar {
+        grid-auto-rows: 62px;
+    }
+
+    .calendar .weekday {
+        min-height: 48px;
+        font-size: 10px;
+    }
+
+    .calendar .day {
+        padding: 4px;
+    }
+
+    .calendar .day-number {
+        font-size: 12px;
+    }
+
+    .calendar .event-dot {
+        font-size: 7px;
+        line-height: 1.15;
+        margin-top: 5px;
+    }
 }
 
-.alert-holiday {
-    background: #fff0f0;
-    border: 1px solid #ffd1d1;
-    color: #a53e3e;
+@media (min-width: 381px) and (max-width: 600px) {
+
+    .calendar {
+        grid-auto-rows: 68px;
+    }
+
+    .calendar .weekday {
+        min-height: 50px;
+        font-size: 11px;
+    }
+
+    .calendar .day-number {
+        font-size: 13px;
+    }
+
+    .calendar .event-dot {
+        font-size: 8px;
+    }
 }
 
-.alert-info {
-    background: #edf7ff;
-    border: 1px solid #d4eaff;
-    color: #386487;
-}
-
-.empty {
-    padding: 35px 15px;
-    text-align: center;
-    color: var(--muted);
-}
 
 /* =========================
    ROUTES
@@ -1159,18 +1307,6 @@ button {
         display: block;
     }
 
-    .calendar {
-        font-size: 10px;
-    }
-
-    .day {
-        min-height: 70px;
-        padding: 6px;
-    }
-
-    .event-dot {
-        font-size: 8px;
-    }
         /* =================================
        MOBILE HEADER
        ================================= */
@@ -1221,216 +1357,9 @@ button {
         display: none;
     }
 }
-/* =========================================================
-   MOBILE CALENDAR - RESPONSIVE FIX
-   ========================================================= */
 
-@media (max-width: 768px) {
 
-    /* Calendar outer card */
-    .calendar-card,
-    .calendar-container {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
 
-    /* Calendar itself */
-    .calendar {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        box-sizing: border-box;
-
-        overflow: hidden;
-    }
-
-    /* 7 equal columns */
-    .calendar-header,
-    .calendar-grid {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        display: grid;
-
-        grid-template-columns:
-            repeat(7, minmax(0, 1fr));
-
-        box-sizing: border-box;
-    }
-
-    /* Weekday names */
-    .calendar-header > *,
-    .calendar-grid > * {
-        min-width: 0;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* Individual day */
-    .day {
-        min-width: 0;
-        width: 100%;
-        max-width: 100%;
-
-        min-height: 70px;
-
-        overflow: hidden;
-        box-sizing: border-box;
-
-        padding: 7px;
-    }
-
-    .empty-day {
-        cursor: default;
-    }
-
-    /* Day number */
-    .day-number {
-        max-width: 100%;
-
-        overflow: hidden;
-
-        white-space: nowrap;
-    }
-
-    /* Holiday/event text */
-    .event-dot,
-    .holiday-name {
-        max-width: 100%;
-
-        overflow-wrap: anywhere;
-        word-break: normal;
-    }
-}
-@media (max-width: 768px) {
-
-    .calendar-title-row {
-        display: grid;
-
-        grid-template-columns: 52px minmax(0, 1fr) 52px;
-
-        align-items: center;
-
-        gap: 8px;
-
-        width: 100%;
-    }
-
-    .calendar-title {
-        min-width: 0;
-
-        text-align: center;
-
-        font-size: clamp(20px, 6vw, 30px);
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-    }
-
-    .calendar-title-row button {
-        width: 52px;
-        height: 52px;
-
-        flex-shrink: 0;
-    }
-}
-@media (max-width: 768px) {
-
-    .calendar-weekdays {
-        display: grid;
-
-        grid-template-columns:
-            repeat(7, minmax(0, 1fr));
-
-        width: 100%;
-
-        box-sizing: border-box;
-
-        overflow: hidden;
-    }
-
-    .calendar-weekdays > * {
-        min-width: 0;
-
-        width: 100%;
-
-        text-align: center;
-
-        overflow: hidden;
-
-        white-space: nowrap;
-
-        font-size: clamp(10px, 2.8vw, 14px);
-    .weekday {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .day {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .day-number {
-        text-align: center;
-    }
-
-    .event-dot {
-        text-align: center;
-    }
-    }
-}
-@media (min-width: 601px) and (max-width: 768px) {
-
-    .day {
-        min-height: 82px;
-        padding: 8px;
-    }
-}
-@media (max-width: 600px) {
-
-    .day {
-        min-height: 72px;
-        padding: 6px;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .event-dot {
-        display: block;
-
-        width: 100%;
-
-        font-size: 8px;
-
-        line-height: 1.25;
-
-        overflow-wrap: anywhere;
-
-        word-break: normal;
-    }
-}
-@media (min-width: 601px) and (max-width: 768px) {
-
-    .event-dot {
-        font-size: 9px;
-        line-height: 1.3;
-    }
-}
 /* =========================================================
    IMPORTANT DATES - RESPONSIVE
    ========================================================= */
@@ -1438,26 +1367,19 @@ button {
 .important-date {
     display: grid;
 
-    grid-template-columns:
-        minmax(0, 1.15fr)
-        minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
     align-items: center;
 
-    gap: 20px;
+    gap: 16px;
 
     width: 100%;
-    min-width: 0;
 
     padding: 14px 0;
 
     border-bottom: 1px solid var(--border);
 
     box-sizing: border-box;
-}
-
-.important-date:last-child {
-    border-bottom: none;
 }
 
 .important-date .date {
@@ -1468,86 +1390,78 @@ button {
 
     color: var(--text);
 
-    overflow-wrap: normal;
-    word-break: normal;
+    line-height: 1.35;
 }
 
 .important-date .event {
     min-width: 0;
 
-    font-size: 15px;
+    font-size: 14px;
 
     color: var(--muted);
 
     text-align: right;
 
+    line-height: 1.35;
+
     overflow-wrap: anywhere;
-    word-break: normal;
+}
+.important-date {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    box-sizing: border-box;
 }
 
-
-/* Tablet / medium phones */
-@media (max-width: 768px) {
-
-    .important-date {
-        grid-template-columns:
-            minmax(0, 1.1fr)
-            minmax(0, 0.9fr);
-
-        gap: 14px;
-
-        padding: 13px 0;
-    }
-
-    .important-date .date,
-    .important-date .event {
-        font-size: 14px;
-    }
+.important-date:last-child {
+    border-bottom: none;
 }
 
+.important-date .date {
+    min-width: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+}
 
-/* Small phones */
-@media (max-width: 480px) {
+.important-date .event {
+    min-width: 0;
+    font-size: 14px;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
 
+@media (max-width: 600px) {
     .important-date {
-        grid-template-columns:
-            minmax(0, 1fr)
-            minmax(0, 0.95fr);
-
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
         gap: 10px;
-
         padding: 12px 0;
     }
 
     .important-date .date,
     .important-date .event {
         font-size: 13px;
-        line-height: 1.35;
-    }
-
-    .important-date .event {
-        text-align: right;
     }
 }
 
-
-/* Very small phones */
 @media (max-width: 360px) {
-
     .important-date {
         grid-template-columns: 1fr;
-        gap: 4px;
-    }
-
-    .important-date .date {
-        font-size: 14px;
+        gap: 3px;
     }
 
     .important-date .event {
-        font-size: 13px;
         text-align: left;
     }
 }
+
 html,
 body {
     max-width: 100%;
@@ -1729,7 +1643,7 @@ body {
                         NEXT BUSES
                     </div>
 
-                    <div class="badge badge-blue">
+                    <div class="badge badge-green">
                         BUS
                     </div>
                 </div>
