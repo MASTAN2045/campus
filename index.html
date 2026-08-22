@@ -842,7 +842,7 @@ button {
     }
 
     #today .grid.grid-2 {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2469,6 +2469,475 @@ body {
     font-weight: var(--weight-bold);
 }
 
+/* =========================================================
+   FINAL MOBILE TODAY PAGE
+   Clean + compact + readable
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* -----------------------------------------------------
+       GENERAL PHONE SPACING
+       ----------------------------------------------------- */
+
+    .main {
+        padding: 10px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    #today {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #today .hero {
+        padding: 14px;
+        margin-bottom: 10px;
+        border-radius: 16px;
+    }
+
+    #today .hero h1 {
+        font-size: 23px;
+        line-height: 1.15;
+    }
+
+    #today .hero p {
+        font-size: 12px;
+        margin: 5px 0 10px;
+    }
+
+
+    /* =====================================================
+       NEXT BUSES + NEXT BUGGIES
+       Keep these side-by-side
+       ===================================================== */
+
+    #today .today-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 9px;
+    }
+
+    #today .today-summary-card {
+        min-width: 0;
+        padding: 10px;
+        border-radius: 13px;
+    }
+
+    #today .today-summary-header {
+        margin-bottom: 8px;
+        gap: 5px;
+    }
+
+    #today .stat-label {
+        font-size: 9px;
+        line-height: 1.2;
+        letter-spacing: 0.2px;
+    }
+
+    #today .badge {
+        padding: 4px 6px;
+        font-size: 8px;
+        border-radius: 6px;
+        white-space: nowrap;
+    }
+
+
+    /* -----------------------------------------------------
+       NEXT SERVICE ROUTES
+       ----------------------------------------------------- */
+
+    #today .today-direction-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    #today .today-direction {
+        min-width: 0;
+        padding: 8px;
+        border-radius: 9px;
+    }
+
+    /* IMPORTANT:
+       Do NOT ellipsis the route.
+       Allow it to wrap naturally.
+    */
+
+    #today .today-direction-label {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+
+        font-size: 10px;
+        line-height: 1.2;
+
+        min-height: 24px;
+        margin-bottom: 5px;
+
+        color: var(--muted);
+    }
+
+    #today .today-next-time {
+        font-size: 15px;
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+
+        white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       TODAY'S MESS
+       ===================================================== */
+
+    #today .today-mess-card {
+        grid-column: 1 / -1;
+        padding: 10px;
+        border-radius: 13px;
+    }
+
+    #today .today-mess-card .today-summary-header {
+        margin-bottom: 7px;
+        gap: 6px;
+    }
+
+    #today .today-mess-cycle {
+        font-size: 9px;
+    }
+
+    #today .today-meals-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    #today .today-meal {
+        min-width: 0;
+        padding: 8px;
+        border-radius: 9px;
+    }
+
+    #today .today-meal .meal-title {
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 3px;
+    }
+
+    #today .today-meal .meal-content {
+        font-size: 9px;
+        font-weight: 500;
+        line-height: 1.3;
+
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+
+    /* =====================================================
+       UPCOMING BUS + UPCOMING BUGGIE
+       
+       IMPORTANT:
+       STACK THEM VERTICALLY ON PHONE
+       ===================================================== */
+
+    #today .grid.grid-2 {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        width: 100%;
+    }
+
+
+    /* Full-width upcoming cards */
+
+    #today .grid.grid-2 > .card {
+        width: 100%;
+        min-width: 0;
+
+        padding: 11px;
+
+        border-radius: 13px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* Card headers */
+
+    #today .grid.grid-2 > .card .card-header {
+        margin-bottom: 9px;
+        gap: 8px;
+    }
+
+    #today .grid.grid-2 > .card .card-title {
+        font-size: 15px;
+        line-height: 1.2;
+        font-weight: 700;
+    }
+
+    #today .grid.grid-2 > .card .bus-type {
+        font-size: 9px;
+        line-height: 1.25;
+    }
+
+
+    /* =====================================================
+       UPCOMING DIRECTION BOXES
+       Two directions inside the full-width card
+       ===================================================== */
+
+    #today .upcoming-direction-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 7px;
+
+        width: 100%;
+    }
+
+    #today .direction-card {
+        min-width: 0;
+
+        padding: 8px;
+
+        border-radius: 10px;
+
+        box-sizing: border-box;
+    }
+
+    #today .direction-header {
+        margin-bottom: 6px;
+        gap: 5px;
+    }
+
+    #today .direction-title {
+        font-size: 10px;
+        line-height: 1.2;
+        font-weight: 700;
+
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+
+    /* =====================================================
+       UPCOMING BUS ROWS
+       ===================================================== */
+
+    #today .bus-row {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, auto) minmax(0, 1fr);
+
+        gap: 5px;
+
+        padding: 8px;
+
+        margin-bottom: 5px;
+
+        border-radius: 8px;
+
+        min-width: 0;
+    }
+
+    #today .bus-time {
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 700;
+
+        white-space: nowrap;
+    }
+
+    #today .bus-route {
+        font-size: 10px;
+        line-height: 1.25;
+        font-weight: 600;
+
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    #today .bus-type {
+        display: none;
+    }
+
+    #today .bus-row .badge {
+        display: none;
+    }
+
+
+    /* =====================================================
+       UPCOMING BUGGIE ROWS
+       ===================================================== */
+
+    #today .buggie-row {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 3px;
+
+        padding: 8px;
+
+        margin-bottom: 5px;
+
+        border-radius: 8px;
+
+        min-width: 0;
+    }
+
+    #today .buggie-number {
+        display: none;
+    }
+
+    #today .buggie-time {
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 700;
+
+        white-space: nowrap;
+    }
+
+    #today .route-path {
+        font-size: 9px;
+        line-height: 1.3;
+
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    #today .buggie-row .badge {
+        display: none;
+    }
+
+
+    /* =====================================================
+       REMOVE EXTRA BREAK SPACING
+       ===================================================== */
+
+    #today > br {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   <= 380px
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    #today .hero {
+        padding: 12px;
+    }
+
+    #today .hero h1 {
+        font-size: 21px;
+    }
+
+    #today .hero p {
+        font-size: 11px;
+    }
+
+
+    /* Next service */
+
+    #today .today-summary-card {
+        padding: 9px;
+    }
+
+    #today .today-direction {
+        padding: 7px;
+    }
+
+    #today .today-direction-label {
+        font-size: 9px;
+        min-height: 22px;
+    }
+
+    #today .today-next-time {
+        font-size: 14px;
+    }
+
+
+    /* Mess */
+
+    #today .today-mess-card {
+        padding: 9px;
+    }
+
+    #today .today-meal {
+        padding: 7px;
+    }
+
+    #today .today-meal .meal-title {
+        font-size: 9px;
+    }
+
+    #today .today-meal .meal-content {
+        font-size: 8px;
+    }
+
+
+    /* Upcoming */
+
+    #today .grid.grid-2 {
+        gap: 8px;
+    }
+
+    #today .grid.grid-2 > .card {
+        padding: 9px;
+    }
+
+    #today .grid.grid-2 > .card .card-title {
+        font-size: 14px;
+    }
+
+    #today .upcoming-direction-grid {
+        gap: 5px;
+    }
+
+    #today .direction-card {
+        padding: 7px;
+    }
+
+    #today .direction-title {
+        font-size: 9px;
+    }
+
+    #today .bus-row,
+    #today .buggie-row {
+        padding: 7px;
+        margin-bottom: 4px;
+    }
+
+    #today .bus-time,
+    #today .buggie-time {
+        font-size: 11px;
+    }
+
+    #today .bus-route {
+        font-size: 9px;
+    }
+
+    #today .route-path {
+        font-size: 8px;
+    }
+}
 
 </style>
 </head>
