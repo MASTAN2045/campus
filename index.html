@@ -97,11 +97,6 @@
 
 /* Statistics */
 
-[data-theme="dark"] .hero-stat {
-    background: #1c2330;
-}
-
-
 /* Bus rows */
 
 [data-theme="dark"] .bus-row {
@@ -159,7 +154,19 @@
     color: var(--text);
     border-color: var(--border);
 }
+.today-summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+}
 
+.today-direction {
+    padding: 16px;
+    border-radius: 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+}
 /* =========================================================
    MOBILE HAMBURGER MENU
    ========================================================= */
@@ -535,18 +542,107 @@ button {
     margin: 8px 0 20px;
 }
 
-.hero-grid {
+/* ============================================================
+   TODAY PAGE SUMMARY
+============================================================ */
+
+.today-summary-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 24px;
 }
 
-.hero-stat {
-    background: white;
+
+/* Main summary card */
+
+.today-summary-card {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 15px;
+    border-radius: 20px;
+    padding: 22px;
 }
+
+
+/* Header */
+
+.today-summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+
+/* Direction columns */
+
+.today-direction-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+
+/* Individual direction */
+
+.today-direction {
+    padding: 16px;
+    border-radius: 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+}
+
+
+/* Route name */
+
+.today-direction-label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Next time */
+
+.today-next-time {
+    font-size: 20px;
+    font-weight: 750;
+    letter-spacing: -0.3px;
+}
+
+
+/* Mess */
+
+.today-mess-card {
+    grid-column: 1 / -1;
+}
+
+
+.today-mess-value {
+    font-size: 20px;
+    font-weight: 750;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .today-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .today-mess-card {
+        grid-column: auto;
+    }
+
+    .today-direction-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
 
 .stat-label {
     color: var(--muted);
@@ -762,7 +858,7 @@ button {
 
 .meal-title {
     font-size: 13px;
-    font-weight: 750;
+    font-weight: 650;
     margin-bottom: 6px;
 }
 
@@ -770,6 +866,7 @@ button {
     color: var(--muted);
     line-height: 1.55;
     font-size: 13px;
+    font-weight: 550;
 }
 
 /* =========================
@@ -804,30 +901,31 @@ button {
 
 .calendar {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-auto-rows: minmax(100px, 1fr);
+
     border: 1px solid var(--border);
     border-radius: 15px;
     overflow: hidden;
-    background: var(--card);
-}
 
-.weekday {
-    padding: 11px;
-    background: var(--card);
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 750;
-    text-align: center;
+    background: var(--border);
+    gap: 1px;
 }
 
 .day {
     min-height: 100px;
-    border-top: 1px solid var(--border);
-    border-right: 1px solid var(--border);
     padding: 9px;
+
+    box-sizing: border-box;
+
     cursor: pointer;
     background: var(--card);
     color: var(--text);
+}
+
+.empty-day {
+    cursor: default;
+    background: var(--card);
 }
 
 .day:hover {
@@ -843,6 +941,56 @@ button {
     background: var(--primary-light);
     color: var(--text);
 }
+
+/* Weekday names */
+.weekday {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 8px;
+
+    background: var(--card);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 750;
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+/* Date cell */
+.day {
+    min-height: 100px;
+    padding: 9px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+    color: var(--text);
+}
+
+/* Date number */
+.day-number {
+    font-size: 12px;
+    font-weight: 750;
+    text-align: center;
+}
+
+/* Event/holiday text */
+.event-dot {
+    margin-top: 8px;
+    text-align: center;
+}
+
 /* =========================
    HOLIDAY
 ========================= */
@@ -954,10 +1102,6 @@ button {
 
     .main {
         padding: 17px;
-    }
-
-    .hero-grid {
-        grid-template-columns: 1fr;
     }
 
     .grid-2,
@@ -1133,11 +1277,16 @@ button {
         width: 100%;
         max-width: 100%;
 
-        overflow: hidden;
+        min-height: 70px;
 
+        overflow: hidden;
         box-sizing: border-box;
 
         padding: 7px;
+    }
+
+    .empty-day {
+        cursor: default;
     }
 
     /* Day number */
@@ -1220,6 +1369,28 @@ button {
         white-space: nowrap;
 
         font-size: clamp(10px, 2.8vw, 14px);
+    .weekday {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .day {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .day-number {
+        text-align: center;
+    }
+
+    .event-dot {
+        text-align: center;
+    }
     }
 }
 @media (min-width: 601px) and (max-width: 768px) {
@@ -1539,44 +1710,151 @@ body {
     <div class="hero">
 
         <h1 id="greeting">
-            Good evening
+            Have a Nice Day
         </h1>
 
         <p id="todayDescription">
-            Your IIT Palakkad schedule for today.
+            IIT Palakkad schedule for today.
         </p>
 
-        <div class="hero-grid">
+        <div class="today-summary-grid">
 
+            <!-- =========================
+                NEXT BUSES
+            ========================== -->
+            <div class="today-summary-card">
 
+                <div class="today-summary-header">
+                    <div class="stat-label">
+                        NEXT BUSES
+                    </div>
 
-            <div class="hero-stat">
-
-                <div class="stat-label">
-                    Next bus
+                    <div class="badge badge-blue">
+                        BUS
+                    </div>
                 </div>
 
-                <div class="stat-value" id="nextBus">
-                    Loading...
+                <div class="today-direction-grid">
+
+                    <!-- NILA → SAHYADRI -->
+                    <div class="today-direction">
+
+                        <div class="today-direction-label">
+                            Nila → Sahyadri
+                        </div>
+
+                        <div
+                            class="today-next-time"
+                            id="nextBusNila"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <!-- SAHYADRI → NILA -->
+                    <div class="today-direction">
+
+                        <div class="today-direction-label">
+                            Sahyadri → Nila
+                        </div>
+
+                        <div
+                            class="today-next-time"
+                            id="nextBusSahyadri"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
 
 
-            <div class="hero-stat">
+            <!-- =========================
+                NEXT BUGGIES
+            ========================== -->
+            <div class="today-summary-card">
 
-                <div class="stat-label">
-                    Mess
+                <div class="today-summary-header">
+
+                    <div class="stat-label">
+                        NEXT BUGGIES
+                    </div>
+
+                    <div class="badge badge-orange">
+                        BUGGIE
+                    </div>
+
                 </div>
 
-                <div class="stat-value" id="messSummary">
+
+                <div class="today-direction-grid">
+
+                    <!-- NILA → SAHYADRI -->
+                    <div class="today-direction">
+
+                        <div class="today-direction-label">
+                            Nila → Sahyadri
+                        </div>
+
+                        <div
+                            class="today-next-time"
+                            id="nextBuggieNila"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <!-- SAHYADRI → NILA -->
+                    <div class="today-direction">
+
+                        <div class="today-direction-label">
+                            Sahyadri → Nila
+                        </div>
+
+                        <div
+                            class="today-next-time"
+                            id="nextBuggieSahyadri"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                MESS
+            ========================== -->
+            <div class="today-summary-card today-mess-card">
+
+                <div class="today-summary-header">
+
+                    <div class="stat-label">
+                        MESS
+                    </div>
+
+                </div>
+
+                <div
+                    class="today-mess-value"
+                    id="messSummary"
+                >
                     Loading...
                 </div>
 
             </div>
 
         </div>
-
     </div>
 
 
@@ -1809,7 +2087,81 @@ body {
     <div class="page-subtitle">
         Working-day Buggie departures from the official schedule.
     </div>
+    
+    <!-- =================================
+     NEXT BUGGIE SERVICES
+================================== -->
 
+    <div class="card">
+
+        <div class="card-header">
+
+            <div>
+                <div class="card-title">
+                    Upcoming Buggie Services
+                </div>
+
+                <div class="bus-type">
+                    Next available Buggie services today
+                </div>
+            </div>
+
+            <div class="badge badge-orange">
+                BUGGIE
+            </div>
+
+        </div>
+
+
+        <div class="upcoming-direction-grid">
+
+            <!-- NILA → SAHYADRI -->
+
+            <div class="direction-card">
+
+                <div class="direction-header">
+
+                    <div class="direction-title">
+                        Nila → Sahyadri
+                    </div>
+
+                    <div class="badge badge-orange">
+                        BUGGIE
+                    </div>
+
+                </div>
+
+                <div id="buggiePageNilaUpcoming"></div>
+
+            </div>
+
+
+            <!-- SAHYADRI → NILA -->
+
+            <div class="direction-card">
+
+                <div class="direction-header">
+
+                    <div class="direction-title">
+                        Sahyadri → Nila
+                    </div>
+
+                    <div class="badge badge-orange">
+                        BUGGIE
+                    </div>
+
+                </div>
+
+                <div id="buggiePageSahyadriUpcoming"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <br>
 
     <div class="grid grid-2">
 
@@ -3379,6 +3731,8 @@ function renderToday() {
 
     renderNextBus();
 
+    renderNextBuggie();
+
 }
 
 
@@ -3693,31 +4047,136 @@ function renderHomeBuggieList(
         .join("");
 
 }
-
 function renderNextBus() {
 
-    const output =
-        document.getElementById("nextBus");
+    const nilaOutput =
+        document.getElementById("nextBusNila");
+
+    const sahyadriOutput =
+        document.getElementById("nextBusSahyadri");
+
+
+    /* Safety check */
+    if (!nilaOutput || !sahyadriOutput) {
+        console.warn(
+            "Next bus elements not found."
+        );
+        return;
+    }
+
 
     const data =
         upcomingBuses();
 
-    if (!data.buses.length) {
 
-        output.textContent =
-            "No more buses";
+    const nilaBus =
+        data.buses
+            .filter(
+                bus =>
+                    bus.route ===
+                    "Nila → Sahyadri"
+            )
+            .sort(
+                (a, b) =>
+                    a.minutes - b.minutes
+            )[0];
 
-        return;
 
-    }
+    const sahyadriBus =
+        data.buses
+            .filter(
+                bus =>
+                    bus.route ===
+                    "Sahyadri → Nila"
+            )
+            .sort(
+                (a, b) =>
+                    a.minutes - b.minutes
+            )[0];
 
-    const bus =
-        data.buses[0];
 
-    output.textContent =
-        `${bus.route} • ${convert24To12(bus.time)}`;
+    nilaOutput.textContent =
+        nilaBus
+            ? convert24To12(nilaBus.time)
+            : "No more buses";
+
+
+    sahyadriOutput.textContent =
+        sahyadriBus
+            ? convert24To12(sahyadriBus.time)
+            : "No more buses";
 
 }
+
+function renderNextBuggie() {
+
+    const nilaOutput =
+        document.getElementById(
+            "nextBuggieNila"
+        );
+
+    const sahyadriOutput =
+        document.getElementById(
+            "nextBuggieSahyadri"
+        );
+
+
+    /* Safety check */
+    if (!nilaOutput || !sahyadriOutput) {
+        console.warn(
+            "Next buggie elements not found."
+        );
+        return;
+    }
+
+
+    const buggies =
+        upcomingBuggies();
+
+
+    const nilaBuggie =
+        buggies
+            .filter(
+                b =>
+                    b.route ===
+                    "Nila → Sahyadri"
+            )
+            .sort(
+                (a, b) =>
+                    a.minutes - b.minutes
+            )[0];
+
+
+    const sahyadriBuggie =
+        buggies
+            .filter(
+                b =>
+                    b.route ===
+                    "Sahyadri → Nila"
+            )
+            .sort(
+                (a, b) =>
+                    a.minutes - b.minutes
+            )[0];
+
+
+    nilaOutput.textContent =
+        nilaBuggie
+            ? convert24To12(
+                nilaBuggie.time
+            )
+            : "No more";
+
+
+    sahyadriOutput.textContent =
+        sahyadriBuggie
+            ? convert24To12(
+                sahyadriBuggie.time
+            )
+            : "No more";
+
+}
+
 
 function getTodayRouteDetails() {
 
@@ -4018,7 +4477,6 @@ function buggieTimeRow(time, index) {
 
 }
 
-
 function renderBuggiePage() {
 
     const nila =
@@ -4027,15 +4485,89 @@ function renderBuggiePage() {
     const a1 =
         document.getElementById("buggieA1List");
 
+
     nila.innerHTML =
         buggieServiceTimes["Nila → Sahyadri"]
-            .map((time, index) => buggieTimeRow(time, index))
+            .map(
+                (time, index) =>
+                    buggieTimeRow(time, index)
+            )
             .join("");
+
 
     a1.innerHTML =
         buggieServiceTimes["Sahyadri → Nila"]
-            .map((time, index) => buggieTimeRow(time, index))
+            .map(
+                (time, index) =>
+                    buggieTimeRow(time, index)
+            )
             .join("");
+
+
+    /* NEW:
+       Upcoming Buggie section
+    */
+
+    renderBuggiePageUpcoming();
+
+}
+
+
+function renderBuggiePageUpcoming() {
+
+    const nilaContainer =
+        document.getElementById(
+            "buggiePageNilaUpcoming"
+        );
+
+    const sahyadriContainer =
+        document.getElementById(
+            "buggiePageSahyadriUpcoming"
+        );
+
+
+    if (
+        !nilaContainer ||
+        !sahyadriContainer
+    ) {
+        return;
+    }
+
+
+    const buggies =
+        upcomingBuggies();
+
+
+    const nilaBuggies =
+        buggies
+            .filter(
+                b =>
+                    b.route ===
+                    "Nila → Sahyadri"
+            )
+            .slice(0, 5);
+
+
+    const sahyadriBuggies =
+        buggies
+            .filter(
+                b =>
+                    b.route ===
+                    "Sahyadri → Nila"
+            )
+            .slice(0, 5);
+
+
+    renderHomeBuggieList(
+        nilaContainer,
+        nilaBuggies
+    );
+
+
+    renderHomeBuggieList(
+        sahyadriContainer,
+        sahyadriBuggies
+    );
 
 }
 
@@ -4204,33 +4736,33 @@ function renderCalendar() {
         ).getDate();
 
 
-    for (let i=0; i<firstDay; i++) {
+    const totalCells = 42;
 
-        html += `<div class="day"></div>`;
+    for (let cell = 0; cell < totalCells; cell++) {
 
-    }
+        const dayNumber = cell - firstDay + 1;
 
+        if (
+            dayNumber < 1 ||
+            dayNumber > daysInMonth
+        ) {
+            html += `<div class="day empty-day"></div>`;
+            continue;
+        }
 
-    for (let day=1; day<=daysInMonth; day++) {
+        const date = new Date(
+            calendarYear,
+            calendarMonth,
+            dayNumber
+        );
 
-        const date =
-            new Date(
-                calendarYear,
-                calendarMonth,
-                day
-            );
-
-        const key =
-            dateKey(date);
-
-        const holiday =
-            holidays[key];
+        const key = dateKey(date);
+        const holiday = holidays[key];
 
         const isToday =
             key === dateKey(getISTDate());
 
         html += `
-
             <div
                 class="
                     day
@@ -4240,7 +4772,7 @@ function renderCalendar() {
             >
 
                 <div class="day-number">
-                    ${day}
+                    ${dayNumber}
                 </div>
 
                 ${
@@ -4254,9 +4786,7 @@ function renderCalendar() {
                 }
 
             </div>
-
         `;
-
     }
 
 
@@ -4324,31 +4854,6 @@ function renderAcademicEvents() {
    NAVIGATION
 ============================================================ */
 
-function showPage(page) {
-
-    document
-        .querySelectorAll(".page")
-        .forEach(
-            p => p.classList.remove("active")
-        );
-
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(
-            b => b.classList.remove("active")
-        );
-
-    document
-        .getElementById(page)
-        .classList.add("active");
-
-    document
-        .querySelector(
-            `.nav-btn[data-page="${page}"]`
-        )
-        .classList.add("active");
-
-}
 
 
 document
