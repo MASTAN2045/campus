@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>IIT Palakkad Companion</title>
+    <title>IITPKD DAILY</title>
 
+    <link rel="icon" type="image/png" href="assets/Logo.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
 <style>
 :root {
     --bg: #f4f7fb;
@@ -32,38 +37,53 @@
    DARK THEME
 ========================= */
 
+/* =========================================================
+   DARK THEME — MIDNIGHT NAVY
+   ========================================================= */
+
 [data-theme="dark"] {
 
-    --bg: #10141c;
-    --card: #181e28;
+    /* Main surfaces */
+    --bg: #0B1120;
+    --card: #111827;
 
-    --text: #f1f4f8;
-    --muted: #9aa5b5;
+    /* Typography */
+    --text: #F1F5F9;
+    --muted: #94A3B8;
 
-    --primary: #7ea2ff;
-    --primary-light: #202d4d;
+    /* Primary */
+    --primary: #7C9CFF;
+    --primary-light: #1B2948;
 
-    --teal: #45c8c1;
-    --teal-light: #173735;
+    /* Teal */
+    --teal: #4FD1C5;
+    --teal-light: #123331;
 
-    --orange: #ffb44d;
-    --orange-light: #3a2b18;
+    /* Orange */
+    --orange: #F6B04A;
+    --orange-light: #332717;
 
-    --purple: #b294f5;
-    --purple-light: #30264a;
+    /* Purple */
+    --purple: #B69CFF;
+    --purple-light: #292044;
 
-    --pink: #f18bb7;
-    --pink-light: #402536;
+    /* Pink */
+    --pink: #F18BB7;
+    --pink-light: #3A2030;
 
-    --green: #53c78b;
-    --green-light: #19372a;
+    /* Green */
+    --green: #5BD39A;
+    --green-light: #143528;
 
-    --danger: #ff7676;
+    /* Danger */
+    --danger: #FF7B7B;
 
-    --border: #2b3442;
+    /* Borders */
+    --border: #263247;
 
+    /* Shadows */
     --shadow:
-        0 8px 25px rgba(0, 0, 0, 0.25);
+        0 10px 30px rgba(0, 0, 0, 0.28);
 }
 
 
@@ -161,12 +181,7 @@
     padding: 22px;
 }
 
-.today-direction {
-    padding: 16px;
-    border-radius: 14px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-}
+
 /* =========================================================
    MOBILE HAMBURGER MENU
    ========================================================= */
@@ -415,15 +430,25 @@ button {
 }
 
 .logo-mark {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #315fce, #6b8ce6);
-    color: white;
-    display: grid;
-    place-items: center;
-    font-weight: 800;
-    font-size: 15px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.brand-logo-img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .logo-title {
@@ -432,7 +457,7 @@ button {
 }
 
 .logo-subtitle {
-    color: var(--muted);
+    color: #B8C2D4;
     font-size: 11px;
     margin-top: 2px;
 }
@@ -448,7 +473,7 @@ button {
 
 .clock-date {
     font-size: 11px;
-    color: var(--muted);
+    color: #B8C2D4;
 }
 
 /* =========================
@@ -468,7 +493,7 @@ button {
 .nav button {
     border: 0;
     background: transparent;
-    color: var(--muted);
+    color: #B8C2D4;
     padding: 9px 16px;
     border-radius: 9px;
     cursor: pointer;
@@ -510,7 +535,7 @@ button {
 }
 
 .page-subtitle {
-    color: var(--muted);
+    color: #B8C2D4;
     font-size: 14px;
     margin-bottom: 24px;
 }
@@ -538,124 +563,568 @@ button {
 }
 
 .hero p {
-    color: var(--muted);
+    color: #B8C2D4;
     margin: 8px 0 20px;
 }
 
 /* ============================================================
    TODAY PAGE SUMMARY
 ============================================================ */
+/* =========================================================
+   HOME / TODAY PAGE - COMPACT RESPONSIVE DESIGN
+   Final override
+   ========================================================= */
 
-.today-summary-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin-top: 24px;
-}
+/* ---------- HERO ---------- */
 
-
-/* Main summary card */
-
-.today-summary-card {
+.hero {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: none;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.15;
+}
+
+.hero p {
+    color: #B8C2D4;
+    margin: 7px 0 15px;
+    font-size: 14px;
 }
 
 
-/* Header */
+/* ---------- NEXT SERVICES ---------- */
+
+.today-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.today-summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: none;
+}
 
 .today-summary-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 22px;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.stat-label {
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 0.3px;
 }
 
 
-/* Direction columns */
+/* ---------- TWO DIRECTIONS ---------- */
 
 .today-direction-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
 }
 
-
-/* Individual direction */
-
 .today-direction {
-    padding: 16px;
-    border-radius: 14px;
+    min-width: 0;
+    padding: 12px;
+    border-radius: 12px;
     background: var(--bg);
     border: 1px solid var(--border);
 }
 
-
-/* Route name */
-
 .today-direction-label {
-    color: var(--muted);
-    font-size: 12px;
+    color: #B8C2D4;
+    font-size: 11px;
     font-weight: 600;
-    margin-bottom: 8px;
+    line-height: 1.25;
+    margin-bottom: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
-/* Next time */
 
 .today-next-time {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.1;
     font-weight: 750;
     letter-spacing: -0.3px;
+    white-space: nowrap;
 }
 
 
-/* Mess */
+/* ---------- MESS ---------- */
 
 .today-mess-card {
     grid-column: 1 / -1;
 }
 
-
 .today-mess-value {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.2;
     font-weight: 750;
 }
 
 
-/* Mobile */
+/* =========================================================
+   UPCOMING BUS / BUGGIE
+   Make these visually match the NEXT sections
+   ========================================================= */
 
-@media (max-width: 700px) {
+#today .grid.grid-2 {
+    gap: 14px;
+}
+
+#today .grid.grid-2 > .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: none;
+}
+
+#today .grid.grid-2 > .card .card-header {
+    margin-bottom: 12px;
+}
+
+#today .grid.grid-2 > .card .card-title {
+    font-size: 16px;
+    font-weight: 750;
+}
+
+#today .grid.grid-2 > .card .bus-type {
+    font-size: 11px;
+}
+
+
+/* Same direction boxes as next-service boxes */
+
+#today .direction-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+#today .direction-header {
+    margin-bottom: 9px;
+}
+
+#today .direction-title {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* Compact bus rows */
+
+#today .bus-row {
+    grid-template-columns: 60px 1fr auto;
+    gap: 8px;
+    padding: 10px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+}
+
+#today .bus-time {
+    font-size: 12px;
+}
+
+#today .bus-route {
+    font-size: 12px;
+}
+
+#today .bus-type {
+    font-size: 10px;
+}
+
+
+/* Compact buggie rows */
+
+#today .buggie-row {
+    grid-template-columns: 28px 1fr auto;
+    gap: 8px;
+    padding: 9px 10px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+}
+
+#today .buggie-time {
+    font-size: 12px;
+}
+
+#today .route-path {
+    font-size: 10px;
+}
+
+
+/* ---------- TODAY'S MESS ---------- */
+
+#today > .card {
+    margin-top: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: none;
+}
+
+#today > .card .card-header {
+    margin-bottom: 10px;
+}
+
+#today > .card .card-title {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   REMOVE EXCESSIVE BR SPACING
+   ========================================================= */
+
+#today > br {
+    display: none;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+@media (max-width: 768px) {
+    .logo-mark {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+    }
+}
+@media (max-width: 480px) {
+    .logo-mark {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+    }
+}
+@media (max-width: 900px) {
+
+    .main {
+        padding: 14px;
+    }
+
+    .hero {
+        padding: 18px;
+    }
 
     .today-summary-grid {
-        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    .today-mess-card {
-        grid-column: auto;
+    /*
+       Keep bus and buggie directions side-by-side.
+       Do NOT change this to 1fr.
+    */
+    #today .upcoming-direction-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
     }
+
+    #today .grid.grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .logo-mark {
+        width: 42px;
+        height: 42px;
+    }
+
+    .logo-title {
+        font-size: 15px;
+        font-weight: 700;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .main {
+        padding: 10px;
+    }
+
+    .hero {
+        padding: 14px;
+        border-radius: 16px;
+        margin-bottom: 12px;
+    }
+
+    .hero h1 {
+        font-size: 23px;
+    }
+
+    .hero p {
+        font-size: 12px;
+        margin: 5px 0 11px;
+    }
+
+    .logo-mark {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logo-title {
+        font-size: 15px;
+        font-weight: 700;
+    }
+    /* NEXT BUS + NEXT BUGGIE remain side-by-side */
+
+    .today-summary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .today-summary-card {
+        padding: 11px;
+        border-radius: 13px;
+    }
+
+    .today-summary-header {
+        margin-bottom: 8px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+    }
+
+    .badge {
+        padding: 4px 6px;
+        font-size: 8px;
+        border-radius: 6px;
+    }
+
+
+    /* Two directions remain side-by-side */
 
     .today-direction-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
     }
 
+    .today-direction {
+        padding: 9px;
+        border-radius: 10px;
+    }
+
+    .today-direction-label {
+        font-size: 9px;
+        margin-bottom: 5px;
+    }
+
+    .today-next-time {
+        font-size: 14px;
+    }
+
+
+    /* Mess */
+
+    .today-mess-card {
+        grid-column: 1 / -1;
+    }
+
+    .today-mess-value {
+        font-size: 15px;
+    }
+
+
+    /* Upcoming sections */
+
+    #today .grid.grid-2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    #today .grid.grid-2 > .card {
+        padding: 11px;
+        border-radius: 13px;
+    }
+
+    #today .grid.grid-2 > .card .card-title {
+        font-size: 13px;
+    }
+
+    #today .grid.grid-2 > .card .bus-type {
+        font-size: 9px;
+    }
+
+
+    /*
+       Keep Nila/Sahyadri direction boxes
+       side-by-side on phone.
+    */
+
+    #today .upcoming-direction-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    #today .direction-card {
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    #today .direction-title {
+        font-size: 9px;
+        line-height: 1.2;
+    }
+
+    #today .direction-header {
+        margin-bottom: 6px;
+    }
+
+
+    /* Compact bus rows */
+
+    #today .bus-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    #today .bus-time {
+        font-size: 11px;
+    }
+
+    #today .bus-route {
+        font-size: 10px;
+    }
+
+    #today .bus-type {
+        font-size: 8px;
+    }
+
+    #today .bus-row .badge {
+        display: none;
+    }
+
+
+    /* Compact buggie rows */
+
+    #today .buggie-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    #today .buggie-number {
+        display: none;
+    }
+
+    #today .buggie-time {
+        font-size: 11px;
+    }
+
+    #today .route-path {
+        font-size: 9px;
+    }
+
+    #today .buggie-row .badge {
+        display: none;
+    }
+
+
+    /* Today's mess */
+
+    #today > .card {
+        margin-top: 10px;
+        padding: 11px;
+        border-radius: 13px;
+    }
+
+    #today > .card .card-title {
+        font-size: 13px;
+    }
 }
 
 
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
 
-.stat-label {
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
+@media (max-width: 380px) {
+
+    .main {
+        padding: 8px;
+    }
+
+    .hero {
+        padding: 12px;
+    }
+
+    .hero h1 {
+        font-size: 21px;
+    }
+
+    .hero p {
+        font-size: 11px;
+    }
+
+    .today-summary-card {
+        padding: 9px;
+    }
+
+    .today-direction {
+        padding: 8px;
+    }
+
+    .today-direction-label {
+        font-size: 8px;
+    }
+
+    .today-next-time {
+        font-size: 13px;
+    }
+
+    #today .grid.grid-2 {
+        gap: 6px;
+    }
+
+    #today .grid.grid-2 > .card {
+        padding: 9px;
+    }
+
+    #today .grid.grid-2 > .card .card-title {
+        font-size: 12px;
+    }
+
+    #today .direction-card {
+        padding: 7px;
+    }
+
+    #today .direction-title {
+        font-size: 8px;
+    }
 }
 
-.stat-value {
-    font-size: 15px;
-    font-weight: 750;
-    margin-top: 7px;
-}
 
 /* =========================
    CARDS
@@ -676,11 +1145,11 @@ button {
     gap: 14px;
 }
 
+.today-direction,
 .direction-card {
-    background: var(--card);
+    background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 14px;
+    border-radius: 12px;
 }
 
 .direction-header {
@@ -695,14 +1164,19 @@ button {
     font-size: 14px;
     font-weight: 750;
 }
-
-@media(max-width: 900px) {
-
+@media (max-width: 900px) {
     .upcoming-direction-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
     }
-
 }
+@media (max-width: 600px) {
+    .upcoming-direction-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+}
+
 .grid-3 {
     grid-template-columns: repeat(3, 1fr);
 }
@@ -750,7 +1224,7 @@ button {
 }
 
 .buggie-number {
-    color: var(--muted);
+    color: #B8C2D4;
     font-size: 11px;
     font-weight: 700;
     text-align: center;
@@ -762,13 +1236,13 @@ button {
 }
 
 .route-path {
-    color: var(--muted);
+    color: #B8C2D4;
     font-size: 12px;
     line-height: 1.5;
 }
 
 .class-time {
-    color: var(--muted);
+    color: #B8C2D4;
     font-size: 12px;
     font-weight: 650;
 }
@@ -781,7 +1255,7 @@ button {
 
 .class-room {
     font-size: 12px;
-    color: var(--muted);
+    color: #B8C2D4;
 }
 
 /* =========================
@@ -811,7 +1285,7 @@ button {
 }
 
 .bus-type {
-    color: var(--muted);
+    color: #B8C2D4;
     font-size: 11px;
 }
 
@@ -857,18 +1331,19 @@ button {
 }
 
 .meal-title {
-    font-size: 13px;
-    font-weight: 650;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
     margin-bottom: 6px;
+    color: var(--text);
 }
 
 .meal-content {
-    color: var(--muted);
-    line-height: 1.55;
     font-size: 13px;
-    font-weight: 550;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text);
 }
-
 /* =========================
    CALENDAR
 ========================= */
@@ -947,7 +1422,7 @@ button {
     padding: 8px;
 
     background: var(--card);
-    color: var(--muted);
+    color: #B8C2D4;
 
     font-size: clamp(11px, 1.2vw, 14px);
     font-weight: 700;
@@ -1114,16 +1589,48 @@ button {
 [data-theme="dark"] .calendar .holiday .event-dot {
     color: #ff6b6b;
 }
+[data-theme="dark"] .calendar .day:hover {
+    background: #1B2948;
+}
 
+@media (hover: hover) and (pointer: fine) {
 
+    .calendar .day:hover {
+        background: #F1F5FF;
+    }
+
+    [data-theme="dark"] .calendar .day:hover {
+        background: #1B2948;
+    }
+
+}
+.calendar .day:active {
+    background: var(--primary-light);
+}
+@media (hover: hover) and (pointer: fine) {
+
+    .calendar .day:hover {
+        background: #F1F5FF;
+        box-shadow: inset 0 0 0 1px #DCE6FF;
+    }
+
+    [data-theme="dark"] .calendar .day:hover {
+        background: #1B2948;
+        box-shadow: inset 0 0 0 1px #344A78;
+    }
+
+}
 /* =========================================================
    HOVER
    ========================================================= */
+/* =========================================================
+   CALENDAR HOVER — LIGHT THEME
+   ========================================================= */
 
 .calendar .day:hover {
-    background: #202837;
+    background: #F1F5FF;
+    transition: background 0.15s ease;
 }
-
 .calendar .empty-day:hover {
     background: var(--card);
 }
@@ -1229,7 +1736,7 @@ button {
 }
 
 .route-path {
-    color: var(--muted);
+    color: #B8C2D4;
     font-size: 12px;
     line-height: 1.6;
 }
@@ -1358,7 +1865,148 @@ button {
     }
 }
 
+/* =========================================================
+   TODAY MESS INSIDE SUMMARY BOX
+   ========================================================= */
 
+.today-mess-card {
+    grid-column: 1 / -1;
+    padding: 16px;
+}
+
+
+/* Header */
+
+.today-mess-card .today-summary-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.today-mess-cycle {
+    color: #B8C2D4;
+    font-size: 11px;
+    font-weight: 600;
+    flex: 1;
+}
+
+
+/* Four meal boxes */
+
+.today-meals-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+
+/* Individual meal */
+
+.today-meal {
+    min-width: 0;
+
+    padding: 11px;
+
+    background: var(--bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+}
+
+
+/* Meal title */
+/* =========================================================
+   MESS MENU — CLEARER FOOD DETAILS
+   ========================================================= */
+
+.today-meal .meal-title {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.today-meal .meal-content {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .today-mess-card {
+        padding: 10px;
+    }
+
+    .today-mess-card .today-summary-header {
+        margin-bottom: 8px;
+        gap: 7px;
+    }
+
+    .today-mess-cycle {
+        font-size: 8px;
+    }
+
+    .today-meals-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 6px;
+    }
+
+    .today-meal {
+        padding: 8px;
+        border-radius: 9px;
+    }
+
+    .today-meal .meal-title {
+        font-size: 9px;
+        margin-bottom: 3px;
+    }
+
+    .today-meal .meal-content {
+        font-size: 8px;
+        line-height: 1.3;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .today-mess-card {
+        padding: 9px;
+    }
+
+    .today-meals-grid {
+        gap: 5px;
+    }
+
+    .today-meal {
+        padding: 7px;
+    }
+
+    .today-meal .meal-title {
+        font-size: 8px;
+    }
+
+    .today-meal .meal-content {
+        font-size: 7px;
+    }
+}
 
 /* =========================================================
    IMPORTANT DATES - RESPONSIVE
@@ -1398,7 +2046,7 @@ button {
 
     font-size: 14px;
 
-    color: var(--muted);
+    color: #B8C2D4;
 
     text-align: right;
 
@@ -1432,7 +2080,7 @@ button {
 .important-date .event {
     min-width: 0;
     font-size: 14px;
-    color: var(--muted);
+    color: #B8C2D4;
     text-align: right;
     line-height: 1.35;
     overflow-wrap: anywhere;
@@ -1479,6 +2127,348 @@ body {
     box-sizing: border-box;
 }
 
+/* =========================================================
+   GLOBAL TYPOGRAPHY SYSTEM
+   IIT PALAKKAD COMPANION
+   ========================================================= */
+
+:root {
+
+    /* Font */
+    --font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    /* Typography scale */
+    --text-display: 28px;
+    --text-page-title: 26px;
+    --text-section: 17px;
+    --text-body-large: 15px;
+    --text-body: 13px;
+    --text-small: 12px;
+    --text-caption: 11px;
+
+    /* Font weights */
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-heavy: 800;
+
+    /* Line heights */
+    --leading-tight: 1.2;
+    --leading-normal: 1.45;
+    --leading-relaxed: 1.6;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+    font-family: var(--font-family);
+}
+
+body {
+    font-size: var(--text-body);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-normal);
+}
+
+
+/* =========================================================
+   PAGE TITLES
+   ========================================================= */
+
+.page-title {
+    font-size: var(--text-page-title);
+    font-weight: var(--weight-heavy);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.35px;
+    margin-bottom: 6px;
+}
+
+.page-subtitle {
+    font-size: var(--text-body);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-normal);
+    color: #B8C2D4;
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero h1 {
+    font-size: var(--text-display);
+    font-weight: var(--weight-heavy);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+}
+
+.hero p {
+    font-size: var(--text-body);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-normal);
+}
+
+
+/* =========================================================
+   CARD HEADINGS
+   ========================================================= */
+
+.card-title {
+    font-size: var(--text-section);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.15px;
+}
+
+.card-link {
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+}
+
+.card-header {
+    line-height: var(--leading-normal);
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.nav button {
+    font-size: 13px;
+    font-weight: var(--weight-medium);
+    line-height: 1;
+}
+
+.nav button.active {
+    font-weight: var(--weight-bold);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.logo-title {
+    font-size: 17px;
+    font-weight: var(--weight-bold);
+    line-height: 1.2;
+}
+
+.logo-subtitle {
+    font-size: 11px;
+    font-weight: var(--weight-regular);
+    line-height: 1.2;
+}
+
+.clock-time {
+    font-size: 15px;
+    font-weight: var(--weight-semibold);
+}
+
+.clock-date {
+    font-size: 11px;
+    font-weight: var(--weight-regular);
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+.stat-label {
+    font-size: 11px;
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.35px;
+    line-height: 1.2;
+}
+
+.bus-type {
+    font-size: 11px;
+    font-weight: var(--weight-regular);
+    line-height: 1.3;
+}
+
+.direction-title {
+    font-size: 13px;
+    font-weight: var(--weight-semibold);
+    line-height: 1.3;
+}
+
+.direction-card .direction-title {
+    font-size: 13px;
+    font-weight: var(--weight-semibold);
+}
+
+
+/* =========================================================
+   IMPORTANT VALUES
+   ========================================================= */
+
+.today-next-time {
+    font-size: 18px;
+    font-weight: var(--weight-bold);
+    line-height: 1.15;
+    letter-spacing: -0.25px;
+}
+
+.bus-time {
+    font-size: 13px;
+    font-weight: var(--weight-bold);
+}
+
+.bus-route {
+    font-size: 13px;
+    font-weight: var(--weight-semibold);
+}
+
+.buggie-time {
+    font-size: 14px;
+    font-weight: var(--weight-bold);
+}
+
+.route-title {
+    font-size: 14px;
+    font-weight: var(--weight-bold);
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   SECONDARY INFORMATION
+   ========================================================= */
+
+.route-path {
+    font-size: 12px;
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-relaxed);
+    color: #B8C2D4;
+}
+
+.class-time,
+.class-room {
+    font-size: 12px;
+    font-weight: var(--weight-regular);
+    line-height: 1.35;
+}
+
+.class-name {
+    font-size: 16px;
+    font-weight: var(--weight-bold);
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   MESS
+   ========================================================= */
+
+.meal-title {
+    font-size: 13px;
+    font-weight: var(--weight-semibold);
+    line-height: 1.3;
+}
+
+.meal-content {
+    font-size: 13px;
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-relaxed);
+}
+
+.mess-cycle {
+    font-size: 11px;
+    font-weight: var(--weight-semibold);
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+    font-size: 10px;
+    font-weight: var(--weight-bold);
+    line-height: 1;
+    letter-spacing: 0.15px;
+}
+
+
+/* =========================================================
+   CALENDAR
+   ========================================================= */
+
+.month-name {
+    font-size: 21px;
+    font-weight: var(--weight-bold);
+    line-height: 1.2;
+}
+
+.calendar .weekday {
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    line-height: 1;
+}
+
+.calendar .day-number {
+    font-size: 14px;
+    font-weight: var(--weight-semibold);
+    line-height: 1;
+}
+
+.calendar .event-dot {
+    font-size: 9px;
+    font-weight: var(--weight-medium);
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   IMPORTANT DATES
+   ========================================================= */
+
+.important-date .date {
+    font-size: 14px;
+    font-weight: var(--weight-semibold);
+    line-height: 1.35;
+}
+
+.important-date .event {
+    font-size: 13px;
+    font-weight: var(--weight-regular);
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.mobile-menu-item {
+    font-size: 14px;
+    font-weight: var(--weight-medium);
+}
+
+.mobile-menu-item.active {
+    font-weight: var(--weight-bold);
+}
+
 
 </style>
 </head>
@@ -1492,7 +2482,11 @@ body {
     <div class="logo">
 
         <div class="logo-mark">
-            IIT
+            <img
+                src="assets/Logo.png"
+                alt="IIT Palakkad"
+                class="brand-logo-img"
+            >
         </div>
 
         <div>
@@ -1757,14 +2751,23 @@ body {
                         MESS
                     </div>
 
+                    <div
+                        class="today-mess-cycle"
+                        id="messSummary"
+                    >
+                        Loading...
+                    </div>
+
+                    <div
+                        class="card-link"
+                        onclick="showPage('mess')"
+                    >
+                        Full menu
+                    </div>
+
                 </div>
 
-                <div
-                    class="today-mess-value"
-                    id="messSummary"
-                >
-                    Loading...
-                </div>
+                <div id="todayMess"></div>
 
             </div>
 
@@ -1908,30 +2911,6 @@ body {
 
     </div>
 
-
-    <br>
-
-
-    <div class="card">
-
-        <div class="card-header">
-
-            <div class="card-title">
-                Today's Mess
-            </div>
-
-            <div
-                class="card-link"
-                onclick="showPage('mess')"
-            >
-                Full menu
-            </div>
-
-        </div>
-
-        <div id="todayMess"></div>
-
-    </div>
 
 </section>
 
@@ -2183,10 +3162,6 @@ body {
         ></div>
 
     </div>
-
-
-    <br>
-
 
     <div class="card">
 
@@ -4217,37 +5192,49 @@ function renderTodayRouteDetails() {
     );
 
 }
-
 function renderTodayMess(dayName) {
 
     const container =
         document.getElementById("todayMess");
 
-    const cycle = getMessCycle();
-    const menu = cycle.menu[dayName];;
+    const cycle =
+        getMessCycle();
+
+    const menu =
+        cycle.menu[dayName];
 
     if (!menu) {
 
-        container.innerHTML =
-            `<div class="empty">
+        document.getElementById("messSummary").textContent =
+            "Menu unavailable";
+
+        container.innerHTML = `
+            <div class="empty">
                 Weekend / holiday menu information unavailable.
-            </div>`;
+            </div>
+        `;
 
         return;
-
     }
+
+
+    /*
+       Update MESS header
+    */
 
     document.getElementById("messSummary").textContent =
         `${dayName} • ${cycle.label}`;
 
+
+    /*
+       Render today's meals
+    */
+
     container.innerHTML = `
-        <div class="mess-cycle">
-            CURRENT MENU: ${cycle.label}
-        </div>
 
-        <div class="grid grid-2">
+        <div class="today-meals-grid">
 
-            <div class="meal">
+            <div class="today-meal">
                 <div class="meal-title">
                     Breakfast
                 </div>
@@ -4257,7 +5244,8 @@ function renderTodayMess(dayName) {
                 </div>
             </div>
 
-            <div class="meal">
+
+            <div class="today-meal">
                 <div class="meal-title">
                     Lunch
                 </div>
@@ -4267,7 +5255,8 @@ function renderTodayMess(dayName) {
                 </div>
             </div>
 
-            <div class="meal">
+
+            <div class="today-meal">
                 <div class="meal-title">
                     Snack
                 </div>
@@ -4277,7 +5266,8 @@ function renderTodayMess(dayName) {
                 </div>
             </div>
 
-            <div class="meal">
+
+            <div class="today-meal">
                 <div class="meal-title">
                     Dinner
                 </div>
@@ -4288,6 +5278,7 @@ function renderTodayMess(dayName) {
             </div>
 
         </div>
+
     `;
 }
 
