@@ -1,0 +1,4350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IIT Palakkad Companion</title>
+
+<style>
+:root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #172033;
+    --muted: #697386;
+    --primary: #315fce;
+    --primary-light: #e9efff;
+    --teal: #159a95;
+    --teal-light: #e5f7f5;
+    --orange: #e8901d;
+    --orange-light: #fff1dd;
+    --purple: #8057c7;
+    --purple-light: #f0e9ff;
+    --pink: #d95d91;
+    --pink-light: #fde8f1;
+    --green: #26945e;
+    --green-light: #e6f7ee;
+    --danger: #d94d4d;
+    --border: #e2e7ef;
+    --shadow: 0 8px 25px rgba(30, 45, 70, 0.07);
+}
+/* =========================
+   DARK THEME
+========================= */
+
+[data-theme="dark"] {
+
+    --bg: #10141c;
+    --card: #181e28;
+
+    --text: #f1f4f8;
+    --muted: #9aa5b5;
+
+    --primary: #7ea2ff;
+    --primary-light: #202d4d;
+
+    --teal: #45c8c1;
+    --teal-light: #173735;
+
+    --orange: #ffb44d;
+    --orange-light: #3a2b18;
+
+    --purple: #b294f5;
+    --purple-light: #30264a;
+
+    --pink: #f18bb7;
+    --pink-light: #402536;
+
+    --green: #53c78b;
+    --green-light: #19372a;
+
+    --danger: #ff7676;
+
+    --border: #2b3442;
+
+    --shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Header */
+
+[data-theme="dark"] .header {
+    background: #151a23;
+}
+
+
+/* Navigation */
+
+[data-theme="dark"] .nav {
+    background: #151a23;
+}
+
+
+/* Hero */
+
+[data-theme="dark"] .hero {
+    background:
+        linear-gradient(
+            120deg,
+            #182440,
+            #151d2c
+        );
+
+    border-color: #2b3a58;
+}
+
+
+/* Statistics */
+
+[data-theme="dark"] .hero-stat {
+    background: #1c2330;
+}
+
+
+/* Bus rows */
+
+[data-theme="dark"] .bus-row {
+    background: #1c2330;
+}
+[data-theme="dark"] .class-card.blue {
+    background: #253b73;
+    border-color: #4f78d8;
+    color: #eaf2ff;
+}
+
+[data-theme="dark"] .class-card.orange {
+    background: #6f4308;
+    border-color: #d68a22;
+    color: #fff4e5;
+}
+
+[data-theme="dark"] .class-card.blue .class-time,
+[data-theme="dark"] .class-card.blue .class-room,
+[data-theme="dark"] .class-card.orange .class-time,
+[data-theme="dark"] .class-card.orange .class-room {
+    color: rgba(255,255,255,0.8);
+}
+
+[data-theme="dark"] .class-card.green {
+    background: #234d28;
+    border-color: #4caf50;
+    color: #e8ffe8;
+}
+
+[data-theme="dark"] .class-card.green .class-time,
+[data-theme="dark"] .class-card.green .class-room {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Calendar */
+
+[data-theme="dark"] .weekday {
+    background: #1c2330;
+}
+
+
+/* Calendar day hover */
+
+[data-theme="dark"] .day:hover {
+    background: #202837;
+}
+
+
+/* Buttons */
+
+[data-theme="dark"] .calendar-buttons button,
+[data-theme="dark"] .calendar-toolbar button {
+    background: #1c2330 !important;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+/* =========================================================
+   MOBILE HAMBURGER MENU
+   ========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    place-items: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+    transform: scale(1.05);
+}
+/* =========================================================
+   MOBILE FLOATING MENU
+   ========================================================= */
+
+.mobile-menu {
+    display: none;
+
+    position: fixed;
+
+    top: 65px;
+
+    right: 12px;
+
+    width: 250px;
+
+    max-width: calc(100vw - 24px);
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 7px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.20);
+
+    z-index: 200;
+
+    overflow: hidden;
+}
+
+
+/* Menu opened */
+
+.mobile-menu.open {
+    display: block;
+}
+
+
+/* Individual menu item */
+
+.mobile-menu-item {
+    width: 100%;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    padding: 0 13px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    text-align: left;
+}
+
+
+/* Small gap between items */
+
+.mobile-menu-item + .mobile-menu-item {
+    margin-top: 1px;
+}
+
+
+/* Hover */
+
+.mobile-menu-item:hover {
+    background: var(--primary-light);
+}
+
+
+/* Selected */
+
+.mobile-menu-item.active {
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+
+/* Check mark */
+
+.menu-check {
+    opacity: 0;
+
+    font-size: 13px;
+}
+
+.mobile-menu-item.active .menu-check {
+    opacity: 1;
+}
+@media (min-width: 601px) {
+
+    .mobile-menu-button {
+        display: none !important;
+    }
+
+    .mobile-menu {
+        display: none !important;
+    }
+
+}
+/* Theme button */
+
+.theme-toggle {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    display: grid;
+
+    place-items: center;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+}
+
+.theme-toggle:hover {
+
+    transform: scale(1.05);
+
+}
+* {
+    box-sizing: border-box;
+}
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+button {
+    font: inherit;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    height: 72px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #315fce, #6b8ce6);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.logo-title {
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.logo-subtitle {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.clock {
+    text-align: right;
+}
+
+.clock-time {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.clock-date {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 32px;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+}
+
+.nav button {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 9px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nav button:hover {
+    background: #f2f5fa;
+}
+
+.nav button.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    max-width: 1450px;
+    margin: auto;
+    padding: 28px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    font-size: 27px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background:
+        linear-gradient(
+            120deg,
+            #edf3ff,
+            #f8fbff
+        );
+    border: 1px solid #dce6ff;
+    border-radius: 22px;
+    padding: 28px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.hero p {
+    color: var(--muted);
+    margin: 8px 0 20px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.hero-stat {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 15px;
+    font-weight: 750;
+    margin-top: 7px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-2 {
+    grid-template-columns: 1fr 1fr;
+    
+}
+.upcoming-direction-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.direction-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.direction-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.direction-title {
+    font-size: 14px;
+    font-weight: 750;
+}
+
+@media(max-width: 900px) {
+
+    .upcoming-direction-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.card-link {
+    font-size: 12px;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+/* =========================
+   BUGGIE SERVICE
+========================= */
+
+.buggie-row {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 13px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    background: var(--orange-light);
+    border: 1px solid var(--border);
+}
+
+.buggie-number {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.buggie-time {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.route-path {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.class-time {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.class-name {
+    font-size: 17px;
+    font-weight: 750;
+    margin: 6px 0;
+}
+
+.class-room {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* =========================
+   BUS
+========================= */
+
+.bus-row {
+    display: grid;
+    grid-template-columns: 85px 1fr auto;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 14px;
+    background: #f7f9fc;
+    border: 1px solid var(--border);
+    margin-bottom: 9px;
+}
+
+.bus-time {
+    color: var(--teal);
+    font-weight: 800;
+}
+
+.bus-route {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.bus-type {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.badge {
+    padding: 5px 8px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.badge-green {
+    color: var(--green);
+    background: var(--green-light);
+}
+
+.badge-orange {
+    color: var(--orange);
+    background: var(--orange-light);
+}
+
+/* =========================
+   MESS
+========================= */
+
+.mess-cycle {
+    display: inline-block;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: var(--orange-light);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 750;
+    margin-bottom: 15px;
+}
+
+.meal {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.meal:last-child {
+    border-bottom: 0;
+}
+
+.meal-title {
+    font-size: 13px;
+    font-weight: 750;
+    margin-bottom: 6px;
+}
+
+.meal-content {
+    color: var(--muted);
+    line-height: 1.55;
+    font-size: 13px;
+}
+
+/* =========================
+   CALENDAR
+========================= */
+
+.calendar-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.month-name {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.calendar-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.calendar-buttons button {
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 8px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--card);
+}
+
+.weekday {
+    padding: 11px;
+    background: var(--card);
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 750;
+    text-align: center;
+}
+
+.day {
+    min-height: 100px;
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 9px;
+    cursor: pointer;
+    background: var(--card);
+    color: var(--text);
+}
+
+.day:hover {
+    background: #202837;
+}
+
+.day-number {
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.today {
+    background: var(--primary-light);
+    color: var(--text);
+}
+/* =========================
+   HOLIDAY
+========================= */
+
+/* Light theme */
+.holiday {
+    background: #fff1f1;
+    color: #c62828;
+}
+
+.holiday .day-number {
+    color: #d32f2f;
+}
+
+.holiday .event-dot {
+    color: #d32f2f;
+}
+
+
+/* Dark theme */
+[data-theme="dark"] .holiday {
+    background: #3a2027;
+    color: #ff6b6b;
+}
+
+[data-theme="dark"] .holiday .day-number {
+    color: #ff5c5c;
+}
+
+[data-theme="dark"] .holiday .event-dot {
+    color: #ff6b6b;
+}
+
+.event-dot {
+    margin-top: 9px;
+    font-size: 9px;
+    color: var(--danger);
+    line-height: 1.4;
+}
+
+.event-academic {
+    color: var(--primary);
+}
+
+/* =========================
+   EMPTY / ALERT
+========================= */
+
+.alert {
+    padding: 15px;
+    border-radius: 13px;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.alert-holiday {
+    background: #fff0f0;
+    border: 1px solid #ffd1d1;
+    color: #a53e3e;
+}
+
+.alert-info {
+    background: #edf7ff;
+    border: 1px solid #d4eaff;
+    color: #386487;
+}
+
+.empty {
+    padding: 35px 15px;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* =========================
+   ROUTES
+========================= */
+
+.route-card {
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 17px;
+    margin-bottom: 10px;
+}
+
+.route-title {
+    font-weight: 750;
+    margin-bottom: 7px;
+}
+
+.route-path {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 900px) {
+
+    .header {
+        padding: 0 16px;
+    }
+
+    .nav {
+        padding: 8px 16px;
+    }
+
+    .main {
+        padding: 17px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .clock {
+        display: none;
+    }
+}
+
+@media(max-width: 600px) {
+
+    .buggie-row {
+        grid-template-columns: 30px 1fr;
+    }
+
+    .buggie-row .badge {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .logo-subtitle {
+        display: none;
+    }
+
+    .logo-title {
+        font-size: 15px;
+    }
+
+    .main {
+        padding: 12px;
+    }
+
+    .hero {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .hero h1 {
+        font-size: 23px;
+    }
+
+    .card {
+        padding: 17px;
+        border-radius: 16px;
+    }
+
+    .bus-row {
+    grid-template-columns: 70px 1fr auto;
+    }
+
+    .bus-row .badge {
+        display: block;
+    }
+
+    .calendar {
+        font-size: 10px;
+    }
+
+    .day {
+        min-height: 70px;
+        padding: 6px;
+    }
+
+    .event-dot {
+        font-size: 8px;
+    }
+        /* =================================
+       MOBILE HEADER
+       ================================= */
+
+    .header {
+        height: 64px;
+
+        padding: 0 14px;
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 150;
+    }
+
+
+    .header-actions {
+        gap: 7px;
+    }
+
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 11px;
+
+        font-size: 17px;
+    }
+
+
+    .mobile-menu-button {
+        display: grid;
+
+        width: 40px;
+        height: 40px;
+
+        border-radius: 11px;
+
+        font-size: 21px;
+    }
+
+
+    /* Hide desktop navigation on mobile */
+
+    .nav {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-mark">
+            IIT
+        </div>
+
+        <div>
+            <div class="logo-title">
+                IIT Palakkad Companion
+            </div>
+
+            <div class="logo-subtitle">
+                Buses • Buggie • Mess • Calendar
+            </div>
+        </div>
+
+    </div>
+
+    <div class="header-actions">
+
+    <button
+        id="themeToggle"
+        class="theme-toggle"
+        onclick="toggleTheme()"
+    >
+        🌙
+    </button>
+
+    <!-- MOBILE MENU BUTTON -->
+    <button
+        id="mobileMenuButton"
+        class="mobile-menu-button"
+        onclick="toggleMobileMenu()"
+        aria-label="Open menu"
+        aria-expanded="false"
+    >
+        ☰
+    </button>
+
+    <div class="clock">
+        <div class="clock-time" id="clockTime"></div>
+        <div class="clock-date" id="clockDate"></div>
+    </div>
+
+</div>
+
+</header>
+
+
+<!-- MOBILE FLOATING MENU -->
+
+<div
+    id="mobileMenu"
+    class="mobile-menu"
+>
+
+    <button
+        class="mobile-menu-item active"
+        data-page="today"
+    >
+        <span>Today</span>
+        <span class="menu-check">✓</span>
+    </button>
+
+
+    <button
+        class="mobile-menu-item"
+        data-page="buses"
+    >
+        <span>Buses</span>
+        <span class="menu-check">✓</span>
+    </button>
+
+    <button
+        class="mobile-menu-item"
+        data-page="buggie"
+    >
+        <span>Buggie Service</span>
+        <span class="menu-check">✓</span>
+    </button>
+
+    <button
+        class="mobile-menu-item"
+        data-page="mess"
+    >
+        <span>Mess</span>
+        <span class="menu-check">✓</span>
+    </button>
+
+    <button
+        class="mobile-menu-item"
+        data-page="calendar"
+    >
+        <span>Calendar</span>
+        <span class="menu-check">✓</span>
+    </button>
+
+</div>
+
+<nav class="nav">
+
+    <button class="nav-btn active" data-page="today">
+        Today
+    </button>
+
+    <button class="nav-btn" data-page="buses">
+        Buses
+    </button>
+
+    <button class="nav-btn" data-page="buggie">
+        Buggie Service
+    </button>
+
+    <button class="nav-btn" data-page="mess">
+        Mess
+    </button>
+
+    <button class="nav-btn" data-page="calendar">
+        Calendar
+    </button>
+
+</nav>
+
+
+<main class="main">
+
+<!-- =================================
+     TODAY
+================================== -->
+
+<section id="today" class="page active">
+
+    <div class="hero">
+
+        <h1 id="greeting">
+            Good evening
+        </h1>
+
+        <p id="todayDescription">
+            Your IIT Palakkad schedule for today.
+        </p>
+
+        <div class="hero-grid">
+
+
+
+            <div class="hero-stat">
+
+                <div class="stat-label">
+                    Next bus
+                </div>
+
+                <div class="stat-value" id="nextBus">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <div class="stat-label">
+                    Mess
+                </div>
+
+                <div class="stat-value" id="messSummary">
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="holidayAlert"></div>
+
+
+    <!-- TODAY'S CLASSES -->
+    <div class="grid grid-2">
+
+        <!-- REGULAR BUSES -->
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+                    <div class="card-title">
+                        Upcoming Buses
+                    </div>
+
+                    <div class="bus-type">
+                        Regular campus bus service
+                    </div>
+                </div>
+
+                <div class="badge badge-green">
+                    BUS
+                </div>
+
+            </div>
+
+            <div class="upcoming-direction-grid">
+
+                <!-- NILA → SAHYADRI -->
+                <div class="direction-card">
+
+                    <div class="direction-header">
+                        <div class="direction-title">
+                            Nila → Sahyadri
+                        </div>
+
+                        <div class="badge badge-green">
+                            BUS
+                        </div>
+                    </div>
+
+                    <div id="todayBusesNila"></div>
+
+                </div>
+
+
+                <!-- SAHYADRI → NILA -->
+                <div class="direction-card">
+
+                    <div class="direction-header">
+                        <div class="direction-title">
+                            Sahyadri → Nila
+                        </div>
+
+                        <div class="badge badge-green">
+                            BUS
+                        </div>
+                    </div>
+
+                    <div id="todayBusesSahyadri"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUGGIE -->
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+                    <div class="card-title">
+                        Upcoming Buggie Services
+                    </div>
+
+                    <div class="bus-type">
+                        Separate from regular buses
+                    </div>
+                </div>
+
+                <div class="badge badge-orange">
+                    BUGGIE
+                </div>
+
+            </div>
+
+            <div class="upcoming-direction-grid">
+
+                <!-- NILA → SAHYADRI -->
+                <div class="direction-card">
+
+                    <div class="direction-header">
+
+                        <div class="direction-title">
+                            Nila → Sahyadri
+                        </div>
+
+                        <div class="badge badge-orange">
+                            BUGGIE
+                        </div>
+
+                    </div>
+
+                    <div id="todayBuggiesNila"></div>
+
+                </div>
+
+
+                <!-- SAHYADRI → NILA -->
+                <div class="direction-card">
+
+                    <div class="direction-header">
+
+                        <div class="direction-title">
+                            Sahyadri → Nila
+                        </div>
+
+                        <div class="badge badge-orange">
+                            BUGGIE
+                        </div>
+
+                    </div>
+
+                    <div id="todayBuggiesSahyadri"></div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <br>
+
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div class="card-title">
+                Today's Mess
+            </div>
+
+            <div
+                class="card-link"
+                onclick="showPage('mess')"
+            >
+                Full menu
+            </div>
+
+        </div>
+
+        <div id="todayMess"></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     BUSES
+================================== -->
+
+<section id="buses" class="page">
+
+    <div class="page-title">
+        Campus Buses
+    </div>
+
+    <div class="page-subtitle">
+        Only buses that have not departed are shown.
+    </div>
+
+
+    <div class="grid grid-2">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Upcoming Buses
+                </div>
+
+            </div>
+
+            <div id="busList"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Route Details
+                </div>
+
+            </div>
+
+            <div id="busRouteList"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     BUGGIE SERVICE
+================================== -->
+
+<section id="buggie" class="page">
+
+    <div class="page-title">
+        Buggie Service
+    </div>
+
+    <div class="page-subtitle">
+        Working-day Buggie departures from the official schedule.
+    </div>
+
+
+    <div class="grid grid-2">
+
+        <div class="card">
+
+            <div class="card-header">
+                <div>
+                    <div class="card-title">18 Seater from Nila</div>
+                    <div class="route-path">Nila → Sahyadri</div>
+                </div>
+                <div class="badge badge-orange">BUGGIE</div>
+            </div>
+
+            <div id="buggieNilaList"></div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-header">
+                <div>
+                    <div class="card-title">14 Seater from A1</div>
+                    <div class="route-path">Sahyadri → Nila</div>
+                </div>
+                <div class="badge badge-orange">BUGGIE</div>
+            </div>
+
+            <div id="buggieA1List"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     MESS
+================================== -->
+
+<section id="mess" class="page">
+
+    <div class="page-title">
+        Kedaram Mess
+    </div>
+
+    <div class="page-subtitle">
+        Today's food and weekly menu.
+    </div>
+
+    <div class="card">
+
+        <div class="mess-cycle" id="messCycleLabel"></div>
+
+        <div id="messPage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     CALENDAR
+================================== -->
+
+<section id="calendar" class="page">
+
+    <div class="page-title">
+        Academic Calendar 2026
+    </div>
+
+    <div class="page-subtitle">
+        IIT Palakkad academic dates and holidays.
+    </div>
+
+
+    <div class="card">
+
+        <div class="calendar-toolbar">
+
+            <button
+                onclick="previousMonth()"
+                style="border:1px solid var(--border);background:white;border-radius:8px;padding:8px 12px;cursor:pointer"
+            >
+                ←
+            </button>
+
+            <div
+                class="month-name"
+                id="calendarMonth"
+            ></div>
+
+            <button
+                onclick="nextMonth()"
+                style="border:1px solid var(--border);background:white;border-radius:8px;padding:8px 12px;cursor:pointer"
+            >
+                →
+            </button>
+
+        </div>
+
+        <div
+            class="calendar"
+            id="calendarGrid"
+        ></div>
+
+    </div>
+
+
+    <br>
+
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div class="card-title">
+                2026 Important Dates
+            </div>
+
+        </div>
+
+        <div id="academicEvents"></div>
+
+    </div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* ============================================================
+   DATE / TIME
+============================================================ */
+
+const IST_TIMEZONE = "Asia/Kolkata";
+
+const TODAY = getISTDate();
+
+let calendarYear =
+    TODAY.getFullYear();
+
+let calendarMonth =
+    TODAY.getMonth();
+
+function getISTDate() {
+
+    return new Date(
+        new Date().toLocaleString(
+            "en-US",
+            { timeZone: IST_TIMEZONE }
+        )
+    );
+
+}
+
+function formatTime(date) {
+
+    return date.toLocaleTimeString(
+        "en-IN",
+        {
+            timeZone: IST_TIMEZONE,
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true
+        }
+    );
+
+}
+/* ============================================================
+   INDIAN STANDARD TIME (IST)
+============================================================ */
+
+function formatDate(date) {
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            timeZone: IST_TIMEZONE,
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+function updateClock() {
+
+    const now = getISTDate();
+
+    document.getElementById("clockTime").textContent =
+        formatTime(now);
+
+    document.getElementById("clockDate").textContent =
+        formatDate(now);
+
+    let hour = now.getHours();
+
+    let greeting = "Good morning";
+
+    if (hour >= 12 && hour < 17)
+        greeting = "Good afternoon";
+
+    if (hour >= 17)
+        greeting = "Good evening";
+
+    document.getElementById("greeting").textContent =
+        greeting;
+
+}
+
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+
+/* ============================================================
+   CLASS SCHEDULE
+============================================================ */
+
+/*
+    Based on the uploaded weekly schedule image.
+
+    Monday
+    MMP              8:00 - 8:50
+    Automotive       2:00 - 3:15
+
+    Tuesday
+    Economics        10:30 - 11:45
+    Vibrations       2:00 - 3:15
+
+    Wednesday
+    Automation       10:00 - 10:50
+    MMP              11:00 - 11:50
+
+    Thursday
+    Economics        9:00 - 10:15
+    Vibrations       3:30 - 4:45
+
+    Friday
+    Automation       8:00 - 8:50
+    MMP              9:00 - 9:50
+*/
+
+
+
+
+function timeToMinutes(time) {
+
+    const [h,m] = time.split(":").map(Number);
+
+    return h * 60 + m;
+
+}
+
+function classCard(c) {
+
+    return `
+        <div class="class-card ${c.color}">
+            <div class="class-time">
+                ${convert24To12(c.start)}
+                – ${convert24To12(c.end)}
+            </div>
+
+            <div class="class-name">
+                ${c.name}
+            </div>
+
+            <div class="class-room">
+                Room ${c.room}
+            </div>
+        </div>
+    `;
+
+}
+
+
+function convert24To12(time) {
+
+    let [h,m] = time.split(":").map(Number);
+
+    const suffix = h >= 12 ? "PM" : "AM";
+
+    h = h % 12;
+
+    if (h === 0)
+        h = 12;
+
+    return `${h}:${String(m).padStart(2,"0")} ${suffix}`;
+
+}
+
+
+/* ============================================================
+   HOLIDAYS
+============================================================ */
+
+const holidays = {
+
+    "2026-01-26": "Republic Day",
+    "2026-03-04": "Holi",
+    "2026-03-21": "Idu'l Fitr",
+    "2026-03-31": "Mahavir Jayanti",
+    "2026-04-03": "Good Friday",
+    "2026-05-01": "Buddha Purnima",
+    "2026-05-27": "Idu'l Zuha (Bakrid)",
+    "2026-06-26": "Muharram",
+    "2026-08-15": "Independence Day",
+    "2026-08-26": "Prophet Mohammad's Birthday",
+    "2026-09-14": "Ganesh Chaturthi",
+    "2026-10-02": "Mahatma Gandhi's Birthday",
+    "2026-10-19": "Dussehra (Mahashtami)",
+    "2026-10-20": "Dussehra",
+    "2026-11-08": "Diwali",
+    "2026-11-24": "Guru Nanak's Birthday",
+    "2026-12-25": "Christmas Day"
+
+};
+
+
+function dateKey(date) {
+
+    return date.getFullYear() +
+        "-" +
+        String(date.getMonth()+1).padStart(2,"0") +
+        "-" +
+        String(date.getDate()).padStart(2,"0");
+
+}
+
+
+function isHoliday(date) {
+
+    return holidays[dateKey(date)] !== undefined;
+
+}
+
+
+/* ============================================================
+   BUS DATA
+============================================================ */
+const workingBuses = {
+
+    "Nila → Sahyadri": [
+        "07:45",
+        "08:30",
+        "08:55",
+        "09:25",
+        "09:45",
+        "10:20",
+        "10:45",
+        "11:15",
+        "11:50",
+        "12:15",
+        "12:30",
+        "13:00",
+        "13:30",
+        "13:45",
+        "14:15",
+        "14:45",
+        "15:20",
+        "15:45",
+        "16:30",
+        "17:00",
+        "17:15",
+        "17:45",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "20:30",
+        "21:00",
+        "22:00",
+        "23:00",
+        "00:00"
+    ],
+
+    "Sahyadri → Nila": [
+        "07:45",
+        "08:15",
+        "08:30",
+        "08:55",
+        "09:25",
+        "09:45",
+        "10:20",
+        "10:45",
+        "11:15",
+        "11:50",
+        "12:15",
+        "12:30",
+        "13:00",
+        "13:30",
+        "13:45",
+        "13:55",
+        "14:15",
+        "14:45",
+        "15:20",
+        "15:45",
+        "16:30",
+        "17:00",
+        "17:15",
+        "17:45",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "21:15",
+        "22:15",
+        "23:15"
+    ]
+
+};
+
+const multipleWorkingBusTimes = {
+
+    "Nila → Sahyadri": new Set([
+        "07:45",
+        "08:30",
+        "11:50",
+        "12:30",
+        "13:00",
+        "13:30",
+        "13:45",
+        "17:15",
+        "20:00"
+    ]),
+
+    "Sahyadri → Nila": new Set([
+        "08:30",
+        "08:55",
+        "10:20",
+        "11:50",
+        "12:30",
+        "13:00",
+        "13:30",
+        "17:15"
+    ])
+
+};
+
+
+/*
+    Buggie-service departures from the uploaded working-day schedule.
+*/
+const buggieServiceTimes = {
+
+    "Nila → Sahyadri": [
+        "08:00",
+        "10:00",
+        "11:30",
+        "14:00",
+        "15:00",
+        "16:45",
+        "18:45",
+        "19:45",
+        "20:30",
+        "21:30",
+        "22:30",
+        "23:45",
+        "00:30",
+        "02:00"
+    ],
+
+    "Sahyadri → Nila": [
+        "08:00",
+        "09:00",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:45",
+        "14:00",
+        "15:00",
+        "16:00",
+        "16:45",
+        "17:30",
+        "18:15",
+        "19:15",
+        "20:15",
+        "21:15",
+        "22:15",
+        "23:15",
+        "00:10",
+        "00:45",
+        "02:15"
+    ]
+
+};
+
+
+/*
+    Saturday / M-F holiday schedule.
+*/
+
+const holidayBuses = {
+
+    "Nila → Sahyadri": [
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:15",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "20:30",
+        "21:00",
+        "22:00",
+        "23:00",
+        "00:00"
+    ],
+
+    "Sahyadri → Nila": [
+        "07:30",
+        "08:00",
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:15",
+        "21:15",
+        "22:15",
+        "23:15"
+    ]
+
+};
+
+const multipleHolidayBusTimes = {
+
+    "Nila → Sahyadri": new Set([
+        "20:00"
+    ]),
+
+    "Sahyadri → Nila": new Set([])
+
+};
+
+const sundayBuses = {
+
+    "Nila → Sahyadri": [
+        "08:45",
+        "09:15",
+        "10:00",
+        "11:00",
+        "12:00",
+        "12:30",
+        "13:15",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "20:30",
+        "21:00",
+        "22:00",
+        "23:00",
+        "00:00"
+    ],
+
+    "Sahyadri → Nila": [
+        "08:00",
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:15",
+        "11:15",
+        "12:15",
+        "12:45",
+        "13:30",
+        "14:15",
+        "15:15",
+        "16:15",
+        "17:15",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:15",
+        "21:15",
+        "22:15",
+        "23:15"
+    ]
+
+};
+
+
+/* ============================================================
+   ROUTES
+============================================================ */
+
+const routeDetails = {
+
+    working: [
+
+        {
+            title: "Route 1 — Kalleppulley → Sahyadri",
+            timing: "7:00 AM → 7:50 AM",
+            homePath:
+                "Kalleppulley → Nila Gate → Sahyadri",
+
+            path:
+                "Kalleppulley → Mattumantha → Koppam → Chandranagar Circle → Pudussery → Nila Gate → Sahyadri"
+        },
+
+        {
+            title: "Route 2 — Palakkad → Sahyadri",
+            timing: "8:00 AM → 8:30 AM",
+            homePath:
+                 "Palakkad → Stadium Bus Stand → Nila Gate → Sahyadri",
+        
+            path:
+                "Palakkad → Kadamkode → Manapullykavu → Maidaan (Govt. Hospital) → Stadium Bus Stand → Kalmandapam → Chandranagar → Pudussery → Nila Gate → Sahyadri"
+        },
+
+        {
+            title: "Route 3 — Nila Gate / Palakkad → Sahyadri",
+            timing:
+                "Nila Gate 7:40 AM → Palakkad 8:25 AM → Sahyadri 8:55 AM",
+            homePath:
+                "Nila Gate → Stadium Bus Stand → Sahyadri",
+            path:
+                "Nila Gate → Palakkad → Kadamkode → Manapullykavu → Maidaan → Stadium Bus Stand → Kalmandapam → Chandranagar → Pudussery → Nila Gate → Sahyadri"
+        },
+
+        {
+            title: "Route 4 — Nila Gate / Kalleppulley → Sahyadri",
+            timing:
+                "Nila Gate 7:55 AM → Kalleppulley 8:25 AM → Sahyadri 8:55 AM",
+            homePath:
+                "Nila Gate → Kalleppulley → Sahyadri",
+            path:
+                "Nila Gate → Kalleppulley → Koppam → Sekharipuram → Mattumantha → Malampuzha → Nila Gate → Sahyadri"
+        },
+
+        {
+            title: "Route 5 — Sahyadri → Town",
+            timing:
+                "5:35 PM departure",
+            homePath:
+                "Sahyadri → Nila Gate → Stadium Bus Stand",
+            path:
+                "Sahyadri → Nila Gate → Pudussery → Kadamkode → Manapullykavu → Maidaan → Stadium Bus Stand → Palakkad",
+            note:
+                "Monday–Thursday: up to Town. Friday–Saturday: up to Kinnar stop."
+        },
+
+        {
+            title: "Route 6 — Sahyadri → Kalleppulley / Nila",
+            timing:
+                "Sahyadri 5:35 PM → Kalleppulley 5:55 PM; Sekharipuram 5:50 PM → Nila",
+            homePath:
+                "Sahyadri → Nila Manogata → Kalleppulley → Nila ",
+            path:
+                "Sahyadri → Nila Manogata → Malampuzha Road → Mattumantha → Sekharipuram → Koppam → Kalleppulley→Sekharipuram(5.50 PM )→ Chandranagar → Pudussery → Nila"
+        },
+
+        {
+            title: "Route 7 — Sahyadri → Stadium Bus Stand",
+            timing:
+                "6:15 PM",
+            homePath:
+                "Sahyadri → Nila Gate → Stadium Bus Stand",
+            path:
+                "Sahyadri → Nila Gate → Pudussery → Kadamkode → Manapullykavu → Maidaan → Stadium Bus Stand",
+            note:
+                "Friday and Saturday only."
+        },
+
+        {
+            title: "Route 8 — Stadium Bus Stand → IIT",
+            timing:
+                "9:30 PM",
+            homePath:
+                "Stadium Bus Stand → IIT Main Gate → Sahyadri",
+            path:
+                "Stadium Bus Stand → Chandranagar → Pudussery → IIT Main Gate → Sahyadri",
+            note:
+                "The PDF states Route 8 operates on all days."
+        },
+
+        {
+            title: "Wise Park Junction",
+            timing:
+                "Nila 8:15 AM → Wise Park Junction 8:30 AM → Nila Manogata 8:45 AM → Sahyadri 9:00 AM",
+            homePath:
+                "Nila → Wise Park Junction → Nila Manogata → Sahyadri",
+            path:
+                "Nila → Wise Park Junction → Nila Manogata → Sahyadri",
+            note:
+                "Service roads only; detours are possible due to construction."
+        },
+
+        {
+            title: "Wise Park Junction — Evening",
+            timing:
+                "Sahyadri 6:15 PM → Wise Park Junction 6:45 PM → Nila Manogata 7:00 PM",
+            homePath:
+                "Sahyadri → Wise Park Junction → Nila Manogata",
+            path:
+                "Sahyadri → Nila Gate → Wise Park Junction → Nila Manogata",
+            note:
+                "Service roads only; detours are possible due to construction."
+        }
+
+    ],
+
+
+    holiday: [
+
+        {
+            title: "Route 3 — Nila Gate / Palakkad → Sahyadri",
+            timing:
+                "Same working-day Route 3 timing",
+            homePath:
+                "Nila Gate → Stadium Bus Stand → Sahyadri",
+            path:
+                "Nila Gate → Palakkad → Kadamkode → Manapullykavu → Maidaan → Stadium Bus Stand → Kalmandapam → Chandranagar → Pudussery → Nila Gate → Sahyadri"
+        },
+
+        {
+            title: "Route 4 — Nila Gate / Kalleppulley → Sahyadri",
+            timing:
+                "Same working-day Route 4 timing",
+            homePath:
+                "Nila Gate → Kalleppulley → Sahyadri",
+            path:
+                "Nila Gate → Kalleppulley → Koppam → Sekharipuram → Mattumantha → Malampuzha → Nila Gate → Sahyadri"
+        },
+
+        {
+            title: "Route 5 — Sahyadri → Town",
+            timing:
+                "5:35 PM",
+            homePath:
+                "Sahyadri → Nila Gate → Stadium Bus Stand",
+            path:
+                "Sahyadri → Nila Gate → Pudussery → Kadamkode → Manapullykavu → Maidaan → Stadium Bus Stand → Palakkad"
+        },
+
+        {
+            title: "Route 7 — Sahyadri → Stadium Bus Stand",
+            timing:
+                "6:15 PM",
+            homePath:
+                "Sahyadri → Nila Gate → Stadium Bus Stand",
+            path:
+                "Sahyadri → Nila Gate → Pudussery → Kadamkode → Manapullykavu → Maidaan → Stadium Bus Stand"
+        },
+
+        {
+            title: "Route 8 — Stadium Bus Stand → IIT",
+            timing:
+                "9:30 PM",
+            path:
+                "Stadium Bus Stand → Chandranagar → Pudussery → IIT Main Gate → Sahyadri"
+        },
+
+        {
+            title: "Route 9 — Sahyadri → Palakkad → Saraswati",
+            timing:
+                "Sahyadri 1:00 PM → Palakkad 1:30 PM → Saraswati 2:00 PM",
+            homePath:
+                "Stadium Bus Stand → IIT Main Gate → Sahyadri",
+            path:
+                "Sahyadri → Nila Gate → Pudussery → Kadamkode → Manapullykavu → Maidaan → Stadium Bus Stand → Palakkad → Chandranagar → Pudussery → Nila → Saraswati"
+        },
+
+        {
+            title: "Wise Park Junction — Morning",
+            timing:
+                "Nila 8:45 AM → Wise Park Junction 9:00 AM → Nila Manogata 9:15 AM → Sahyadri 9:30 AM",
+            homePath:
+                "Nila → Wise Park Junction → Nila Manogata → Sahyadri",
+            path:
+                "Nila → Wise Park Junction → Nila Manogata → Sahyadri",
+            note:
+                "Service roads only; detours are possible due to construction."
+        },
+
+        {
+            title: "Wise Park Junction — Evening",
+            timing:
+                "Sahyadri 6:15 PM → Wise Park Junction 6:45 PM → Nila Manogata 7:00 PM",
+            homePath:
+                "Sahyadri → Wise Park Junction → Nila Manogata",
+            path:
+                "Sahyadri → Nila Gate → Wise Park Junction → Nila Manogata",
+            note:
+                "Service roads only; detours are possible due to construction."
+        }
+
+    ]
+
+};
+
+function getHomeRouteServices() {
+
+    const now =
+        getISTDate();
+
+    const currentMinutes =
+        now.getHours() * 60 +
+        now.getMinutes();
+
+
+    const schedule =
+        getBusSchedule();
+
+
+    let routes = [];
+
+
+    if (
+        schedule.type === "working"
+    ) {
+
+        routes =
+            routeDetails.working;
+
+    }
+    else if (
+        schedule.type === "holiday"
+    ) {
+
+        routes =
+            routeDetails.holiday;
+
+    }
+    else {
+
+        return [];
+
+    }
+
+
+    const result = [];
+
+
+    routes.forEach(route => {
+
+        const match =
+            route.timing.match(
+                /(\d{1,2}):(\d{2})\s*(AM|PM)/i
+            );
+
+
+        if (!match) {
+            return;
+        }
+
+
+        let hour =
+            Number(match[1]);
+
+        const minute =
+            Number(match[2]);
+
+        const ampm =
+            match[3].toUpperCase();
+
+
+        if (
+            ampm === "PM" &&
+            hour !== 12
+        ) {
+            hour += 12;
+        }
+
+
+        if (
+            ampm === "AM" &&
+            hour === 12
+        ) {
+            hour = 0;
+        }
+
+
+        const minutes =
+            hour * 60 + minute;
+
+
+        if (
+            minutes < currentMinutes
+        ) {
+            return;
+        }
+
+
+        result.push({
+
+            type: "route",
+
+            time:
+                `${String(hour).padStart(2,"0")}:${String(minute).padStart(2,"0")}`,
+
+            minutes,
+
+            title:
+                route.title,
+
+            route:
+                route.title,
+
+            homePath:
+                route.homePath ||
+                route.path,
+
+            multiple: false
+
+        });
+
+    });
+
+
+    return result.sort(
+        (a,b) =>
+            a.minutes - b.minutes
+    );
+
+}
+/* ============================================================
+   GET BUS SCHEDULE FOR TODAY
+============================================================ */
+
+function getBusSchedule() {
+
+    const now = getISTDate();
+    const day = now.getDay();
+
+    /*
+        Sunday
+    */
+    if (day === 0) {
+
+        return {
+            type: "sunday",
+            data: sundayBuses,
+            label: "Sunday schedule"
+        };
+
+    }
+
+    /*
+        Saturday
+    */
+    if (day === 6) {
+
+        return {
+            type: "holiday",
+            data: holidayBuses,
+            label: "Saturday schedule"
+        };
+
+    }
+
+    /*
+        Monday-Friday holiday
+    */
+    if (isHoliday(now)) {
+
+        return {
+            type: "holiday",
+            data: holidayBuses,
+            label: "M–F Holiday schedule"
+        };
+
+    }
+
+    /*
+        Normal Monday-Friday
+    */
+    return {
+
+        type: "working",
+        data: workingBuses,
+        label: "Working-day schedule"
+
+    };
+}
+
+
+/* ============================================================
+   UPCOMING BUSES
+============================================================ */
+
+function upcomingBuses() {
+
+    const now = getISTDate();
+
+    const currentMinutes =
+        now.getHours() * 60 +
+        now.getMinutes();
+
+    const schedule =
+        getBusSchedule();
+
+    const buses = [];
+
+    Object.entries(schedule.data).forEach(
+        ([route, times]) => {
+
+            const uniqueTimes =
+                [...new Set(times)];
+
+            uniqueTimes.forEach(time => {
+
+                let minutes =
+                    timeToMinutes(time);
+
+                /*
+                    After-midnight services
+                    belong to the next service period.
+                */
+                let comparisonMinutes =
+                    minutes;
+
+                if (minutes < 180) {
+                    comparisonMinutes += 1440;
+                }
+
+                let comparisonCurrent =
+                    currentMinutes;
+
+                if (
+                    currentMinutes >= 20 * 60 &&
+                    minutes < 180
+                ) {
+                    comparisonCurrent =
+                        currentMinutes;
+                }
+
+                if (
+                    comparisonMinutes >=
+                    comparisonCurrent
+                ) {
+
+                    buses.push({
+
+                        time,
+
+                        route,
+
+                        minutes:
+                            comparisonMinutes,
+
+                        multiple:
+                            isMultipleBus(
+                                schedule.type,
+                                route,
+                                time
+                            )
+
+                    });
+
+                }
+
+            });
+
+        }
+    );
+
+    buses.sort(
+        (a, b) =>
+            a.minutes - b.minutes
+    );
+
+    return {
+
+        buses,
+
+        type:
+            schedule.type,
+
+        label:
+            schedule.label
+
+    };
+}
+
+function isMultipleBus(
+    scheduleType,
+    route,
+    time
+) {
+
+    if (scheduleType === "working") {
+
+        return (
+            multipleWorkingBusTimes[route]
+                ?.has(time)
+            || false
+        );
+
+    }
+
+    if (scheduleType === "holiday") {
+
+        return (
+            multipleHolidayBusTimes[route]
+                ?.has(time)
+            || false
+        );
+
+    }
+
+    return false;
+}
+
+function upcomingBuggies() {
+
+    const now = getISTDate();
+
+    const currentMinutes =
+        now.getHours() * 60 +
+        now.getMinutes();
+
+    const result = [];
+
+    Object.entries(
+        buggieServiceTimes
+    ).forEach(([route, times]) => {
+
+        [...new Set(times)]
+            .forEach(time => {
+
+                const minutes =
+                    timeToMinutes(time);
+
+                let comparisonMinutes =
+                    minutes;
+
+                /*
+                    After midnight services such as
+                    00:30 and 02:00 belong to the
+                    continuation of the previous night.
+                */
+                if (minutes < 180) {
+                    comparisonMinutes += 1440;
+                }
+
+                if (
+                    comparisonMinutes >=
+                    currentMinutes
+                ) {
+
+                    result.push({
+
+                        time: time,
+
+                        route: route,
+
+                        minutes:
+                            comparisonMinutes
+
+                    });
+
+                }
+
+            });
+
+    });
+
+
+    result.sort(
+        (a, b) =>
+            a.minutes - b.minutes
+    );
+
+
+    return result;
+}
+/* ============================================================
+   MESS MENU
+============================================================ */
+
+/*
+    User specifically requested the current mess to use
+    the 1st/4th week cycle.
+
+    The uploaded PDF labels the first table as 1st/3rd week.
+    We use its food entries here according to the user's
+    explicit instruction that the current cycle is 1st/4th.
+*/
+
+const messMenuWeek13 = {
+
+    Monday: {
+
+        breakfast:
+        "Idli, Wada, Sambar, Chutney, Aloo Tomato Raswala, Boiled Egg/Banana, Boiled Peanut, Cornflakes",
+
+        lunch:
+        "Padwal Chana Dry, Aloo Tomato Raswala, Jeera Rice, Dal Makhani, Sambar, Rasam",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Cabbage Thoran, Gobi Mutter Masala, Steam Rice, Dal Fry, Rasam, Seviya Kheer"
+
+    },
+
+    Tuesday: {
+
+        breakfast:
+        "Poori Bhaji / Puttu, Kadala Curry, Boiled Egg / Water Melon, Sprouted Moong, Bournvita",
+
+        lunch:
+        "Mixed Veg Dry, Dal Khichdi, Dahi Kadi Pakoda, Sambhar, Fresh Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Paneer Mutter Masala, Tomato Rice, Dal Pancharatna, Steam Rice, Dal Methi, Rasam, Gulab Jamun"
+
+    },
+
+    Wednesday: {
+
+        breakfast:
+        "Podi Dosa, Chutney, Sambhar, Boiled Egg/Banana, Boiled Chana, Oats",
+
+        lunch:
+        "Aloo Bhindi Dry, Rajma Masala, Tadka Rice, Dal Kolhapuri, Sambhar, Fresh Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Paneer Kadai / Chicken Kadai, Dudhi Chana Dry, Steam Rice, Dal Methi, Rasam, Gulab Jamun"
+
+    },
+
+    Thursday: {
+
+        breakfast:
+        "Poha & Upma, Chutney, Omlette / Cut Fruits, Cornflakes",
+
+        lunch:
+        "Aloo Jeera Dry, Chole Masala, Poori, Lemon Rice, More Curry, Dal, Rasam, Fresh Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Tendli Chana Dry, Gobi / Capsicum, Mushroom Masala, Steam Rice, Dal Palak, Dal Fry, Methi Paratha, Burfi/Laddu"
+
+    },
+
+    Friday: {
+
+        breakfast:
+        "Pav Bhaji, Vellappam with Veg Stew, Boiled Egg/Banana, Sprout, Bournvita",
+
+        lunch:
+        "Carrot Aloo Beans Dry, Sprouted Mix Curry, Steam Rice, Dal Fry, Buttermilk, Sambhar, Fresh Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Cabbage Poriyal, Paneer Kolhapuri / Chicken Kolhapuri, Ghee Rice, Mix Dal, Sweet: Burfi/Laddu"
+
+    },
+
+    Saturday: {
+
+        breakfast:
+        "Aloo Paratha / Seviya Upma, Curd / Green Chutney, Boiled Egg/Banana, Cornflakes, Sprout",
+
+        lunch:
+        "Chana Masala, Veg Pulao, Veg Raitha, Steam Rice, Dal Fry, Buttermilk, Rasam, Fresh Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Aloo Capsicum Dry, Soyabean Mutter Masala, Tadka Rice, Yellow Dal Tadka, Sambhar, Payasam"
+
+    },
+
+    Sunday: {
+
+        breakfast:
+        "Masala Dosa, Sambhar, Chutney, Boiled Egg/Banana, Cornflakes, Boiled Peanut",
+
+        lunch:
+        "Veg with Paneer Biriyani / Chicken Biriyani, Raitha, Beetroot Dry, Dal Tadka, Lime Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Raw Banana Dry, Aloo Mutter Gravy, Steam Rice, Dal Fry, Triangle Paratha, Sambhar, Fruit Custard"
+
+    }
+
+};
+
+const messMenuWeek24 = {
+
+    Monday: {
+
+        breakfast:
+        "Idli, Wada, Sambhar, Chatni, Boiled Egg/Banana, Boiled Black Chana, Cornflakes",
+
+        lunch:
+        "Whole Pulses Dry, Dahi Bhindi Masala, Dal Pappu, Steam Rice, Kerala Rice, Sambhar, Fresh Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Cabbage Mutter Dry, Veg Kofta Curry, Chana Dal Masala, Pulka, Steam Rice, Kerala Rice, Rasam, Sweet: Seviya Kheer"
+
+    },
+
+    Tuesday: {
+
+        breakfast:
+        "Poori Bhaji/Nool Puttu, Kadala Curry, Boiled Egg/Water Melon, Sprouted Moong, Bournvita",
+
+        lunch:
+        "Veg Kolhapuri, Tomato Rice, Raita, Dal Tadka, Steam Rice, Kerala Rice, Sambhar, Flavoured Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Aloo Green Chawli Dry, Mutter Paneer, Rice, Dal Fry, Rasam, Sweet: Ice Cream"
+
+    },
+
+    Wednesday: {
+
+        breakfast:
+        "Set Dosa, Red Chatni, Sambhar, Boiled Egg/Banana, Sprout, Oats",
+
+        lunch:
+        "Mix Veg Dry, Methi Malai Mutter, Triangle Paratha, Steam Rice, Dal, Sambhar, Jaljeera",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Beetroot Poriyal, Paneer Kholapuri/Chicken Kholapuri, Green Peas Pulao, Dal, Rasam, Sweet: Gulab Jamun"
+
+    },
+
+    Thursday: {
+
+        breakfast:
+        "Poha & Upma, Chatni, Omelette/Cut Fruits, Sprout, Cornflakes",
+
+        lunch:
+        "Aloo Methi/Aloo Jeera, Chole Masala, Poori, Lemon Rice, More Curry, Dal, Steam Rice, Kerala Rice, Flavoured Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Padwal Chana Dry, Egg Masala/Corn Capsicum, Mushroom Masala, Dal Fry, Snake Gourd Dry, Steam Rice, Kerala Rice, Rasam, Sweet: Pineapple Sheera"
+
+    },
+
+    Friday: {
+
+        breakfast:
+        "Pav Bhaji, Vellappam with Veg Stew, Boiled Egg/Banana, Boiled Black Chana, Bournvita",
+
+        lunch:
+        "Veg Soya Chunk, Rajma Masala, Jeera Rice, Dal Palak, Steam Rice, Kerala Rice, Sambhar, Fresh Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Cabbage Poriyal, Chicken Kebab with Curry/Paneer Tikka Masala, Dal Lasooni Tadka, Steam Rice, Kerala Rice, Sweet: Burfi/Laddu"
+
+    },
+
+    Saturday: {
+
+        breakfast:
+        "Aloo Paratha/Green Peas Upma, Curd/Green Chatni, Boiled Egg/Banana, Oats, Sprout",
+
+        lunch:
+        "Mix Veg Semi Dry, Besan Gatte Masala, Dal Fry, Steam Rice, Kerala Rice, Rasam, Flavoured Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Veg Fried Rice, Veg Noodles, Veg Manchurian Gravy, Aloo Capsicum, Dal Adraki, Steam Rice, Kerala Rice, Rasam, Sweet: Payasam"
+
+    },
+
+    Sunday: {
+
+        breakfast:
+        "Masala Dosa, Sambhar, Chatni, Boiled Egg/Banana, Cornflakes, Boiled Peanut",
+
+        lunch:
+        "Mandi Rice, Chicken Masala/Paneer Masala, Beetroot Dry, Dal Tadka, Steam Rice, Kerala Rice, Lime Juice",
+
+        snack:
+        "Tea/Coffee, Pay Snacks",
+
+        dinner:
+        "Aloo Mutter Dry, Brinjal Curry, Triangle Paratha, Steam Rice, Kerala Rice, Sambhar, Sweet: Fruit Custard"
+
+    }
+
+};
+/* ============================================================
+   MESS CYCLE (MONDAY–SUNDAY LOGIC)
+============================================================ */
+
+/*
+Reference:
+17 Aug 2026 (Monday) = 1st/3rd Week
+
+Every Monday the cycle changes.
+*/
+
+const MESS_REFERENCE_MONDAY = new Date("2026-08-17");
+
+function getMessCycle() {
+
+    const today = getISTDate();
+
+    const currentMonday = new Date(today);
+
+    const day = currentMonday.getDay();
+
+    const daysFromMonday = (day + 6) % 7;
+
+    currentMonday.setDate(
+        currentMonday.getDate() - daysFromMonday
+    );
+
+    currentMonday.setHours(0, 0, 0, 0);
+
+    const referenceMonday =
+        new Date(MESS_REFERENCE_MONDAY);
+
+    referenceMonday.setHours(0, 0, 0, 0);
+
+    const weeksPassed = Math.floor(
+        (
+            currentMonday - referenceMonday
+        ) /
+        (7 * 24 * 60 * 60 * 1000)
+    );
+
+    return weeksPassed % 2 === 0
+        ? {
+            menu: messMenuWeek13,
+            label: "1st / 3rd Week"
+        }
+        : {
+            menu: messMenuWeek24,
+            label: "2nd / 4th Week"
+        };
+}
+
+/* ============================================================
+   ACADEMIC EVENTS
+============================================================ */
+
+const academicEvents = [
+
+    ["January 7, 2026", "Classes commence"],
+    ["January 21, 2026", "First CCM Week"],
+    ["February 11–23, 2026", "Test I"],
+    ["March 11, 2026", "Midterm CCM"],
+    ["March 16–28, 2026", "Test II"],
+    ["April 18, 2026", "Saturday Instructional Day"],
+    ["April 23, 2026", "Last Instructional Day"],
+    ["April 27–May 9, 2026", "End Semester Examinations"],
+    ["May 13–July 24, 2026", "Student Vacation"],
+    ["July 29, 2026", "Classes commence"],
+    ["September 7–19, 2026", "Test I"],
+    ["September 29, 2026", "Midterm CCM"],
+    ["October 12–27, 2026", "Test II"],
+    ["October 31, 2026", "Saturday Instructional Day"],
+    ["November 12, 2026", "Last Instructional Day"],
+    ["November 16–28, 2026", "End Semester Examinations"],
+    ["December 2, 2026–January 1, 2027", "Student Vacation"]
+
+];
+
+
+/* ============================================================
+   DISPLAY TODAY
+============================================================ */
+function renderToday() {
+
+    const now = getISTDate();
+
+    const dayName =
+        now.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long"
+            }
+        );
+
+    const holiday =
+        holidays[dateKey(now)];
+
+    document.getElementById(
+        "todayDescription"
+    ).textContent =
+        holiday
+            ? `${holiday}`
+            : `${dayName} • Campus information for today.`;
+
+    renderTodayBuses();
+
+    renderTodayBuggies();
+
+    renderTodayMess(dayName);
+
+    renderNextBus();
+
+}
+
+
+
+function renderTodayBuses() {
+
+    const nilaContainer =
+        document.getElementById(
+            "todayBusesNila"
+        );
+
+    const sahyadriContainer =
+        document.getElementById(
+            "todayBusesSahyadri"
+        );
+
+
+    const regular =
+        upcomingBuses().buses;
+
+
+    const routeServices =
+        getHomeRouteServices();
+
+
+    const allServices =
+        [
+            ...regular,
+            ...routeServices
+        ]
+        .sort(
+            (a,b) =>
+                a.minutes - b.minutes
+        );
+
+
+    const nilaServices =
+        allServices
+            .filter(
+                service =>
+                    getHomeDirection(
+                        service
+                    ) ===
+                    "Nila → Sahyadri"
+            )
+            .slice(0, 5);
+
+
+    const sahyadriServices =
+        allServices
+            .filter(
+                service =>
+                    getHomeDirection(
+                        service
+                    ) ===
+                    "Sahyadri → Nila"
+            )
+            .slice(0, 5);
+
+
+    renderHomeBusList(
+        nilaContainer,
+        nilaServices
+    );
+
+
+    renderHomeBusList(
+        sahyadriContainer,
+        sahyadriServices
+    );
+
+}
+
+function renderHomeBusList(
+    container,
+    services
+) {
+
+    if (!services.length) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No more services today.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        services
+            .map(service => {
+
+                if (
+                    service.type === "route"
+                ) {
+
+                    return `
+
+                        <div class="bus-row">
+
+                            <div class="bus-time">
+                                ${convert24To12(
+                                    service.time
+                                )}
+                            </div>
+
+                            <div>
+
+                                <div class="bus-route">
+                                    ${service.title}
+                                </div>
+
+                                <div class="route-path">
+                                    ${service.homePath}
+                                </div>
+
+                            </div>
+
+                            <div class="badge badge-green">
+                                ROUTE
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                return `
+                    <div class="bus-row">
+
+                        <div class="bus-time">
+                            ${convert24To12(service.time)}
+                        </div>
+
+                        <div>
+                            <div class="bus-route">
+                                ${service.route}
+                            </div>
+                        </div>
+
+                        <div>
+                            ${
+                                service.multiple
+                                ? `
+                                    <div class="badge badge-orange">
+                                        MULTIPLE
+                                    </div>
+                                `
+                                : ``
+                            }
+                        </div>
+
+                    </div>
+                `;
+
+            })
+            .join("");
+
+}
+
+function getHomeDirection(service) {
+
+    if (
+        service.type !== "route"
+    ) {
+
+        return service.route;
+
+    }
+
+
+    const title =
+        service.title.toLowerCase();
+
+
+    if (
+        title.includes(
+            "sahyadri →"
+        )
+    ) {
+
+        return "Sahyadri → Nila";
+
+    }
+
+
+    if (
+        title.includes(
+            "→ sahyadri"
+        )
+    ) {
+
+        return "Nila → Sahyadri";
+
+    }
+
+
+    if (
+        title.includes(
+            "stadium bus stand →"
+        )
+    ) {
+
+        return "Nila → Sahyadri";
+
+    }
+
+
+    if (
+        title.includes(
+            "wise park junction — evening"
+        )
+    ) {
+
+        return "Sahyadri → Nila";
+
+    }
+
+
+    return null;
+
+}
+function renderTodayBuggies() {
+
+    const nilaContainer =
+        document.getElementById(
+            "todayBuggiesNila"
+        );
+
+    const sahyadriContainer =
+        document.getElementById(
+            "todayBuggiesSahyadri"
+        );
+
+
+    const buggies =
+        upcomingBuggies();
+
+
+    const nilaBuggies =
+        buggies
+            .filter(
+                b =>
+                    b.route ===
+                    "Nila → Sahyadri"
+            )
+            .slice(0, 5);
+
+
+    const sahyadriBuggies =
+        buggies
+            .filter(
+                b =>
+                    b.route ===
+                    "Sahyadri → Nila"
+            )
+            .slice(0, 5);
+
+
+    renderHomeBuggieList(
+        nilaContainer,
+        nilaBuggies
+    );
+
+    renderHomeBuggieList(
+        sahyadriContainer,
+        sahyadriBuggies
+    );
+
+}
+
+function renderHomeBuggieList(
+    container,
+    buggies
+) {
+
+    if (!buggies.length) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No more Buggie services today.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+    buggies
+        .map(b => `
+
+            <div class="bus-row">
+
+                <div class="bus-time">
+                    ${convert24To12(b.time)}
+                </div>
+
+                <div>
+                    <div class="bus-route">
+                        ${b.route}
+                    </div>
+                </div>
+
+            </div>
+
+        `)
+        .join("");
+
+}
+
+function renderNextBus() {
+
+    const output =
+        document.getElementById("nextBus");
+
+    const data =
+        upcomingBuses();
+
+    if (!data.buses.length) {
+
+        output.textContent =
+            "No more buses";
+
+        return;
+
+    }
+
+    const bus =
+        data.buses[0];
+
+    output.textContent =
+        `${bus.route} • ${convert24To12(bus.time)}`;
+
+}
+
+function getTodayRouteDetails() {
+
+    const schedule =
+        getBusSchedule();
+
+    let details = [];
+
+    if (schedule.type === "working") {
+
+        const day =
+            getISTDate().getDay();
+
+        details =
+            routeDetails.working.filter(route => {
+
+                if (
+                    route.title.startsWith("Route 7")
+                ) {
+
+                    return day === 5;
+
+                }
+
+                return true;
+
+            });
+
+    }
+
+    else if (
+        schedule.type === "holiday"
+    ) {
+
+        details =
+            routeDetails.holiday;
+
+    }
+
+    else {
+
+        details = [
+            {
+                title:
+                    "Route 8 — Stadium Bus Stand → IIT",
+
+                timing:
+                    "Route operates on all days; Sunday departure time is not separately specified in the uploaded schedule.",
+
+                path:
+                    "Stadium Bus Stand → Chandranagar → Pudussery → IIT Main Gate → Sahyadri"
+            }
+        ];
+
+    }
+
+    return details;
+
+}
+
+function renderRouteDetails(containerId) {
+
+    const container =
+        document.getElementById(containerId);
+
+    if (!container) {
+        return;
+    }
+
+    const details =
+        getTodayRouteDetails();
+
+    container.innerHTML =
+        details
+            .map(route => `
+
+                <div class="route-card">
+
+                    <div class="route-title">
+                        ${route.title}
+                    </div>
+
+                    <div
+                        style="
+                            margin:7px 0;
+                            font-weight:700;
+                            color:var(--primary);
+                        "
+                    >
+                        ${route.timing}
+                    </div>
+
+                    <div class="route-path">
+                        ${route.path}
+                    </div>
+
+                    ${
+                        route.note
+                        ? `
+                            <div
+                                style="
+                                    margin-top:8px;
+                                    color:var(--muted);
+                                    font-size:11px;
+                                "
+                            >
+                                ${route.note}
+                            </div>
+                        `
+                        : ""
+                    }
+
+                </div>
+
+            `)
+            .join("");
+
+}
+
+function renderTodayRouteDetails() {
+
+    renderRouteDetails(
+        "todayRouteList"
+    );
+
+}
+
+function renderTodayMess(dayName) {
+
+    const container =
+        document.getElementById("todayMess");
+
+    const cycle = getMessCycle();
+    const menu = cycle.menu[dayName];;
+
+    if (!menu) {
+
+        container.innerHTML =
+            `<div class="empty">
+                Weekend / holiday menu information unavailable.
+            </div>`;
+
+        return;
+
+    }
+
+    document.getElementById("messSummary").textContent =
+        `${dayName} • ${cycle.label}`;
+
+    container.innerHTML = `
+        <div class="mess-cycle">
+            CURRENT MENU: ${cycle.label}
+        </div>
+
+        <div class="grid grid-2">
+
+            <div class="meal">
+                <div class="meal-title">
+                    Breakfast
+                </div>
+
+                <div class="meal-content">
+                    ${menu.breakfast}
+                </div>
+            </div>
+
+            <div class="meal">
+                <div class="meal-title">
+                    Lunch
+                </div>
+
+                <div class="meal-content">
+                    ${menu.lunch}
+                </div>
+            </div>
+
+            <div class="meal">
+                <div class="meal-title">
+                    Snack
+                </div>
+
+                <div class="meal-content">
+                    ${menu.snack}
+                </div>
+            </div>
+
+            <div class="meal">
+                <div class="meal-title">
+                    Dinner
+                </div>
+
+                <div class="meal-content">
+                    ${menu.dinner}
+                </div>
+            </div>
+
+        </div>
+    `;
+}
+
+/* ============================================================
+   BUS PAGE
+============================================================ */
+
+function renderBusPage() {
+
+    const result =
+        upcomingBuses();
+
+    
+    /* =====================================
+       REGULAR BUS SERVICES ONLY
+    ===================================== */
+
+    const container =
+        document.getElementById(
+            "busList"
+        );
+
+    if (!result.buses.length) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No more regular buses
+                scheduled today.
+            </div>
+        `;
+
+    }
+
+    else {
+
+        container.innerHTML =
+            result.buses
+                .map(bus => `
+
+                    <div class="bus-row">
+
+                        <div class="bus-time">
+                            ${convert24To12(bus.time)}
+                        </div>
+
+                        <div>
+                            <div class="bus-route">
+                                ${bus.route}
+                            </div>
+                        </div>
+
+                        <div>
+                            ${
+                                bus.multiple
+                                ? `
+                                    <div class="badge badge-orange">
+                                        MULTIPLE
+                                    </div>
+                                `
+                                : ``
+                            }
+                        </div>
+
+                    </div>
+
+                `)
+                .join("");
+
+    }
+
+
+    /* =====================================
+       ROUTE DETAILS
+    ===================================== */
+
+    renderRouteDetails(
+        "busRouteList"
+    );
+
+}
+
+/* ============================================================
+   BUGGIE SERVICE PAGE
+============================================================ */
+
+function buggieTimeRow(time, index) {
+
+    return `
+        <div class="buggie-row">
+
+            <div class="buggie-number">
+                ${index + 1}
+            </div>
+
+            <div class="buggie-time">
+                ${convert24To12(time)}
+            </div>
+
+        </div>
+    `;
+
+}
+
+
+function renderBuggiePage() {
+
+    const nila =
+        document.getElementById("buggieNilaList");
+
+    const a1 =
+        document.getElementById("buggieA1List");
+
+    nila.innerHTML =
+        buggieServiceTimes["Nila → Sahyadri"]
+            .map((time, index) => buggieTimeRow(time, index))
+            .join("");
+
+    a1.innerHTML =
+        buggieServiceTimes["Sahyadri → Nila"]
+            .map((time, index) => buggieTimeRow(time, index))
+            .join("");
+
+}
+
+
+/* ============================================================
+   MESS PAGE
+============================================================ */
+
+function renderMessPage() {
+
+    const days = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ];
+
+    const today = getISTDate().toLocaleDateString(
+        "en-US",
+        { weekday: "long" }
+    );
+
+    const cycle = getMessCycle();
+
+    document.getElementById("messCycleLabel").textContent =
+        `CURRENT CYCLE: ${cycle.label}`;
+
+    document.getElementById("messPage").innerHTML =
+        days.map(day => {
+
+            const menu = cycle.menu[day];
+
+            if (!menu) {
+                return "";
+            }
+
+            return `
+                <div style="
+                    padding:20px 0;
+                    border-bottom:1px solid var(--border);
+                ">
+
+                    <h3 style="margin-top:0">
+                        ${day}
+
+                        ${
+                            day === today
+                            ? '<span class="badge badge-green">TODAY</span>'
+                            : ""
+                        }
+
+                    </h3>
+
+                    <div class="grid grid-3">
+
+                        <div class="meal">
+                            <div class="meal-title">
+                                Breakfast
+                            </div>
+
+                            <div class="meal-content">
+                                ${menu.breakfast}
+                            </div>
+                        </div>
+
+                        <div class="meal">
+                            <div class="meal-title">
+                                Lunch
+                            </div>
+
+                            <div class="meal-content">
+                                ${menu.lunch}
+                            </div>
+                        </div>
+
+                        <div class="meal">
+                            <div class="meal-title">
+                                Snack
+                            </div>
+
+                            <div class="meal-content">
+                                ${menu.snack}
+                            </div>
+                        </div>
+
+                        <div class="meal">
+                            <div class="meal-title">
+                                Dinner
+                            </div>
+
+                            <div class="meal-content">
+                                ${menu.dinner}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+        })
+        .join("");
+}
+
+
+/* ============================================================
+   CALENDAR
+============================================================ */
+
+function renderCalendar() {
+
+    const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
+    document.getElementById("calendarMonth").textContent =
+        `${monthNames[calendarMonth]} ${calendarYear}`;
+
+
+    const grid =
+        document.getElementById("calendarGrid");
+
+    const weekdays = [
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+    ];
+
+    let html =
+        weekdays
+            .map(day =>
+                `<div class="weekday">${day}</div>`
+            )
+            .join("");
+
+
+    const firstDay =
+        new Date(
+            calendarYear,
+            calendarMonth,
+            1
+        ).getDay();
+
+    const daysInMonth =
+        new Date(
+            calendarYear,
+            calendarMonth + 1,
+            0
+        ).getDate();
+
+
+    for (let i=0; i<firstDay; i++) {
+
+        html += `<div class="day"></div>`;
+
+    }
+
+
+    for (let day=1; day<=daysInMonth; day++) {
+
+        const date =
+            new Date(
+                calendarYear,
+                calendarMonth,
+                day
+            );
+
+        const key =
+            dateKey(date);
+
+        const holiday =
+            holidays[key];
+
+        const isToday =
+            key === dateKey(getISTDate());
+
+        html += `
+
+            <div
+                class="
+                    day
+                    ${holiday ? "holiday" : ""}
+                    ${isToday ? "today" : ""}
+                "
+            >
+
+                <div class="day-number">
+                    ${day}
+                </div>
+
+                ${
+                    holiday
+                    ?
+                    `<div class="event-dot">
+                        ${holiday}
+                    </div>`
+                    :
+                    ""
+                }
+
+            </div>
+
+        `;
+
+    }
+
+
+    grid.innerHTML = html;
+
+}
+
+
+function previousMonth() {
+
+    calendarMonth--;
+
+    if (calendarMonth < 0) {
+
+        calendarMonth = 11;
+        calendarYear--;
+
+    }
+
+    renderCalendar();
+
+}
+
+
+function nextMonth() {
+
+    calendarMonth++;
+
+    if (calendarMonth > 11) {
+
+        calendarMonth = 0;
+        calendarYear++;
+
+    }
+
+    renderCalendar();
+
+}
+
+
+function renderAcademicEvents() {
+
+    document.getElementById("academicEvents").innerHTML =
+
+        academicEvents
+            .map(event => `
+
+                <div
+                    style="
+                    padding:13px 0;
+                    border-bottom:1px solid var(--border);
+                    display:flex;
+                    justify-content:space-between;
+                    gap:20px;
+                    "
+                >
+
+                    <strong>
+                        ${event[0]}
+                    </strong>
+
+                    <span style="color:var(--muted)">
+                        ${event[1]}
+                    </span>
+
+                </div>
+
+            `)
+            .join("");
+
+}
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+function showPage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            p => p.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(
+            b => b.classList.remove("active")
+        );
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+    document
+        .querySelector(
+            `.nav-btn[data-page="${page}"]`
+        )
+        .classList.add("active");
+
+}
+
+
+document
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                showPage(
+                    button.dataset.page
+                );
+
+            }
+        );
+
+    });
+
+function showPage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p =>
+            p.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(b =>
+            b.classList.remove("active")
+        );
+
+    const pageElement =
+        document.getElementById(page);
+
+    if (pageElement) {
+        pageElement.classList.add("active");
+    }
+
+    const navButton =
+        document.querySelector(
+            `.nav-btn[data-page="${page}"]`
+        );
+
+    if (navButton) {
+        navButton.classList.add("active");
+    }
+}
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+function initialize() {
+
+    renderToday();
+
+    renderBusPage();
+
+    renderBuggiePage();
+
+    renderMessPage();
+
+    renderCalendar();
+
+    renderAcademicEvents();
+
+}
+
+
+initialize();
+
+
+/*
+    Refresh the dashboard every minute.
+
+    This is important because:
+      1. past buses must disappear
+      2. next class changes
+      3. current date may change at midnight
+*/
+
+setInterval(()=>{
+
+    renderToday();
+    renderBusPage();
+    renderBuggiePage();
+    renderMessPage();
+
+},60000);
+/* ============================================================
+   DARK / LIGHT THEME
+============================================================ */
+
+function setTheme(theme) {
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+
+    localStorage.setItem(
+        "iitpkd-theme",
+        theme
+    );
+
+    const button =
+        document.getElementById("themeToggle");
+
+    if (theme === "dark") {
+
+        button.textContent = "☀️";
+
+    } else {
+
+        button.textContent = "🌙";
+
+    }
+
+}
+
+
+function toggleTheme() {
+
+    const current =
+        document.documentElement.getAttribute(
+            "data-theme"
+        );
+
+    if (current === "dark") {
+
+        setTheme("light");
+
+    } else {
+
+        setTheme("dark");
+
+    }
+
+}
+
+/* ============================================================
+   MOBILE HAMBURGER MENU
+   ============================================================ */
+
+function toggleMobileMenu() {
+
+    const menu =
+        document.getElementById("mobileMenu");
+
+    const button =
+        document.getElementById("mobileMenuButton");
+
+    const isOpen =
+        menu.classList.toggle("open");
+
+    button.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+    );
+
+}
+
+/* ============================================================
+   MOBILE MENU PAGE SELECTION
+   ============================================================ */
+
+document
+    .querySelectorAll(".mobile-menu-item")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const page =
+                    this.dataset.page;
+
+                /* Use existing page navigation */
+
+                showPage(page);
+
+
+                /* Update active menu item */
+
+                document
+                    .querySelectorAll(
+                        ".mobile-menu-item"
+                    )
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                this.classList.add("active");
+
+
+                /* Close menu */
+
+                document
+                    .getElementById(
+                        "mobileMenu"
+                    )
+                    .classList.remove("open");
+
+
+                document
+                    .getElementById(
+                        "mobileMenuButton"
+                    )
+                    .setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+            }
+        );
+
+    });
+
+/* ============================================================
+   CLOSE MENU WHEN CLICKING OUTSIDE
+   ============================================================ */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const menu =
+            document.getElementById(
+                "mobileMenu"
+            );
+
+        const button =
+            document.getElementById(
+                "mobileMenuButton"
+            );
+
+        if (!menu || !button)
+            return;
+
+
+        if (
+            !menu.contains(event.target) &&
+            !button.contains(event.target)
+        ) {
+
+            menu.classList.remove("open");
+
+            button.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    }
+);
+
+
+/* Load saved theme */
+
+const savedTheme =
+    localStorage.getItem("iitpkd-theme");
+
+
+if (savedTheme) {
+
+    setTheme(savedTheme);
+
+} else {
+
+    /*
+        Automatically use the user's
+        operating-system preference.
+    */
+
+    const prefersDark =
+        window.matchMedia &&
+        window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+
+    setTheme(
+        prefersDark
+            ? "dark"
+            : "light"
+    );
+
+}
+</script>
+
+</body>
+</html>
