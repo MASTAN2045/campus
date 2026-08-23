@@ -21,117 +21,185 @@
         href="style.css"
     >
 </head>
+
 <style>
+/* =========================================================
+   IIT PALAKKAD CAMPUS
+   FLUID / CONTENT-RESPONSIVE DESIGN SYSTEM
+
+   IMPORTANT:
+   - No 320/360/600/900px layout breakpoints.
+   - Layouts use auto-fit/minmax, clamp(), container units
+     and intrinsic sizing so they adapt to the available width.
+   - Buggie "Nila → Sahyadri" and "Sahyadri → Nila"
+     remain side-by-side.
+   ========================================================= */
+
+
+/* =========================================================
+   1. DESIGN TOKENS
+   ========================================================= */
+
 :root {
     --bg: #f4f7fb;
     --card: #ffffff;
+
     --text: #172033;
     --muted: #697386;
+
     --primary: #315fce;
     --primary-light: #e9efff;
+
     --teal: #159a95;
     --teal-light: #e5f7f5;
+
     --orange: #e8901d;
     --orange-light: #fff1dd;
+
     --purple: #8057c7;
     --purple-light: #f0e9ff;
+
     --pink: #d95d91;
     --pink-light: #fde8f1;
+
     --green: #26945e;
     --green-light: #e6f7ee;
+
     --danger: #d94d4d;
+
     --border: #e2e7ef;
-    --shadow: 0 8px 25px rgba(30, 45, 70, 0.07);
+    --shadow: 0 0.5rem 1.6rem rgba(30, 45, 70, 0.07);
+
+    /* Fluid typography */
+    --fs-xs: clamp(0.70rem, 0.66rem + 0.18vw, 0.78rem);
+    --fs-sm: clamp(0.80rem, 0.74rem + 0.24vw, 0.90rem);
+    --fs-md: clamp(0.88rem, 0.80rem + 0.32vw, 1.00rem);
+    --fs-lg: clamp(1.02rem, 0.92rem + 0.45vw, 1.22rem);
+    --fs-xl: clamp(1.24rem, 1.04rem + 0.85vw, 1.65rem);
+    --fs-page: clamp(1.35rem, 1.08rem + 1.10vw, 1.90rem);
+    --fs-hero: clamp(1.48rem, 1.15rem + 1.35vw, 2.05rem);
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-heavy: 800;
+
+    --leading-tight: 1.22;
+    --leading-normal: 1.50;
+    --leading-relaxed: 1.68;
+
+    /* Fluid spacing */
+    --space-1: clamp(0.30rem, 0.20rem + 0.25vw, 0.45rem);
+    --space-2: clamp(0.50rem, 0.36rem + 0.35vw, 0.70rem);
+    --space-3: clamp(0.72rem, 0.52rem + 0.50vw, 1.00rem);
+    --space-4: clamp(0.95rem, 0.70rem + 0.65vw, 1.30rem);
+    --space-5: clamp(1.20rem, 0.90rem + 0.80vw, 1.65rem);
+    --space-6: clamp(1.55rem, 1.10rem + 1.05vw, 2.15rem);
+
+    --gap: clamp(0.70rem, 0.45rem + 0.70vw, 1.15rem);
+
+    --radius-sm: clamp(0.42rem, 0.35rem + 0.15vw, 0.55rem);
+    --radius-md: clamp(0.65rem, 0.50rem + 0.35vw, 0.85rem);
+    --radius-lg: clamp(0.85rem, 0.65rem + 0.45vw, 1.15rem);
+
+    --card-pad: clamp(0.90rem, 0.62rem + 0.85vw, 1.45rem);
 }
-/* =========================
-   DARK THEME
-========================= */
+
 
 /* =========================================================
-   DARK THEME — MIDNIGHT NAVY
+   2. DARK THEME
    ========================================================= */
 
 [data-theme="dark"] {
-
-    /* Main surfaces */
-    --bg: #0B1120;
+    --bg: #0b1120;
     --card: #111827;
 
-    /* Typography */
-    --text: #F1F5F9;
-    --muted: #94A3B8;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
 
-    /* Primary */
-    --primary: #7C9CFF;
-    --primary-light: #1B2948;
+    --primary: #7c9cff;
+    --primary-light: #1b2948;
 
-    /* Teal */
-    --teal: #4FD1C5;
+    --teal: #4fd1c5;
     --teal-light: #123331;
 
-    /* Orange */
-    --orange: #F6B04A;
+    --orange: #f6b04a;
     --orange-light: #332717;
 
-    /* Purple */
-    --purple: #B69CFF;
+    --purple: #b69cff;
     --purple-light: #292044;
 
-    /* Pink */
-    --pink: #F18BB7;
-    --pink-light: #3A2030;
+    --pink: #f18bb7;
+    --pink-light: #3a2030;
 
-    /* Green */
-    --green: #5BD39A;
+    --green: #5bd39a;
     --green-light: #143528;
 
-    /* Danger */
-    --danger: #FF7B7B;
+    --danger: #ff7b7b;
 
-    /* Borders */
     --border: #263247;
-
-    /* Shadows */
-    --shadow:
-        0 10px 30px rgba(0, 0, 0, 0.28);
+    --shadow: 0 0.65rem 1.9rem rgba(0, 0, 0, 0.28);
 }
 
-
-/* Header */
-
-[data-theme="dark"] .header {
-    background: #151a23;
-}
-
-
-/* Navigation */
-
+[data-theme="dark"] .header,
 [data-theme="dark"] .nav {
-    background: #151a23;
+    background: var(--card);
 }
-
-
-/* Hero */
 
 [data-theme="dark"] .hero {
-    background:
-        linear-gradient(
-            120deg,
-            #182440,
-            #151d2c
-        );
-
+    background: linear-gradient(120deg, #182440, #151d2c);
     border-color: #2b3a58;
 }
-
-
-/* Statistics */
-
-/* Bus rows */
 
 [data-theme="dark"] .bus-row {
     background: #1c2330;
 }
+
+[data-theme="dark"] .weekday {
+    background: #1c2330;
+}
+
+[data-theme="dark"] .calendar .day:hover {
+    background: #202837;
+}
+
+/* Calendar navigation buttons — force correct dark-theme contrast.
+   !important is intentional here because browser/button styles or
+   existing page rules may otherwise paint these controls white. */
+[data-theme="dark"] .calendar-buttons button,
+[data-theme="dark"] .calendar-toolbar button,
+[data-theme="dark"] .calendar-toolbar .calendar-buttons button {
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: var(--card) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+
+    opacity: 1 !important;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .calendar-buttons button svg,
+[data-theme="dark"] .calendar-toolbar button svg {
+    color: var(--text) !important;
+    stroke: currentColor;
+    fill: none;
+}
+
+[data-theme="dark"] .calendar-buttons button:hover,
+[data-theme="dark"] .calendar-toolbar button:hover {
+    background: var(--primary-light) !important;
+    color: var(--text) !important;
+}
+
+[data-theme="dark"] .calendar-buttons button:active,
+[data-theme="dark"] .calendar-toolbar button:active {
+    background: var(--primary-light) !important;
+    color: var(--text) !important;
+}
+
 [data-theme="dark"] .class-card.blue {
     background: #253b73;
     border-color: #4f78d8;
@@ -144,258 +212,29 @@
     color: #fff4e5;
 }
 
-[data-theme="dark"] .class-card.blue .class-time,
-[data-theme="dark"] .class-card.blue .class-room,
-[data-theme="dark"] .class-card.orange .class-time,
-[data-theme="dark"] .class-card.orange .class-room {
-    color: rgba(255,255,255,0.8);
-}
-
 [data-theme="dark"] .class-card.green {
     background: #234d28;
     border-color: #4caf50;
     color: #e8ffe8;
 }
 
-[data-theme="dark"] .class-card.green .class-time,
-[data-theme="dark"] .class-card.green .class-room {
-    color: rgba(255,255,255,0.8);
-}
-
-/* Calendar */
-
-[data-theme="dark"] .weekday {
-    background: #1c2330;
-}
-
-
-/* Calendar day hover */
-
-[data-theme="dark"] .day:hover {
-    background: #202837;
-}
-
-
-/* Buttons */
-
-[data-theme="dark"] .calendar-buttons button,
-[data-theme="dark"] .calendar-toolbar button {
-    background: #1c2330 !important;
-    color: var(--text);
-    border-color: var(--border);
-}
-.today-summary-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 22px;
-}
-
 
 /* =========================================================
-   MOBILE HAMBURGER MENU
+   3. GLOBAL / NO HORIZONTAL OVERFLOW
    ========================================================= */
 
-.mobile-menu-button {
-    display: none;
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 12px;
-
-    border: 1px solid var(--border);
-
-    background: var(--card);
-
-    color: var(--text);
-
-    cursor: pointer;
-
-    font-size: 22px;
-
-    line-height: 1;
-
-    place-items: center;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.mobile-menu-button:hover {
-    transform: scale(1.05);
-}
-/* =========================================================
-   MOBILE FLOATING MENU
-   ========================================================= */
-
-.mobile-menu {
-    display: none;
-
-    position: fixed;
-
-    top: 65px;
-
-    right: 12px;
-
-    width: 250px;
-
-    max-width: calc(100vw - 24px);
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    padding: 7px;
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.20);
-
-    z-index: 200;
-
-    overflow: hidden;
-}
-
-
-/* Menu opened */
-
-.mobile-menu.open {
-    display: block;
-}
-
-
-/* Individual menu item */
-
-.mobile-menu-item {
+html {
     width: 100%;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    border: 0;
-
-    border-radius: 8px;
-
-    background: transparent;
-
-    color: var(--text);
-
-    padding: 0 13px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    font-weight: 500;
-
-    text-align: left;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-
-/* Small gap between items */
-
-.mobile-menu-item + .mobile-menu-item {
-    margin-top: 1px;
-}
-
-
-/* Hover */
-
-.mobile-menu-item:hover {
-    background: var(--primary-light);
-}
-
-
-/* Selected */
-
-.mobile-menu-item.active {
-    background: var(--primary-light);
-
-    color: var(--primary);
-
-    font-weight: 700;
-}
-
-
-/* Check mark */
-
-.menu-check {
-    opacity: 0;
-
-    font-size: 13px;
-}
-
-.mobile-menu-item.active .menu-check {
-    opacity: 1;
-}
-@media (min-width: 601px) {
-
-    .mobile-menu-button {
-        display: none !important;
-    }
-
-    .mobile-menu {
-        display: none !important;
-    }
-
-}
-/* Theme button */
-
-.theme-toggle {
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 12px;
-
-    border: 1px solid var(--border);
-
-    background: var(--card);
-
-    color: var(--text);
-
-    cursor: pointer;
-
-    font-size: 18px;
-
-    display: grid;
-
-    place-items: center;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-
-}
-
-.theme-toggle:hover {
-
-    transform: scale(1.05);
-
-}
-* {
-    box-sizing: border-box;
-}
-
-.header-actions {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-}
 body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     margin: 0;
+
     font-family:
         Inter,
         ui-sans-serif,
@@ -404,49 +243,152 @@ body {
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
+
+    font-size: var(--fs-md);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-normal);
+
     background: var(--bg);
     color: var(--text);
+
+    overflow-x: hidden;
 }
 
-button {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    max-width: 100%;
     font: inherit;
 }
 
-.app {
-    min-height: 100vh;
+button {
+    cursor: pointer;
 }
 
-/* =========================
-   HEADER
-========================= */
+.app,
+.main,
+.page,
+.card,
+.grid,
+.grid-2,
+.grid-3,
+.upcoming-direction-grid,
+.today-summary-grid,
+.today-direction-grid,
+.today-meals-grid,
+.route-card,
+.important-date {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.route-title,
+.route-path,
+.bus-route,
+.bus-type,
+.buggie-time,
+.meal-title,
+.meal-content,
+.class-name,
+.class-time,
+.class-room,
+.important-date .date,
+.important-date .event,
+.direction-title,
+.today-direction-label {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+
+/* =========================================================
+   4. HEADER
+   ========================================================= */
 
 .header {
-    height: 72px;
-    background: white;
-    border-bottom: 1px solid var(--border);
+    container-type: inline-size;
+
+    width: 100%;
+    min-height: clamp(3.7rem, 8vw, 4.7rem);
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
+
+    gap: var(--space-3);
+
+    padding-inline: clamp(0.75rem, 3.8vw, 2.25rem);
+
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 100;
+}
+@container (max-width: 48rem) {
+
+    .nav {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+}
+
+@container (max-width: 30rem) {
+
+    .clock {
+        display: none;
+    }
+
+    .logo-subtitle {
+        display: none;
+    }
+
+    .logo-title {
+        max-width: 45vw;
+    }
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+
+    gap: clamp(0.50rem, 1.7vw, 0.80rem);
+
+    min-width: 0;
+    flex: 1 1 auto;
 }
 
 .logo-mark {
-    width: 48px;
-    height: 48px;
-    flex: 0 0 48px;
+    width: clamp(2.20rem, 7vw, 3.05rem);
+    height: clamp(2.20rem, 7vw, 3.05rem);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex: 0 0 auto;
+
+    display: grid;
+    place-items: center;
 
     overflow: hidden;
     border-radius: 50%;
@@ -455,21 +397,40 @@ button {
 .brand-logo-img {
     width: 100%;
     height: 100%;
-
     display: block;
     object-fit: cover;
     border-radius: 50%;
 }
 
 .logo-title {
-    font-size: 17px;
-    font-weight: 750;
+    min-width: 0;
+    max-width: min(52vw, 24rem);
+
+    font-size: clamp(0.86rem, 0.70rem + 0.65vw, 1.10rem);
+    font-weight: var(--weight-bold);
+    line-height: 1.25;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .logo-subtitle {
-    color: #B8C2D4;
-    font-size: 11px;
-    margin-top: 2px;
+    margin-top: 0.10rem;
+
+    color: var(--muted);
+
+    font-size: var(--fs-xs);
+    line-height: 1.25;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+
+    gap: clamp(0.35rem, 1.3vw, 0.75rem);
+
+    flex: 0 0 auto;
 }
 
 .clock {
@@ -477,57 +438,129 @@ button {
 }
 
 .clock-time {
-    font-size: 15px;
-    font-weight: 700;
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-semibold);
+    line-height: 1.2;
 }
 
 .clock-date {
-    font-size: 11px;
-    color: #B8C2D4;
+    margin-top: 0.12rem;
+    color: var(--muted);
+    font-size: var(--fs-xs);
+    line-height: 1.2;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+.theme-toggle{
+    width: clamp(2.30rem, 7vw, 2.85rem);
+    height: clamp(2.30rem, 7vw, 2.85rem);
+
+    flex: 0 0 auto;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: clamp(0.95rem, 2.5vw, 1.20rem);
+}
+.mobile-menu-button {
+    /* HIDDEN ON DESKTOP */
+    display: none;
+
+    width: clamp(2.3rem, 7vw, 2.85rem);
+    height: clamp(2.3rem, 7vw, 2.85rem);
+
+    flex: 0 0 auto;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    line-height: 1;
+}
+
+.theme-toggle:hover,
+.mobile-menu-button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   5. NAVIGATION
+   Fluid wrapping instead of a 600px/900px breakpoint.
+   ========================================================= */
 
 .nav {
-    background: white;
-    border-bottom: 1px solid var(--border);
-    padding: 8px 32px;
+    width: 100%;
+
     display: flex;
-    gap: 6px;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: clamp(0.25rem, 0.8vw, 0.45rem);
+
+    padding:
+        clamp(0.35rem, 1vw, 0.55rem)
+        clamp(0.70rem, 3vw, 2rem);
+
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
 }
 
 .nav button {
-    border: 0;
-    background: transparent;
-    color: #B8C2D4;
-    padding: 9px 16px;
-    border-radius: 9px;
-    cursor: pointer;
-    white-space: nowrap;
-}
+    flex: 1 1 clamp(6rem, 12vw, 9rem);
 
-.nav button:hover {
-    background: #f2f5fa;
+    min-width: 5.5rem;
+
+    border: 0;
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+    color: var(--muted);
+
+    padding:
+        clamp(0.45rem, 1.4vw, 0.65rem)
+        clamp(0.55rem, 1.8vw, 1rem);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-medium);
+    line-height: 1.2;
+
+    white-space: nowrap;
 }
 
 .nav button.active {
     background: var(--primary-light);
     color: var(--primary);
-    font-weight: 700;
+    font-weight: var(--weight-bold);
 }
 
-/* =========================
-   MAIN
-========================= */
+
+/* =========================================================
+   6. MAIN / PAGE TITLES
+   ========================================================= */
 
 .main {
-    max-width: 1450px;
-    margin: auto;
-    padding: 28px;
+    width: min(100%, 92rem);
+    margin-inline: auto;
+
+    padding:
+        clamp(0.85rem, 2.8vw, 1.80rem)
+        clamp(0.75rem, 3.5vw, 2.25rem);
 }
 
 .page {
@@ -539,90 +572,178 @@ button {
 }
 
 .page-title {
-    font-size: 27px;
-    font-weight: 800;
-    margin-bottom: 5px;
+    margin: 0 0 clamp(0.25rem, 0.7vw, 0.45rem);
+
+    font-size: var(--fs-page);
+    font-weight: var(--weight-heavy);
+    line-height: var(--leading-tight);
+
+    letter-spacing: -0.02em;
 }
 
 .page-subtitle {
-    color: #B8C2D4;
-    font-size: 14px;
-    margin-bottom: 24px;
+    margin: 0 0 clamp(1rem, 2.8vw, 1.55rem);
+
+    color: var(--muted);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-relaxed);
 }
 
-/* =========================
-   HERO
-========================= */
 
-.hero {
-    background:
-        linear-gradient(
-            120deg,
-            #edf3ff,
-            #f8fbff
-        );
-    border: 1px solid #dce6ff;
-    border-radius: 22px;
-    padding: 28px;
-    margin-bottom: 22px;
-}
-
-.hero h1 {
-    margin: 0;
-    font-size: 28px;
-}
-
-.hero p {
-    color: #B8C2D4;
-    margin: 8px 0 20px;
-}
-
-/* ============================================================
-   TODAY PAGE SUMMARY
-============================================================ */
 /* =========================================================
-   HOME / TODAY PAGE - COMPACT RESPONSIVE DESIGN
-   Final override
+   7. HERO
    ========================================================= */
 
-/* ---------- HERO ---------- */
-
 .hero {
+    width: 100%;
+    min-width: 0;
+
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 22px;
-    margin-bottom: 18px;
+    border-radius: var(--radius-lg);
+
+    padding: clamp(1rem, 3vw, 1.75rem);
+
+    margin-bottom: var(--space-5);
+
     box-shadow: none;
 }
 
 .hero h1 {
     margin: 0;
-    font-size: 27px;
-    line-height: 1.15;
+
+    font-size: var(--fs-hero);
+    font-weight: var(--weight-heavy);
+    line-height: 1.18;
+
+    letter-spacing: -0.025em;
 }
 
 .hero p {
-    color: #B8C2D4;
-    margin: 7px 0 15px;
-    font-size: 14px;
+    margin:
+        clamp(0.40rem, 1vw, 0.70rem)
+        0
+        clamp(0.80rem, 2vw, 1.20rem);
+
+    color: var(--muted);
+
+    font-size: var(--fs-md);
+    line-height: var(--leading-relaxed);
 }
 
 
-/* ---------- NEXT SERVICES ---------- */
+/* =========================================================
+   8. GENERIC CARDS
+   ========================================================= */
+
+.card {
+    width: 100%;
+    min-width: 0;
+
+    padding: var(--card-pad);
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: clamp(0.60rem, 1.5vw, 1rem);
+
+    margin-bottom: clamp(0.75rem, 1.8vw, 1.15rem);
+
+    line-height: var(--leading-normal);
+}
+
+.card-header > * {
+    min-width: 0;
+}
+
+.card-title {
+    min-width: 0;
+
+    font-size: var(--fs-lg);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+
+    letter-spacing: -0.012em;
+}
+
+.card-link {
+    flex: 0 0 auto;
+
+    color: var(--primary);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-semibold);
+    line-height: 1.3;
+
+    white-space: nowrap;
+}
+
+.grid {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    gap: var(--gap);
+}
+
+.grid-2 {
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+.grid-3 {
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.grid > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   9. TODAY / NEXT SERVICES
+   ========================================================= */
 
 .today-summary-grid {
+    container-type: inline-size;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-top: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: var(--gap);
+    width: 100%;
+    min-width: 0;
+
+    margin-top: var(--space-4);
+}
+
+@container (max-width: 42rem) {
+    .today-summary-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .today-summary-card {
+    min-width: 0;
+
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 16px;
+    border-radius: var(--radius-lg);
+
+    padding: var(--card-pad);
+
     box-shadow: none;
 }
 
@@ -630,680 +751,370 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 12px;
+
+    gap: var(--space-2);
+
+    margin-bottom: var(--space-3);
 }
 
 .stat-label {
-    font-size: 10px;
-    font-weight: 750;
-    letter-spacing: 0.3px;
+    font-size: var(--fs-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.025em;
+    line-height: 1.3;
 }
-
-
-/* ---------- TWO DIRECTIONS ---------- */
 
 .today-direction-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: var(--gap);
 }
 
 .today-direction {
     min-width: 0;
-    padding: 12px;
-    border-radius: 12px;
+
+    padding: var(--space-3);
+
     background: var(--bg);
     border: 1px solid var(--border);
+    border-radius: var(--radius-md);
 }
 
 .today-direction-label {
-    color: #B8C2D4;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.25;
-    margin-bottom: 7px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-semibold);
+    line-height: 1.35;
+
+    text-align: center;
 }
 
 .today-next-time {
-    font-size: 18px;
-    line-height: 1.1;
-    font-weight: 750;
-    letter-spacing: -0.3px;
-    white-space: nowrap;
+    margin-top: var(--space-2);
+
+    font-size: clamp(0.95rem, 0.78rem + 0.75vw, 1.22rem);
+    font-weight: var(--weight-bold);
+    line-height: 1.25;
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
 }
-
-
-/* ---------- MESS ---------- */
 
 .today-mess-card {
     grid-column: 1 / -1;
 }
 
-.today-mess-value {
-    font-size: 18px;
-    line-height: 1.2;
-    font-weight: 750;
+.today-mess-cycle {
+    color: var(--muted);
+    font-size: var(--fs-xs);
+    font-weight: var(--weight-semibold);
 }
 
+.today-meals-grid {
+    display: grid;
 
-/* =========================================================
-   UPCOMING BUS / BUGGIE
-   Make these visually match the NEXT sections
-   ========================================================= */
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
 
-#today .grid.grid-2 {
-    gap: 14px;
+    gap: var(--gap);
 }
 
-#today .grid.grid-2 > .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: none;
-}
+.today-meal {
+    min-width: 0;
 
-#today .grid.grid-2 > .card .card-header {
-    margin-bottom: 12px;
-}
+    padding: var(--space-3);
 
-#today .grid.grid-2 > .card .card-title {
-    font-size: 16px;
-    font-weight: 750;
-}
-
-#today .grid.grid-2 > .card .bus-type {
-    font-size: 11px;
-}
-
-
-/* Same direction boxes as next-service boxes */
-
-#today .direction-card {
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: var(--radius-md);
 }
 
-#today .direction-header {
-    margin-bottom: 9px;
+.today-meal .meal-title {
+    margin-bottom: var(--space-1);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-bold);
+    line-height: 1.35;
 }
 
-#today .direction-title {
-    font-size: 12px;
-    font-weight: 700;
-}
-
-
-/* Compact bus rows */
-
-#today .bus-row {
-    grid-template-columns: 60px 1fr auto;
-    gap: 8px;
-    padding: 10px;
-    margin-bottom: 7px;
-    border-radius: 10px;
-}
-
-#today .bus-time {
-    font-size: 12px;
-}
-
-#today .bus-route {
-    font-size: 12px;
-}
-
-#today .bus-type {
-    font-size: 10px;
-}
-
-
-/* Compact buggie rows */
-
-#today .buggie-row {
-    grid-template-columns: 28px 1fr auto;
-    gap: 8px;
-    padding: 9px 10px;
-    margin-bottom: 7px;
-    border-radius: 10px;
-}
-
-#today .buggie-time {
-    font-size: 12px;
-}
-
-#today .route-path {
-    font-size: 10px;
-}
-
-
-/* ---------- TODAY'S MESS ---------- */
-
-#today > .card {
-    margin-top: 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: none;
-}
-
-#today > .card .card-header {
-    margin-bottom: 10px;
-}
-
-#today > .card .card-title {
-    font-size: 16px;
+.today-meal .meal-content {
+    font-size: var(--fs-sm);
+    line-height: var(--leading-relaxed);
 }
 
 
 /* =========================================================
-   REMOVE EXCESSIVE BR SPACING
+   10. DIRECTION CARDS
    ========================================================= */
 
-#today > br {
-    display: none;
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-@media (max-width: 768px) {
-    .logo-mark {
-        width: 44px;
-        height: 44px;
-        flex-basis: 44px;
-    }
-}
-@media (max-width: 480px) {
-    .logo-mark {
-        width: 40px;
-        height: 40px;
-        flex-basis: 40px;
-    }
-}
-@media (max-width: 900px) {
-
-    .main {
-        padding: 14px;
-    }
-
-    .hero {
-        padding: 18px;
-    }
-
-    .today-summary-grid {
-        gap: 12px;
-    }
-
-    /*
-       Keep bus and buggie directions side-by-side.
-       Do NOT change this to 1fr.
-    */
-    #today .upcoming-direction-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 9px;
-    }
-
-    #today .grid.grid-2 {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .logo-mark {
-        width: 42px;
-        height: 42px;
-    }
-
-    .logo-title {
-        font-size: 15px;
-        font-weight: 700;
-    }
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .main {
-        padding: 10px;
-    }
-
-    .hero {
-        padding: 14px;
-        border-radius: 16px;
-        margin-bottom: 12px;
-    }
-
-    .hero h1 {
-        font-size: 23px;
-    }
-
-    .hero p {
-        font-size: 12px;
-        margin: 5px 0 11px;
-    }
-
-    .logo-mark {
-        width: 38px;
-        height: 38px;
-    }
-
-    .logo-title {
-        font-size: 15px;
-        font-weight: 700;
-    }
-    /* NEXT BUS + NEXT BUGGIE remain side-by-side */
-
-    .today-summary-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-top: 10px;
-    }
-
-    .today-summary-card {
-        padding: 11px;
-        border-radius: 13px;
-    }
-
-    .today-summary-header {
-        margin-bottom: 8px;
-    }
-
-    .stat-label {
-        font-size: 9px;
-    }
-
-    .badge {
-        padding: 4px 6px;
-        font-size: 8px;
-        border-radius: 6px;
-    }
-
-
-    /* Two directions remain side-by-side */
-
-    .today-direction-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
-    }
-
-    .today-direction {
-        padding: 9px;
-        border-radius: 10px;
-    }
-
-    .today-direction-label {
-        font-size: 9px;
-        margin-bottom: 5px;
-    }
-
-    .today-next-time {
-        font-size: 14px;
-    }
-
-
-    /* Mess */
-
-    .today-mess-card {
-        grid-column: 1 / -1;
-    }
-
-    .today-mess-value {
-        font-size: 15px;
-    }
-
-
-    /* Upcoming sections */
-
-    #today .grid.grid-2 {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
-    #today .grid.grid-2 > .card {
-        padding: 11px;
-        border-radius: 13px;
-    }
-
-    #today .grid.grid-2 > .card .card-title {
-        font-size: 13px;
-    }
-
-    #today .grid.grid-2 > .card .bus-type {
-        font-size: 9px;
-    }
-
-
-    /*
-       Keep Nila/Sahyadri direction boxes
-       side-by-side on phone.
-    */
-
-    #today .upcoming-direction-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
-    }
-
-    #today .direction-card {
-        padding: 8px;
-        border-radius: 10px;
-    }
-
-    #today .direction-title {
-        font-size: 9px;
-        line-height: 1.2;
-    }
-
-    #today .direction-header {
-        margin-bottom: 6px;
-    }
-
-
-    /* Compact bus rows */
-
-    #today .bus-row {
-        grid-template-columns: 1fr;
-        gap: 3px;
-        padding: 8px;
-        border-radius: 8px;
-    }
-
-    #today .bus-time {
-        font-size: 11px;
-    }
-
-    #today .bus-route {
-        font-size: 10px;
-    }
-
-    #today .bus-type {
-        font-size: 8px;
-    }
-
-    #today .bus-row .badge {
-        display: none;
-    }
-
-
-    /* Compact buggie rows */
-
-    #today .buggie-row {
-        grid-template-columns: 1fr;
-        gap: 3px;
-        padding: 8px;
-        border-radius: 8px;
-    }
-
-    #today .buggie-number {
-        display: none;
-    }
-
-    #today .buggie-time {
-        font-size: 11px;
-    }
-
-    #today .route-path {
-        font-size: 9px;
-    }
-
-    #today .buggie-row .badge {
-        display: none;
-    }
-
-
-    /* Today's mess */
-
-    #today > .card {
-        margin-top: 10px;
-        padding: 11px;
-        border-radius: 13px;
-    }
-
-    #today > .card .card-title {
-        font-size: 13px;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 380px) {
-
-    .main {
-        padding: 8px;
-    }
-
-    .hero {
-        padding: 12px;
-    }
-
-    .hero h1 {
-        font-size: 21px;
-    }
-
-    .hero p {
-        font-size: 11px;
-    }
-
-    .today-summary-card {
-        padding: 9px;
-    }
-
-    .today-direction {
-        padding: 8px;
-    }
-
-    .today-direction-label {
-        font-size: 8px;
-    }
-
-    .today-next-time {
-        font-size: 13px;
-    }
-
-    #today .grid.grid-2 {
-        gap: 6px;
-    }
-
-    #today .grid.grid-2 > .card {
-        padding: 9px;
-    }
-
-    #today .grid.grid-2 > .card .card-title {
-        font-size: 12px;
-    }
-
-    #today .direction-card {
-        padding: 7px;
-    }
-
-    #today .direction-title {
-        font-size: 8px;
-    }
-}
-
-
-/* =========================
-   CARDS
-========================= */
-
-.grid {
-    display: grid;
-    gap: 20px;
-}
-
-.grid-2 {
-    grid-template-columns: 1fr 1fr;
-    
-}
 .upcoming-direction-grid {
+    /*
+       Deliberately stays TWO columns.
+       The cards shrink with the available width instead of
+       switching at an arbitrary device width.
+    */
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: var(--gap);
 }
 
-.today-direction,
-.direction-card {
+.direction-card,
+.today-direction {
+    min-width: 0;
+
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-md);
+}
+
+.direction-card {
+    padding: var(--space-3);
 }
 
 .direction-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 12px;
+
+    gap: var(--space-2);
+
+    margin-bottom: var(--space-3);
 }
 
 .direction-title {
-    font-size: 14px;
-    font-weight: 750;
-}
-@media (max-width: 900px) {
-    .upcoming-direction-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-    }
-}
-@media (max-width: 600px) {
-    .upcoming-direction-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
-    }
+    min-width: 0;
+
+    font-size: var(--fs-md);
+    font-weight: var(--weight-semibold);
+    line-height: 1.35;
 }
 
-.grid-3 {
-    grid-template-columns: repeat(3, 1fr);
+
+/* =========================================================
+   11. BUGGIE — IMPORTANT FIX
+   ========================================================= */
+
+/*
+   The upcoming Buggie renderer has:
+       time + route
+
+   It does NOT have the third "bus type" column.
+
+   Therefore it gets its own two-column row instead of
+   inheriting the normal three-column .bus-row.
+*/
+
+#buggie .upcoming-direction-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: var(--gap);
 }
 
-.card {
+#buggie .upcoming-direction-grid .direction-card {
+    min-width: 0;
+    padding: var(--space-3);
+}
+
+#buggie .upcoming-direction-grid .bus-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(4.4rem, 0.34fr)
+        minmax(0, 0.66fr);
+
+    align-items: center;
+
+    gap: clamp(0.55rem, 1.5vw, 0.90rem);
+
+    width: 100%;
+    min-width: 0;
+
+    min-height: clamp(2.75rem, 6vw, 3.35rem);
+
+    padding:
+        clamp(0.50rem, 1.5vw, 0.72rem)
+        clamp(0.60rem, 1.7vw, 0.85rem);
+
+    margin-bottom: var(--space-2);
+
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 22px;
-    box-shadow: var(--shadow);
+    border-radius: var(--radius-md);
 }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
+#buggie .upcoming-direction-grid .bus-row:last-child {
+    margin-bottom: 0;
 }
 
-.card-title {
-    font-size: 18px;
-    font-weight: 750;
+#buggie .upcoming-direction-grid .bus-time {
+    min-width: 0;
+
+    color: var(--teal);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-bold);
+    line-height: 1.25;
+
+    white-space: nowrap;
 }
 
-.card-link {
-    font-size: 12px;
-    color: var(--primary);
-    cursor: pointer;
+#buggie .upcoming-direction-grid .bus-route {
+    min-width: 0;
+
+    color: var(--text);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-semibold);
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
 }
 
-/* =========================
-   BUGGIE SERVICE
-========================= */
+
+/* Full Buggie timetable */
 
 .buggie-row {
     display: grid;
-    grid-template-columns: 38px 1fr auto;
+
+    grid-template-columns:
+        minmax(1.7rem, 0.16fr)
+        minmax(0, 0.84fr);
+
     align-items: center;
-    gap: 12px;
-    padding: 12px 13px;
-    margin-bottom: 8px;
-    border-radius: 12px;
+
+    gap: var(--space-2);
+
+    width: 100%;
+    min-width: 0;
+
+    padding:
+        clamp(0.55rem, 1.5vw, 0.80rem);
+
+    margin-bottom: var(--space-2);
+
     background: var(--orange-light);
     border: 1px solid var(--border);
+    border-radius: var(--radius-md);
 }
 
 .buggie-number {
-    color: #B8C2D4;
-    font-size: 11px;
-    font-weight: 700;
-    text-align: center;
+    display: grid;
+    place-items: center;
+
+    width: clamp(1.55rem, 4vw, 1.90rem);
+    height: clamp(1.55rem, 4vw, 1.90rem);
+
+    border-radius: 50%;
+
+    background: var(--orange);
+    color: #ffffff;
+
+    font-size: var(--fs-xs);
+    font-weight: var(--weight-bold);
 }
 
 .buggie-time {
-    font-size: 14px;
-    font-weight: 800;
+    min-width: 0;
+
+    color: var(--text);
+
+    font-size: var(--fs-md);
+    font-weight: var(--weight-bold);
+    line-height: 1.25;
+
+    white-space: nowrap;
 }
 
-.route-path {
-    color: #B8C2D4;
-    font-size: 12px;
-    line-height: 1.5;
-}
 
-.class-time {
-    color: #B8C2D4;
-    font-size: 12px;
-    font-weight: 650;
-}
-
-.class-name {
-    font-size: 17px;
-    font-weight: 750;
-    margin: 6px 0;
-}
-
-.class-room {
-    font-size: 12px;
-    color: #B8C2D4;
-}
-
-/* =========================
-   BUS
-========================= */
+/* =========================================================
+   12. NORMAL BUS ROWS
+   ========================================================= */
 
 .bus-row {
     display: grid;
-    grid-template-columns: 85px 1fr auto;
+
+    grid-template-columns:
+        max-content
+        minmax(0, 1fr)
+        auto;
+
     align-items: center;
-    gap: 15px;
-    padding: 15px;
-    border-radius: 14px;
-    background: #f7f9fc;
+
+    gap: var(--gap);
+
+    width: 100%;
+    min-width: 0;
+
+    padding:
+        clamp(0.55rem, 1.6vw, 0.82rem);
+
+    margin-bottom: var(--space-2);
+
+    border-radius: var(--radius-md);
+
+    background: var(--bg);
     border: 1px solid var(--border);
-    margin-bottom: 9px;
+}
+
+.bus-row:last-child {
+    margin-bottom: 0;
 }
 
 .bus-time {
     color: var(--teal);
-    font-weight: 800;
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-bold);
+
+    line-height: 1.25;
+
+    white-space: nowrap;
 }
 
 .bus-route {
-    font-weight: 700;
-    font-size: 14px;
+    min-width: 0;
+
+    font-size: var(--fs-md);
+    font-weight: var(--weight-semibold);
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
 }
 
 .bus-type {
-    color: #B8C2D4;
-    font-size: 11px;
+    color: var(--muted);
+
+    font-size: var(--fs-xs);
+    line-height: 1.35;
 }
 
 .badge {
-    padding: 5px 8px;
-    border-radius: 7px;
-    font-size: 10px;
-    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 1.55rem;
+
+    padding:
+        0.30rem
+        0.55rem;
+
+    border-radius: var(--radius-sm);
+
+    font-size: var(--fs-xs);
+    font-weight: var(--weight-bold);
+    line-height: 1;
+
+    white-space: nowrap;
 }
 
 .badge-green {
@@ -1316,148 +1127,214 @@ button {
     background: var(--orange-light);
 }
 
-/* =========================
-   MESS
-========================= */
+
+/* =========================================================
+   13. ROUTES / CLASS DETAILS
+   ========================================================= */
+
+.route-card {
+    width: 100%;
+    min-width: 0;
+
+    padding: var(--card-pad);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    margin-bottom: var(--space-2);
+
+    background: var(--card);
+}
+
+.route-title {
+    font-size: var(--fs-md);
+    font-weight: var(--weight-bold);
+    line-height: 1.35;
+}
+
+.route-path {
+    color: var(--muted);
+
+    font-size: var(--fs-sm);
+    line-height: var(--leading-relaxed);
+}
+
+.class-time,
+.class-room {
+    color: var(--muted);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-regular);
+    line-height: 1.4;
+}
+
+.class-name {
+    margin: var(--space-1) 0;
+
+    font-size: var(--fs-lg);
+    font-weight: var(--weight-bold);
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   14. MESS
+   ========================================================= */
 
 .mess-cycle {
     display: inline-block;
-    padding: 7px 10px;
-    border-radius: 8px;
+
+    padding:
+        clamp(0.38rem, 1vw, 0.55rem)
+        clamp(0.55rem, 1.5vw, 0.75rem);
+
+    border-radius: var(--radius-sm);
+
     background: var(--orange-light);
     color: var(--orange);
-    font-size: 11px;
-    font-weight: 750;
-    margin-bottom: 15px;
+
+    font-size: var(--fs-xs);
+    font-weight: var(--weight-semibold);
+    line-height: 1.2;
+
+    margin-bottom: var(--space-4);
 }
 
 .meal {
-    padding: 15px 0;
+    min-width: 0;
+
+    padding: var(--space-3);
+
     border-bottom: 1px solid var(--border);
 }
 
-.meal:last-child {
-    border-bottom: 0;
-}
-
 .meal-title {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 6px;
-    color: var(--text);
+    margin-bottom: var(--space-1);
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-semibold);
+    line-height: 1.35;
 }
 
 .meal-content {
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text);
-}
-/* =========================
-   CALENDAR
-========================= */
-
-.calendar-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    font-size: var(--fs-sm);
+    line-height: var(--leading-relaxed);
 }
 
-.month-name {
-    font-size: 22px;
-    font-weight: 800;
-}
-
-.calendar-buttons {
-    display: flex;
-    gap: 6px;
-}
-
-.calendar-buttons button {
-    border: 1px solid var(--border);
-    background: white;
-    border-radius: 8px;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-}
 
 /* =========================================================
-   CALENDAR - RESPONSIVE / UNIFORM
+   15. CALENDAR
+   Component-relative sizing using container units.
+   No screen-width breakpoint is needed.
    ========================================================= */
 
 .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    container-type: inline-size;
 
-    /* Uniform row height on every device */
-    grid-auto-rows: clamp(72px, 9vw, 105px);
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    /*
+       Calendar row height follows calendar width.
+       This is what makes the calendar scale naturally.
+    */
+    grid-auto-rows:
+        clamp(3.65rem, 10.5cqw, 7.25rem);
 
     width: 100%;
     max-width: 100%;
     min-width: 0;
 
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
 
     overflow: hidden;
 
     background: var(--card);
 
-    /* IMPORTANT:
-       Do not use gaps for cell separation.
-       Use actual borders instead.
-    */
     gap: 0;
-
-    box-sizing: border-box;
 }
 
+.calendar-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-/* =========================================================
-   WEEKDAY HEADER
-   ========================================================= */
+    gap: var(--space-3);
+
+    margin-bottom: var(--space-4);
+}
+
+.month-name {
+    min-width: 0;
+
+    font-size: var(--fs-xl);
+    font-weight: var(--weight-bold);
+    line-height: 1.2;
+}
+.month-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.calendar-buttons {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.calendar-buttons button,
+.calendar-toolbar button {
+    width: clamp(2.10rem, 6vw, 2.55rem);
+    height: clamp(2.10rem, 6vw, 2.55rem);
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: var(--fs-md);
+    line-height: 1;
+}
 
 .calendar .weekday {
-    display: flex;
+    min-width: 0;
 
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    min-width: 0;
-    width: 100%;
-
-    padding: 8px;
+    padding:
+        clamp(0.25rem, 1.2cqw, 0.55rem);
 
     background: var(--card);
-    color: #B8C2D4;
-
-    font-size: clamp(11px, 1.2vw, 14px);
-    font-weight: 700;
-
-    text-align: center;
+    color: var(--muted);
 
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 
-    box-sizing: border-box;
+    font-size:
+        clamp(0.55rem, 1.55cqw, 0.78rem);
+
+    font-weight: var(--weight-bold);
+    line-height: 1;
+
+    text-align: center;
 }
-
-
-/* =========================================================
-   DATE CELLS
-   ========================================================= */
 
 .calendar .day {
     position: relative;
 
     min-width: 0;
-    width: 100%;
     min-height: 0;
-
-    padding: 8px;
 
     display: flex;
     flex-direction: column;
@@ -1465,7 +1342,8 @@ button {
     align-items: center;
     justify-content: center;
 
-    text-align: center;
+    padding:
+        clamp(0.25rem, 1.15cqw, 0.70rem);
 
     background: var(--card);
     color: var(--text);
@@ -1473,74 +1351,45 @@ button {
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 
-    box-sizing: border-box;
-
     overflow: hidden;
 }
-
-
-/* =========================================================
-   CLOSE THE RIGHT EDGE
-   ========================================================= */
 
 .calendar > *:nth-child(7n) {
     border-right: none;
 }
 
-
-/* =========================================================
-   CLOSE THE BOTTOM EDGE
-   Last 7 cells are always the final calendar row
-   ========================================================= */
-
 .calendar > *:nth-last-child(-n + 7) {
     border-bottom: none;
 }
 
-
-/* =========================================================
-   EMPTY CELLS
-   ========================================================= */
-
 .calendar .empty-day {
     background: var(--card);
-
     cursor: default;
-
-    /* Keep the border even when there is no date */
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
 }
 
-
-/* =========================================================
-   DATE NUMBER
-   ========================================================= */
-
 .calendar .day-number {
-    font-size: clamp(12px, 1.5vw, 16px);
+    flex: 0 0 auto;
 
-    font-weight: 700;
+    font-size:
+        clamp(0.68rem, 1.9cqw, 1rem);
 
+    font-weight: var(--weight-semibold);
     line-height: 1;
 
     text-align: center;
-
-    flex-shrink: 0;
 }
-
-
-/* =========================================================
-   HOLIDAY / EVENT TEXT
-   ========================================================= */
 
 .calendar .event-dot {
     width: 100%;
     max-width: 100%;
 
-    margin-top: 8px;
+    margin-top:
+        clamp(0.25rem, 1.0cqw, 0.55rem);
 
-    font-size: clamp(7px, 1.1vw, 10px);
+    color: inherit;
+
+    font-size:
+        clamp(0.46rem, 1.25cqw, 0.70rem);
 
     line-height: 1.25;
 
@@ -1548,1411 +1397,499 @@ button {
 
     overflow: hidden;
     overflow-wrap: anywhere;
-    word-break: normal;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
 }
-
-
-/* =========================================================
-   TODAY
-   ========================================================= */
 
 .calendar .today {
     background: var(--primary-light);
 }
-
-
-/* =========================================================
-   HOLIDAY
-   ========================================================= */
 
 .calendar .holiday {
     background: #fff1f1;
     color: #c62828;
 }
 
-.calendar .holiday .day-number {
-    color: #d32f2f;
-}
-
+.calendar .holiday .day-number,
 .calendar .holiday .event-dot {
     color: #d32f2f;
 }
 
-
-/* =========================================================
-   DARK THEME
-   ========================================================= */
-
 [data-theme="dark"] .calendar .holiday {
     background: #3a2027;
-    color: #ff6b6b;
+    color: #ff8585;
 }
 
-[data-theme="dark"] .calendar .holiday .day-number {
-    color: #ff5c5c;
-}
-
+[data-theme="dark"] .calendar .holiday .day-number,
 [data-theme="dark"] .calendar .holiday .event-dot {
-    color: #ff6b6b;
-}
-/* =========================================================
-   CALENDAR INTERACTION
-   ========================================================= */
-
-/* Desktop / mouse only */
-@media (hover: hover) and (pointer: fine) {
-
-    .calendar .day:not(.empty-day):hover {
-        background: var(--primary-light);
-        box-shadow: inset 0 0 0 1px var(--border);
-        transition: background 0.15s ease;
-    }
-
-    [data-theme="dark"]
-    .calendar .day:not(.empty-day):hover {
-        background: #1B2948;
-        box-shadow: inset 0 0 0 1px #344A78;
-    }
-
-}
-
-
-/* Touch screens:
-   DON'T create a sticky hover effect */
-@media (hover: none) and (pointer: coarse) {
-
-    .calendar .day:hover {
-        background: var(--card);
-        box-shadow: none;
-    }
-
-    .calendar .day:active {
-        background: var(--primary-light);
-    }
-
-    [data-theme="dark"] .calendar .day:active {
-        background: #1B2948;
-    }
-
-}
-
-
-/* Empty cells should never highlight */
-.calendar .empty-day:hover,
-.calendar .empty-day:active {
-    background: var(--card);
-    box-shadow: none;
-}
-
-
-.calendar .day:active {
-    background: var(--primary-light);
-}
-
-/* =========================================================
-   HOVER
-   ========================================================= */
-/* =========================================================
-   CALENDAR HOVER — LIGHT THEME
-   ========================================================= */
-
-
-.calendar .empty-day:hover {
-    background: var(--card);
-}
-
-/* =========================================================
-   PHONE CALENDAR
-   ========================================================= */
-/* =========================================================
-   CALENDAR — MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .calendar {
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        grid-auto-rows: 72px;
-
-        border-radius: 14px;
-    }
-
-    .calendar .weekday {
-        min-height: 44px;
-        padding: 4px 2px;
-
-        font-size: 10px;
-        font-weight: 700;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .calendar .day {
-        padding: 4px 2px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .calendar .day-number {
-        font-size: 13px;
-        font-weight: 700;
-    }
-
-    .calendar .event-dot {
-        width: 100%;
-        max-width: 100%;
-
-        margin-top: 5px;
-
-        font-size: 7.5px;
-        line-height: 1.15;
-
-        text-align: center;
-
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-
-        overflow: hidden;
-        overflow-wrap: anywhere;
-    }
-}
-
-
-/* Small phones */
-@media (max-width: 380px) {
-
-    .calendar {
-        grid-auto-rows: 68px;
-        border-radius: 12px;
-    }
-
-    .calendar .weekday {
-        min-height: 42px;
-        font-size: 9px;
-    }
-
-    .calendar .day {
-        padding: 3px 1px;
-    }
-
-    .calendar .day-number {
-        font-size: 12px;
-    }
-
-    .calendar .event-dot {
-        font-size: 7px;
-        line-height: 1.1;
-        margin-top: 4px;
-        -webkit-line-clamp: 3;
-    }
-}
-@media (max-width: 380px) {
-
-    .calendar {
-        grid-auto-rows: 62px;
-    }
-
-    .calendar .weekday {
-        min-height: 48px;
-        font-size: 10px;
-    }
-
-    .calendar .day {
-        padding: 4px;
-    }
-
-    .calendar .day-number {
-        font-size: 12px;
-    }
-
-    .calendar .event-dot {
-        font-size: 7px;
-        line-height: 1.15;
-        margin-top: 5px;
-    }
-}
-
-@media (min-width: 381px) and (max-width: 600px) {
-
-    .calendar {
-        grid-auto-rows: 68px;
-    }
-
-    .calendar .weekday {
-        min-height: 50px;
-        font-size: 11px;
-    }
-
-    .calendar .day-number {
-        font-size: 13px;
-    }
-
-    .calendar .event-dot {
-        font-size: 8px;
-    }
-}
-
-
-/* =========================
-   ROUTES
-========================= */
-
-.route-card {
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 17px;
-    margin-bottom: 10px;
-}
-
-.route-title {
-    font-weight: 750;
-    margin-bottom: 7px;
-}
-
-.route-path {
-    color: #B8C2D4;
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width: 900px) {
-
-    .header {
-        padding: 0 16px;
-    }
-
-    .nav {
-        padding: 8px 16px;
-    }
-
-    .main {
-        padding: 17px;
-    }
-
-    .grid-2,
-    .grid-3 {
-        grid-template-columns: 1fr;
-    }
-
-    .clock {
-        display: none;
-    }
-}
-
-@media(max-width: 600px) {
-
-    .buggie-row {
-        grid-template-columns: 30px 1fr;
-    }
-
-    .buggie-row .badge {
-        grid-column: 2;
-        justify-self: start;
-    }
-
-    .logo-subtitle {
-        display: none;
-    }
-
-    .logo-title {
-        font-size: 15px;
-    }
-
-    .main {
-        padding: 12px;
-    }
-
-    .hero {
-        padding: 20px;
-        border-radius: 18px;
-    }
-
-    .hero h1 {
-        font-size: 23px;
-    }
-
-    .card {
-        padding: 17px;
-        border-radius: 16px;
-    }
-
-    .bus-row {
-    grid-template-columns: 70px 1fr auto;
-    }
-
-    .bus-row .badge {
-        display: block;
-    }
-
-        /* =================================
-       MOBILE HEADER
-       ================================= */
-
-    .header {
-        height: 64px;
-
-        padding: 0 14px;
-
-        position: sticky;
-
-        top: 0;
-
-        z-index: 150;
-    }
-
-
-    .header-actions {
-        gap: 7px;
-    }
-
-
-    .theme-toggle {
-        width: 40px;
-        height: 40px;
-
-        border-radius: 11px;
-
-        font-size: 17px;
-    }
-
-
-    .mobile-menu-button {
-        display: grid;
-
-        width: 40px;
-        height: 40px;
-
-        border-radius: 11px;
-
-        font-size: 21px;
-    }
-
-
-    /* Hide desktop navigation on mobile */
-
-    .nav {
-        display: none;
-    }
-}
-
-/* =========================================================
-   TODAY MESS INSIDE SUMMARY BOX
-   ========================================================= */
-
-.today-mess-card {
-    grid-column: 1 / -1;
-    padding: 16px;
-}
-
-
-/* Header */
-
-.today-mess-card .today-summary-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.today-mess-cycle {
-    color: #B8C2D4;
-    font-size: 11px;
-    font-weight: 600;
-    flex: 1;
-}
-
-
-/* Four meal boxes */
-
-.today-meals-grid {
-    display: grid;
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 8px;
-}
-
-
-/* Individual meal */
-
-.today-meal {
-    min-width: 0;
-
-    padding: 11px;
-
-    background: var(--bg);
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-}
-
-
-/* Meal title */
-/* =========================================================
-   MESS MENU — CLEARER FOOD DETAILS
-   ========================================================= */
-
-.today-meal .meal-title {
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 6px;
-    color: var(--text);
-}
-
-.today-meal .meal-content {
-    font-size: 11px;
-    font-weight: 500;
-    line-height: 1.45;
-    color: var(--text);
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .today-mess-card {
-        padding: 10px;
-    }
-
-    .today-mess-card .today-summary-header {
-        margin-bottom: 8px;
-        gap: 7px;
-    }
-
-    .today-mess-cycle {
-        font-size: 8px;
-    }
-
-    .today-meals-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 6px;
-    }
-
-    .today-meal {
-        padding: 8px;
-        border-radius: 9px;
-    }
-
-    .today-meal .meal-title {
-        font-size: 9px;
-        margin-bottom: 3px;
-    }
-
-    .today-meal .meal-content {
-        font-size: 8px;
-        line-height: 1.3;
-    }
+    color: #ff8585;
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   16. IMPORTANT DATES
+   Automatically changes from columns to stacked content
+   through intrinsic sizing, not a viewport breakpoint.
    ========================================================= */
 
-@media (max-width: 380px) {
-
-    .today-mess-card {
-        padding: 9px;
-    }
-
-    .today-meals-grid {
-        gap: 5px;
-    }
-
-    .today-meal {
-        padding: 7px;
-    }
-
-    .today-meal .meal-title {
-        font-size: 8px;
-    }
-
-    .today-meal .meal-content {
-        font-size: 7px;
-    }
+.important-dates {
+    container-type: inline-size;
 }
-
-/* =========================================================
-   IMPORTANT DATES - RESPONSIVE
-   ========================================================= */
 
 .important-date {
     display: grid;
 
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    /*
+       The first column grows only as much as it needs.
+       The event column receives the remaining space.
+    */
+    grid-template-columns:
+        minmax(min(42%, 15rem), 0.75fr)
+        minmax(0, 1.25fr);
 
     align-items: center;
 
-    gap: 16px;
+    gap: clamp(0.60rem, 2cqw, 1.25rem);
 
     width: 100%;
+    min-width: 0;
 
-    padding: 14px 0;
+    padding-block:
+        clamp(0.55rem, 1.8cqw, 0.90rem);
 
     border-bottom: 1px solid var(--border);
-
-    box-sizing: border-box;
 }
 
 .important-date .date {
     min-width: 0;
 
-    font-size: 15px;
-    font-weight: 700;
-
-    color: var(--text);
-
-    line-height: 1.35;
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-semibold);
+    line-height: 1.45;
 }
 
 .important-date .event {
     min-width: 0;
 
-    font-size: 14px;
+    color: var(--muted);
 
-    color: #B8C2D4;
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-regular);
+    line-height: 1.50;
 
     text-align: right;
-
-    line-height: 1.35;
-
-    overflow-wrap: anywhere;
-}
-.important-date {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: center;
-    gap: 16px;
-    width: 100%;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
-    box-sizing: border-box;
 }
 
 .important-date:last-child {
     border-bottom: none;
 }
 
-.important-date .date {
-    min-width: 0;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.35;
-}
-
-.important-date .event {
-    min-width: 0;
-    font-size: 14px;
-    color: #B8C2D4;
-    text-align: right;
-    line-height: 1.35;
-    overflow-wrap: anywhere;
-}
-
-@media (max-width: 600px) {
-    .important-date {
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-        gap: 10px;
-        padding: 12px 0;
-    }
-
-    .important-date .date,
-    .important-date .event {
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 360px) {
-    .important-date {
-        grid-template-columns: 1fr;
-        gap: 3px;
-    }
-
-    .important-date .event {
-        text-align: left;
-    }
-}
-
-html,
-body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    min-width: 0;
-}
-
-.main {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-}
 
 /* =========================================================
-   GLOBAL TYPOGRAPHY SYSTEM
-   IIT PALAKKAD COMPANION
+   17. MOBILE MENU
    ========================================================= */
 
-:root {
+/*
+   Navigation itself is now fluid and wraps automatically,
+   so the separate 600px menu breakpoint is removed.
+*/
 
-    /* Font */
-    --font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+.mobile-menu {
+    display: none;
 
-    /* Typography scale */
-    --text-display: 28px;
-    --text-page-title: 26px;
-    --text-section: 17px;
-    --text-body-large: 15px;
-    --text-body: 13px;
-    --text-small: 12px;
-    --text-caption: 11px;
+    width: min(100%, 24rem);
 
-    /* Font weights */
-    --weight-regular: 400;
-    --weight-medium: 500;
-    --weight-semibold: 600;
-    --weight-bold: 700;
-    --weight-heavy: 800;
+    margin-inline: auto;
 
-    /* Line heights */
-    --leading-tight: 1.2;
-    --leading-normal: 1.45;
-    --leading-relaxed: 1.6;
+    padding: var(--space-2);
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow);
 }
 
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
-
-html,
-body,
-button,
-input,
-select,
-textarea {
-    font-family: var(--font-family);
+.mobile-menu.open {
+    display: block;
 }
-
-body {
-    font-size: var(--text-body);
-    font-weight: var(--weight-regular);
-    line-height: var(--leading-normal);
-}
-
-
-/* =========================================================
-   PAGE TITLES
-   ========================================================= */
-
-.page-title {
-    font-size: var(--text-page-title);
-    font-weight: var(--weight-heavy);
-    line-height: var(--leading-tight);
-    letter-spacing: -0.35px;
-    margin-bottom: 6px;
-}
-
-.page-subtitle {
-    font-size: var(--text-body);
-    font-weight: var(--weight-regular);
-    line-height: var(--leading-normal);
-    color: #B8C2D4;
-    margin-bottom: 22px;
-}
-
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero h1 {
-    font-size: var(--text-display);
-    font-weight: var(--weight-heavy);
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-}
-
-.hero p {
-    font-size: var(--text-body);
-    font-weight: var(--weight-regular);
-    line-height: var(--leading-normal);
-}
-
-
-/* =========================================================
-   CARD HEADINGS
-   ========================================================= */
-
-.card-title {
-    font-size: var(--text-section);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-tight);
-    letter-spacing: -0.15px;
-}
-
-.card-link {
-    font-size: var(--text-small);
-    font-weight: var(--weight-semibold);
-}
-
-.card-header {
-    line-height: var(--leading-normal);
-}
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-.nav button {
-    font-size: 13px;
-    font-weight: var(--weight-medium);
-    line-height: 1;
-}
-
-.nav button.active {
-    font-weight: var(--weight-bold);
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.logo-title {
-    font-size: 17px;
-    font-weight: var(--weight-bold);
-    line-height: 1.2;
-}
-
-.logo-subtitle {
-    font-size: 11px;
-    font-weight: var(--weight-regular);
-    line-height: 1.2;
-}
-
-.clock-time {
-    font-size: 15px;
-    font-weight: var(--weight-semibold);
-}
-
-.clock-date {
-    font-size: 11px;
-    font-weight: var(--weight-regular);
-}
-
-
-/* =========================================================
-   LABELS
-   ========================================================= */
-
-.stat-label {
-    font-size: 11px;
-    font-weight: var(--weight-bold);
-    letter-spacing: 0.35px;
-    line-height: 1.2;
-}
-
-.bus-type {
-    font-size: 11px;
-    font-weight: var(--weight-regular);
-    line-height: 1.3;
-}
-
-.direction-title {
-    font-size: 13px;
-    font-weight: var(--weight-semibold);
-    line-height: 1.3;
-}
-
-.direction-card .direction-title {
-    font-size: 13px;
-    font-weight: var(--weight-semibold);
-}
-
-
-/* =========================================================
-   IMPORTANT VALUES
-   ========================================================= */
-
-.today-next-time {
-    font-size: 18px;
-    font-weight: var(--weight-bold);
-    line-height: 1.15;
-    letter-spacing: -0.25px;
-}
-
-.bus-time {
-    font-size: 13px;
-    font-weight: var(--weight-bold);
-}
-
-.bus-route {
-    font-size: 13px;
-    font-weight: var(--weight-semibold);
-}
-
-.buggie-time {
-    font-size: 14px;
-    font-weight: var(--weight-bold);
-}
-
-.route-title {
-    font-size: 14px;
-    font-weight: var(--weight-bold);
-    line-height: 1.3;
-}
-
-
-/* =========================================================
-   SECONDARY INFORMATION
-   ========================================================= */
-
-.route-path {
-    font-size: 12px;
-    font-weight: var(--weight-regular);
-    line-height: var(--leading-relaxed);
-    color: #B8C2D4;
-}
-
-.class-time,
-.class-room {
-    font-size: 12px;
-    font-weight: var(--weight-regular);
-    line-height: 1.35;
-}
-
-.class-name {
-    font-size: 16px;
-    font-weight: var(--weight-bold);
-    line-height: 1.3;
-}
-
-
-/* =========================================================
-   MESS
-   ========================================================= */
-
-.meal-title {
-    font-size: 13px;
-    font-weight: var(--weight-semibold);
-    line-height: 1.3;
-}
-
-.meal-content {
-    font-size: 13px;
-    font-weight: var(--weight-regular);
-    line-height: var(--leading-relaxed);
-}
-
-.mess-cycle {
-    font-size: 11px;
-    font-weight: var(--weight-semibold);
-}
-
-
-/* =========================================================
-   BADGES
-   ========================================================= */
-
-.badge {
-    font-size: 10px;
-    font-weight: var(--weight-bold);
-    line-height: 1;
-    letter-spacing: 0.15px;
-}
-
-
-/* =========================================================
-   CALENDAR
-   ========================================================= */
-
-.month-name {
-    font-size: 21px;
-    font-weight: var(--weight-bold);
-    line-height: 1.2;
-}
-
-.calendar .weekday {
-    font-size: 12px;
-    font-weight: var(--weight-bold);
-    line-height: 1;
-}
-
-.calendar .day-number {
-    font-size: 14px;
-    font-weight: var(--weight-semibold);
-    line-height: 1;
-}
-
-.calendar .event-dot {
-    font-size: 9px;
-    font-weight: var(--weight-medium);
-    line-height: 1.25;
-}
-
-
-/* =========================================================
-   IMPORTANT DATES
-   ========================================================= */
-
-.important-date .date {
-    font-size: 14px;
-    font-weight: var(--weight-semibold);
-    line-height: 1.35;
-}
-
-.important-date .event {
-    font-size: 13px;
-    font-weight: var(--weight-regular);
-    line-height: 1.4;
-}
-
-
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
 
 .mobile-menu-item {
-    font-size: 14px;
+    width: 100%;
+    min-height: clamp(2.35rem, 7vw, 2.70rem);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-2);
+
+    border: 0;
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+    color: var(--text);
+
+    padding-inline: var(--space-3);
+
+    font-size: var(--fs-sm);
     font-weight: var(--weight-medium);
+
+    text-align: left;
+}
+
+.mobile-menu-item + .mobile-menu-item {
+    margin-top: 0.12rem;
+}
+
+.mobile-menu-item:hover {
+    background: var(--primary-light);
 }
 
 .mobile-menu-item.active {
+    background: var(--primary-light);
+    color: var(--primary);
     font-weight: var(--weight-bold);
 }
+
+.menu-check {
+    opacity: 0;
+}
+
+.mobile-menu-item.active .menu-check {
+    opacity: 1;
+}
+
+
 /* =========================================================
-   FINAL MOBILE FIX
-   Optimized for 360px–430px phones
+   18. TOUCH / MOUSE INTERACTION
    ========================================================= */
 
-@media (max-width: 600px) {
-
-    /* ---------- PAGE ---------- */
-
-    .main {
-        width: 100%;
-        max-width: 100%;
-        padding: 10px;
-        overflow-x: hidden;
+@media (hover: hover) and (pointer: fine) {
+    .calendar .day:not(.empty-day):hover {
+        background: var(--primary-light);
+        box-shadow: inset 0 0 0 1px var(--border);
+        transition: background 0.15s ease;
     }
 
-    #today {
-        width: 100%;
-        min-width: 0;
+    .theme-toggle:hover,
+    .mobile-menu-button:hover,
+    .calendar-buttons button:hover,
+    .calendar-toolbar button:hover {
+        transform: translateY(-1px);
     }
+}
 
-    #today .hero {
-        padding: 13px;
-        margin-bottom: 10px;
-        border-radius: 16px;
+
+/* =========================================================
+   19. ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
+}
+/* =========================================================
+   LOGO VIEWER
+   Full logo + transparent blurred background
+   ========================================================= */
 
-    #today .hero h1 {
-        font-size: 22px;
-        line-height: 1.15;
-    }
+.logo-viewer {
+    position: fixed;
+    inset: 0;
 
-    #today .hero p {
-        font-size: 12px;
-        line-height: 1.35;
-        margin: 5px 0 10px;
-    }
+    z-index: 99999;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    /* =====================================================
-       NEXT BUS + NEXT BUGGIE
-       Keep side-by-side but make them compact
-       ===================================================== */
+    width: 100vw;
+    height: 100dvh;
 
-    #today .today-summary-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 7px;
-        margin-top: 8px;
-    }
+    padding:
+        clamp(1rem, 5vw, 3rem);
 
-    #today .today-summary-card {
-        min-width: 0;
-        padding: 9px;
-        border-radius: 12px;
-    }
+    /* Transparent dark glass effect */
+    background:
+        rgba(3, 7, 18, 0.58);
 
-    #today .today-summary-header {
-        margin-bottom: 7px;
-        gap: 4px;
-    }
+    backdrop-filter: blur(
+        clamp(5px, 1.5vw, 14px)
+    );
 
-    #today .stat-label {
-        font-size: 9px;
-        line-height: 1.15;
-    }
+    -webkit-backdrop-filter: blur(
+        clamp(5px, 1.5vw, 14px)
+    );
 
-    #today .badge {
-        padding: 4px 6px;
-        font-size: 8px;
-        border-radius: 6px;
-    }
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.22s ease,
+        visibility 0.22s ease;
+}
 
 
-    /* ---------- NEXT SERVICE ROUTES ---------- */
+/* OPEN */
 
-    #today .today-direction-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 5px;
-    }
-
-    #today .today-direction {
-        min-width: 0;
-        padding: 7px;
-        border-radius: 9px;
-    }
-
-    #today .today-direction-label {
-        display: block;
-
-        font-size: 9px;
-        line-height: 1.15;
-        font-weight: 600;
-
-        white-space: normal;
-        overflow: visible;
-        text-overflow: clip;
-
-        min-height: 21px;
-        margin-bottom: 4px;
-    }
-
-    /* THIS IS THE IMPORTANT FIX */
-    #today .today-next-time {
-        font-size: 13px;
-        line-height: 1.1;
-        font-weight: 700;
-        letter-spacing: -0.15px;
-
-        white-space: nowrap;
-    }
+.logo-viewer.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
 
 
-    /* =====================================================
-       TODAY MESS
-       ===================================================== */
+/* =========================================================
+   LOGO AREA
+   ========================================================= */
 
-    #today .today-mess-card {
-        grid-column: 1 / -1;
-        padding: 9px;
-        border-radius: 12px;
-    }
+.logo-viewer-content {
 
-    #today .today-mess-card .today-summary-header {
-        margin-bottom: 7px;
-    }
+    /*
+       Size follows the smaller available dimension.
+       This prevents the logo from becoming larger than
+       the screen on short phones.
+    */
 
-    #today .today-mess-cycle {
-        font-size: 8px;
-    }
+    width:
+        min(
+            78vw,
+            78vh,
+            32rem
+        );
 
-    #today .today-meals-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 5px;
-    }
+    height:
+        min(
+            78vw,
+            78vh,
+            32rem
+        );
 
-    #today .today-meal {
-        padding: 8px;
-        border-radius: 9px;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    #today .today-meal .meal-title {
-        font-size: 10px;
-        line-height: 1.2;
-        margin-bottom: 3px;
-    }
-
-    #today .today-meal .meal-content {
-        font-size: 9px;
-        line-height: 1.3;
-    }
-
-
-    /* =====================================================
-       UPCOMING BUS + UPCOMING BUGGIE
-
+    /*
        IMPORTANT:
-       Parent cards STACK vertically on phones.
-       ===================================================== */
+       NO card background.
+       NO border.
+       NO visible container.
+    */
 
-    #today .grid.grid-2 {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 10px !important;
-        width: 100%;
-    }
+    background: transparent;
+    border: none;
+    box-shadow: none;
 
-    #today .grid.grid-2 > .card {
-        width: 100%;
-        min-width: 0;
+    padding: 0;
 
-        padding: 11px;
-        border-radius: 13px;
+    transform: scale(0.82);
 
-        box-sizing: border-box;
-    }
+    transition:
+        transform 0.24s cubic-bezier(.2,.8,.2,1);
+}
 
-
-    /* ---------- UPCOMING HEADERS ---------- */
-
-    #today .grid.grid-2 > .card .card-header {
-        margin-bottom: 8px;
-        gap: 7px;
-    }
-
-    #today .grid.grid-2 > .card .card-title {
-        font-size: 15px;
-        line-height: 1.15;
-        font-weight: 700;
-    }
-
-    #today .grid.grid-2 > .card .bus-type {
-        font-size: 9px;
-        line-height: 1.2;
-    }
+.logo-viewer.open .logo-viewer-content {
+    transform: scale(1);
+}
 
 
-    /* =====================================================
-       NILA / SAHYADRI INSIDE UPCOMING
-       Keep these two columns.
-       ===================================================== */
+/* =========================================================
+   FULL LOGO
+   ========================================================= */
 
-    #today .upcoming-direction-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 7px;
-        width: 100%;
-    }
+.logo-viewer-image {
 
-    #today .direction-card {
-        min-width: 0;
-        padding: 8px;
-        border-radius: 10px;
-    }
+    display: block;
 
-    #today .direction-header {
-        margin-bottom: 6px;
-        gap: 4px;
-    }
+    width: 100%;
+    height: 100%;
 
-    #today .direction-title {
-        min-width: 0;
+    max-width: 100%;
+    max-height: 100%;
 
-        font-size: 10px;
-        line-height: 1.15;
-        font-weight: 700;
+    /*
+       Never crop the logo.
+    */
 
-        white-space: normal;
-        overflow-wrap: anywhere;
-    }
+    object-fit: contain;
 
-    /* Hide duplicate BUS/BUGGIE badge
-       inside each direction box on small screens */
-    #today .direction-header .badge {
-        display: none;
-    }
+    /*
+       Preserve original logo proportions.
+    */
 
+    object-position: center;
 
-    /* =====================================================
-       UPCOMING BUS ROWS
-       ===================================================== */
+    background: transparent;
 
-    #today .bus-row {
-        display: grid;
+    border: none;
+    box-shadow: none;
 
-        grid-template-columns: max-content minmax(0, 1fr);
+    /*
+       Prevent selection/dragging.
+    */
 
-        gap: 6px;
-
-        padding: 8px;
-        margin-bottom: 5px;
-
-        border-radius: 8px;
-
-        min-width: 0;
-    }
-
-    #today .bus-time {
-        font-size: 11px;
-        line-height: 1.2;
-        font-weight: 700;
-        white-space: nowrap;
-    }
-
-    #today .bus-route {
-        min-width: 0;
-
-        font-size: 10px;
-        line-height: 1.25;
-        font-weight: 600;
-
-        white-space: normal;
-        overflow-wrap: anywhere;
-    }
-
-    #today .bus-type,
-    #today .bus-row .badge {
-        display: none;
-    }
+    user-select: none;
+    -webkit-user-drag: none;
+}
 
 
-    /* =====================================================
-       UPCOMING BUGGIE ROWS
-       ===================================================== */
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
 
-    #today .buggie-row {
-        display: grid;
-        grid-template-columns: 1fr;
+.logo-viewer-close {
 
-        gap: 2px;
+    position: fixed;
 
-        padding: 8px;
-        margin-bottom: 5px;
+    top:
+        clamp(
+            0.75rem,
+            4vw,
+            1.5rem
+        );
 
-        border-radius: 8px;
-    }
+    right:
+        clamp(
+            0.75rem,
+            4vw,
+            1.5rem
+        );
 
-    #today .buggie-number,
-    #today .buggie-row .badge {
-        display: none;
-    }
+    width:
+        clamp(
+            2.35rem,
+            8vw,
+            3rem
+        );
 
-    #today .buggie-time {
-        font-size: 11px;
-        line-height: 1.2;
-        font-weight: 700;
-    }
+    height:
+        clamp(
+            2.35rem,
+            8vw,
+            3rem
+        );
 
-    #today .route-path {
-        font-size: 9px;
-        line-height: 1.25;
-        white-space: normal;
-        overflow-wrap: anywhere;
-    }
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.22);
+
+    border-radius: 50%;
+
+    background:
+        rgba(15,23,42,0.72);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    color: #ffffff;
+
+    font-size:
+        clamp(
+            1.35rem,
+            4vw,
+            1.75rem
+        );
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 2;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.logo-viewer-close:hover {
+    background: rgba(49,95,206,0.85);
+    transform: scale(1.05);
+}
 
 
-    /* Remove accidental HTML <br> spacing */
-    #today > br {
-        display: none;
+/* =========================================================
+   MOBILE / SHORT SCREEN SAFETY
+   ========================================================= */
+
+@supports (height: 100dvh) {
+
+    .logo-viewer {
+        height: 100dvh;
     }
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES — 360px and below
+   REDUCED MOTION
    ========================================================= */
 
-@media (max-width: 380px) {
+@media (prefers-reduced-motion: reduce) {
 
-    #today .hero {
-        padding: 11px;
-    }
-
-    #today .hero h1 {
-        font-size: 21px;
-    }
-
-    #today .hero p {
-        font-size: 11px;
-    }
-
-    #today .today-summary-card {
-        padding: 8px;
-    }
-
-    #today .today-direction {
-        padding: 6px;
-    }
-
-    #today .today-direction-label {
-        font-size: 8.5px;
-    }
-
-    #today .today-next-time {
-        font-size: 12px;
-    }
-
-    #today .today-meal {
-        padding: 7px;
-    }
-
-    #today .today-meal .meal-title {
-        font-size: 9px;
-    }
-
-    #today .today-meal .meal-content {
-        font-size: 8px;
-    }
-
-    #today .grid.grid-2 > .card {
-        padding: 9px;
-    }
-
-    #today .grid.grid-2 > .card .card-title {
-        font-size: 14px;
-    }
-
-    #today .direction-title {
-        font-size: 8.5px;
-    }
-
-    #today .bus-time,
-    #today .buggie-time {
-        font-size: 10px;
-    }
-
-    #today .bus-route {
-        font-size: 9px;
-    }
-
-    #today .route-path {
-        font-size: 8px;
+    .logo-viewer,
+    .logo-viewer-content,
+    .logo-viewer-close {
+        transition: none;
     }
 }
+.app{
+    container-type: inline-size;
+}
 
+@container (max-width: 48rem) {
+
+    .app .nav {
+        display: none;
+    }
+
+    .app.mobile-menu-button {
+        display: flex;
+    }
+}
 </style>
+
+
 </head>
 
 <body>
+<div
+    id="logoViewer"
+    class="logo-viewer"
+    onclick="closeLogoViewer(event)"
+    aria-hidden="true"
+>
+    <button
+        class="logo-viewer-close"
+        type="button"
+        onclick="closeLogoViewer(event)"
+        aria-label="Close logo"
+    >
+        ×
+    </button>
+
+    <div class="logo-viewer-content">
+        <img
+            src="assets/Logo.png"
+            alt="IIT PKD Campus Logo"
+            class="logo-viewer-image"
+        >
+    </div>
+</div>
 
 <div class="app">
 
@@ -2960,11 +1897,17 @@ body {
 
     <div class="logo">
 
-        <div class="logo-mark">
+        <div
+            class="logo-mark logo-viewer-trigger"
+            onclick="openLogoViewer()"
+            role="button"
+            tabindex="0"
+            aria-label="View IIT PKD Campus logo"
+        >
             <img
                 src="assets/Logo.png"
-                alt="IIT Palakkad"
                 class="brand-logo-img"
+                alt="IIT PKD Campus Logo"
             >
         </div>
 
@@ -6661,7 +5604,101 @@ if (savedTheme) {
     );
 
 }
-</script>
+function openLogoViewer() {
 
+    const viewer =
+        document.getElementById("logoViewer");
+
+    if (!viewer) return;
+
+    viewer.classList.add("open");
+
+    viewer.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeLogoViewer(event) {
+
+    /*
+       Clicking the logo itself should NOT close it.
+    */
+
+    if (
+        event &&
+        event.target.closest(
+            ".logo-viewer-content"
+        )
+    ) {
+        return;
+    }
+
+    const viewer =
+        document.getElementById("logoViewer");
+
+    if (!viewer) return;
+
+    viewer.classList.remove("open");
+
+    viewer.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow = "";
+}
+
+
+/* ESC key */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Escape") return;
+
+        const viewer =
+            document.getElementById("logoViewer");
+
+        if (
+            viewer &&
+            viewer.classList.contains("open")
+        ) {
+            closeLogoViewer();
+        }
+    }
+);
+
+
+</script>
+<div
+    id="logoViewer"
+    class="logo-viewer"
+    onclick="closeLogoViewer(event)"
+    aria-hidden="true"
+>
+    <button
+        class="logo-viewer-close"
+        type="button"
+        onclick="closeLogoViewer(event)"
+        aria-label="Close logo"
+    >
+        ×
+    </button>
+
+    <div class="logo-viewer-content">
+
+        <img
+            src="assets/Logo.png"
+            alt="IIT PKD Campus Logo"
+            class="logo-viewer-image"
+        >
+
+    </div>
+</div>
 </body>
 </html>
