@@ -298,28 +298,41 @@ button {
     min-width: 0;
     max-width: 100%;
 }
-
 .route-title,
 .route-path,
-.bus-route,
 .bus-type,
-.buggie-time,
 .meal-title,
 .meal-content,
 .class-name,
 .class-time,
 .class-room,
 .important-date .date,
-.important-date .event,
-.direction-title,
-.today-direction-label {
+.important-date .event {
     min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     word-break: normal;
 }
 
+/* ROUTES ARE SPECIAL */
+.bus-route,
+.today-direction-label,
+.direction-title {
+    min-width: 0;
+    max-width: 100%;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+.today-direction-label {
+    
+    text-align: center;
 
+    overflow: visible;
+}
+
+.today-direction-label .route-text {
+    width: 100%;
+}
 /* =========================================================
    4. HEADER
    ========================================================= */
@@ -957,21 +970,28 @@ button {
 }
 
 .direction-header {
-    display: flex;
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        max-content;
+
     align-items: center;
-    justify-content: space-between;
 
     gap: var(--space-2);
 
-    margin-bottom: var(--space-3);
+    min-width: 0;
 }
 
 .direction-title {
     min-width: 0;
+    max-width: 100%;
 
-    font-size: var(--fs-md);
-    font-weight: var(--weight-semibold);
-    line-height: 1.35;
+    overflow: visible;
+}
+
+.direction-title .route-text {
+    width: 100%;
 }
 
 
@@ -1008,163 +1028,102 @@ button {
    ========================================================= */
 
 #buggie .upcoming-direction-grid .bus-row {
-
-    container-type: inline-size;
-
     display: grid;
 
     grid-template-columns:
-        minmax(0, 0.38fr)
-        minmax(0, 0.62fr);
+        max-content
+        minmax(0, 1fr);
 
     align-items: center;
 
-    gap: clamp(
-        0.45rem,
-        2.2cqw,
-        0.85rem
-    );
+    gap: var(--space-3);
 
     width: 100%;
     min-width: 0;
 
-    min-height: clamp(
-        3.15rem,
-        12cqw,
-        4.1rem
-    );
-
-    padding:
-        clamp(0.55rem, 3cqw, 0.85rem)
-        clamp(0.65rem, 3cqw, 1rem);
+    padding: var(--space-3);
 
     margin-bottom: var(--space-2);
 
-    background: var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:
-        var(--radius-md);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
 }
-
 
 /* TIME */
 
 #buggie .upcoming-direction-grid .bus-time {
-
-    min-width: 0;
+    min-width: max-content;
 
     color: var(--teal);
 
-    font-size:
-        clamp(
-            0.70rem,
-            4.2cqw,
-            0.95rem
-        );
-
-    font-weight:
-        var(--weight-bold);
-
-    line-height: 1.2;
-
-    white-space: nowrap;
-
-}
-
-
-/* ROUTE */
-
-#buggie .upcoming-direction-grid .bus-route {
-
-    min-width: 0;
-
-    color: var(--text);
-
-    font-size:
-        clamp(
-            0.70rem,
-            4.2cqw,
-            0.98rem
-        );
-
-    font-weight:
-        var(--weight-semibold);
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-bold);
 
     line-height: 1.25;
 
     white-space: nowrap;
+}
 
-    overflow: hidden;
+/* ROUTE */
 
-    text-overflow: clip;
+#buggie .upcoming-direction-grid .bus-route {
+    min-width: 0;
 
+    color: var(--text);
+
+    font-size: var(--fs-md);
+    font-weight: var(--weight-semibold);
+
+    line-height: 1.3;
+
+    white-space: normal;
+
+    overflow: visible;
+
+    overflow-wrap: normal;
+    word-break: normal;
 }
 /* =========================================================
    BUGGIE DIRECTION HEADER
    ========================================================= */
 
 #buggie .direction-card {
-    container-type: inline-size;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    padding: var(--space-3);
 
     min-width: 0;
-
-    padding:
-        clamp(0.70rem, 3cqw, 1rem);
 }
 
 
-#buggie .direction-header {
+#buggie .direction-header{
 
-    display: flex;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    align-items: center;
+    gap:clamp(.35rem,2cqw,.8rem);
 
-    justify-content: space-between;
-
-    gap:
-        clamp(
-            0.35rem,
-            2.5cqw,
-            0.75rem
-        );
-
-    margin-bottom:
-        clamp(
-            0.60rem,
-            3cqw,
-            1rem
-        );
-
+    margin-bottom:clamp(.6rem,2.5cqw,.9rem);
 }
 
 
 #buggie .direction-title {
-
+    flex: 1 1 auto;
     min-width: 0;
 
-    flex: 1 1 auto;
+    color: var(--text);
 
-    font-size:
-        clamp(
-            0.70rem,
-            4.5cqw,
-            1rem
-        );
+    font-size: var(--fs-md);
+    font-weight: var(--weight-semibold);
+    line-height: 1.25;
 
-    font-weight:
-        var(--weight-semibold);
-
-    line-height: 1.2;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: clip;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 /* Full Buggie timetable */
@@ -1274,7 +1233,6 @@ button {
     font-weight: var(--weight-semibold);
     line-height: 1.4;
 
-    overflow-wrap: anywhere;
 }
 
 .bus-type {
@@ -1684,48 +1642,55 @@ button {
 */
 
 .mobile-menu {
-    display: none;
+    position: fixed;
 
-    width: min(100%, 24rem);
+    top: calc(clamp(3.7rem, 8vw, 4.7rem) + 0.45rem);
+    right: clamp(0.55rem, 2.5vw, 1rem);
 
-    margin-inline: auto;
-
-    padding: var(--space-2);
+    width: min(78vw, 17rem);
+    max-width: 17rem;
 
     background: var(--card);
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-
-    box-shadow: var(--shadow);
-}
-
-.mobile-menu.open {
-    display: block;
-}
-
-.mobile-menu-item {
-    width: 100%;
-    min-height: clamp(2.35rem, 7vw, 2.70rem);
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: var(--space-2);
-
-    border: 0;
-    border-radius: var(--radius-sm);
-
-    background: transparent;
     color: var(--text);
 
-    padding-inline: var(--space-3);
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
 
-    font-size: var(--fs-sm);
-    font-weight: var(--weight-medium);
+    box-shadow:
+        0 0.8rem 2rem rgba(0, 0, 0, 0.28);
 
-    text-align: left;
+    padding: 0.35rem;
+
+    z-index: 1000;
+}
+
+.mobile-menu.open{
+    display:block;
+}
+
+.mobile-menu-item{
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:
+        clamp(.6rem,2.8vw,.85rem)
+        clamp(.7rem,3vw,1rem);
+
+    border:none;
+
+    border-radius:clamp(.45rem,1.8vw,.7rem);
+
+    background:transparent;
+
+    color:var(--text);
+
+    font-size:clamp(.82rem,2.6vw,.95rem);
+
+    font-weight:500;
 }
 
 .mobile-menu-item + .mobile-menu-item {
@@ -2083,7 +2048,690 @@ button {
     }
 
 }
+.route-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    flex-wrap: wrap;
+    gap: 0.25em;
+
+    min-width: 0;
+    max-width: 100%;
+
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.3;
+}
+
+.route-name {
+    white-space: nowrap;
+}
+
+.route-arrow {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+/* =========================================================
+   TODAY PAGE — FINAL DEPLOYMENT-SAFE RESPONSIVE VERSION
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. TODAY MAIN GRID
+   --------------------------------------------------------- */
+
+#today .today-summary-grid {
+    gap: clamp(0.65rem, 1.5vw, 1rem);
+    margin-top: clamp(0.75rem, 1.8vw, 1.1rem);
+}
+
+#today .today-summary-card {
+    min-width: 0;
+    max-width: 100%;
+    padding: clamp(0.75rem, 1.6vw, 1.1rem);
+}
+
+#today .today-summary-header {
+    min-width: 0;
+    margin-bottom: clamp(0.55rem, 1.2vw, 0.8rem);
+}
+
+
+/* =========================================================
+   2. NEXT BUS / NEXT BUGGIE
+   ========================================================= */
+
+#today .today-direction-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: clamp(0.5rem, 1.2vw, 0.8rem);
+
+    width: 100%;
+    min-width: 0;
+}
+
+#today .today-direction {
+    min-width: 0;
+    max-width: 100%;
+
+    padding: clamp(0.55rem, 1.4vw, 0.8rem);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   3. TODAY ROUTE LABEL
+   Important:
+   - route names themselves NEVER break
+   - complete route CAN wrap to another line
+   - no clipping
+   - no horizontal overflow
+   ========================================================= */
+
+#today .today-direction-label {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    white-space: normal;
+    overflow: visible;
+
+    font-size: clamp(
+        0.74rem,
+        1.9cqw,
+        0.98rem
+    );
+
+    line-height: 1.25;
+}
+
+#today .today-direction-label .route-text {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.20em 0.25em;
+
+    line-height: 1.25;
+}
+
+#today .today-direction-label .route-name {
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+}
+
+#today .today-direction-label .route-arrow {
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   4. NEXT TIME
+   ========================================================= */
+
+#today .today-next-time {
+    margin-top: 0.35rem;
+
+    font-size: clamp(
+        0.88rem,
+        2.8cqw,
+        1.15rem
+    );
+
+    font-weight: var(--weight-bold);
+
+    line-height: 1.2;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   5. MESS
+   ========================================================= */
+
+#today .today-mess-card {
+    grid-column: 1 / -1;
+
+    min-width: 0;
+    max-width: 100%;
+
+    height: auto;
+    min-height: 0;
+}
+
+
+/* Mess header */
+
+#today .today-mess-card .today-summary-header {
+    display: grid;
+
+    grid-template-columns:
+        max-content
+        minmax(0, 1fr)
+        max-content;
+
+    align-items: center;
+
+    gap: clamp(0.4rem, 1vw, 0.75rem);
+
+    min-width: 0;
+}
+
+
+/* Mess cycle text */
+
+#today .today-mess-cycle {
+    min-width: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   6. MESS 2 × 2 GRID
+   ========================================================= */
+
+#today .today-meals-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    grid-template-rows:
+        auto auto;
+
+    gap: clamp(
+        0.5rem,
+        1.2vw,
+        0.85rem
+    );
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   7. MEAL CARDS
+   No artificial 8rem–11rem height.
+   ========================================================= */
+
+#today .today-meal {
+    min-width: 0;
+    max-width: 100%;
+
+    min-height: 0;
+    height: auto;
+
+    padding: clamp(
+        0.6rem,
+        1.4vw,
+        0.9rem
+    );
+
+    overflow: hidden;
+}
+
+
+/* Meal title */
+
+#today .today-meal .meal-title {
+    margin: 0 0 0.35rem;
+
+    font-size: clamp(
+        0.78rem,
+        1.8cqw,
+        1rem
+    );
+
+    font-weight: var(--weight-bold);
+
+    line-height: 1.25;
+
+    white-space: nowrap;
+}
+
+
+/* Food text */
+
+#today .today-meal .meal-content {
+    min-width: 0;
+    max-width: 100%;
+
+    font-size: clamp(
+        0.70rem,
+        1.65cqw,
+        0.92rem
+    );
+
+    line-height: 1.45;
+
+    white-space: normal;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+
+/* =========================================================
+   8. UPCOMING BUS / BUGGIE DIRECTION HEADERS
+   EXACT SAME HEADER SYSTEM
+   ========================================================= */
+
+#today .direction-header,
+#buggie .direction-header {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        max-content;
+
+    align-items: center;
+
+    gap: clamp(
+        0.4rem,
+        1vw,
+        0.75rem
+    );
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    margin-bottom: clamp(
+        0.5rem,
+        1.2vw,
+        0.8rem
+    );
+}
+
+
+/* Header title */
+
+#today .direction-title,
+#buggie .direction-title {
+    min-width: 0;
+    max-width: 100%;
+
+    color: var(--text);
+
+    font-size: clamp(
+        0.78rem,
+        1.8vw,
+        1rem
+    );
+
+    font-weight: var(--weight-semibold);
+
+    line-height: 1.3;
+
+    white-space: normal;
+
+    overflow: visible;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+
+/* Route inside header */
+
+#today .direction-title .route-text,
+#buggie .direction-title .route-text {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    flex-wrap: wrap;
+
+    width: 100%;
+    max-width: 100%;
+
+    gap: 0.20em 0.25em;
+}
+
+#today .direction-title .route-name,
+#buggie .direction-title .route-name {
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+}
+
+#today .direction-title .route-arrow,
+#buggie .direction-title .route-arrow {
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   9. BUS / BUGGIE BADGES
+   ========================================================= */
+
+#today .direction-header .badge,
+#buggie .direction-header .badge {
+    flex: 0 0 auto;
+
+    min-width: max-content;
+
+    align-self: center;
+}
+
+
+/* =========================================================
+   10. NORMAL BUS ROWS
+   ========================================================= */
+
+#today .bus-row {
+    display: grid;
+
+    grid-template-columns:
+        max-content
+        minmax(0, 1fr)
+        max-content;
+
+    align-items: center;
+
+    gap: clamp(
+        0.4rem,
+        1vw,
+        0.75rem
+    );
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    padding: clamp(
+        0.5rem,
+        1.1vw,
+        0.75rem
+    );
+
+    margin-bottom: clamp(
+        0.4rem,
+        0.9vw,
+        0.65rem
+    );
+}
+
+#today .bus-row > * {
+    min-width: 0;
+}
+
+
+/* Time */
+
+#today .bus-time {
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+
+    font-size: var(--fs-sm);
+    font-weight: var(--weight-bold);
+    line-height: 1.25;
+}
+
+
+/* Route */
+
+#today .bus-route {
+    min-width: 0;
+    max-width: 100%;
+
+    white-space: normal;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+
+    font-size: var(--fs-md);
+    line-height: 1.35;
+}
+
+
+/* Route path */
+
+#today .route-path {
+    min-width: 0;
+    max-width: 100%;
+
+    margin-top: 0.15rem;
+
+    font-size: var(--fs-xs);
+    line-height: 1.4;
+
+    white-space: normal;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+
+/* =========================================================
+   11. BUGGIE ROWS
+   ========================================================= */
+
+#today #todayBuggiesNila .bus-row,
+#today #todayBuggiesSahyadri .bus-row {
+    grid-template-columns:
+        max-content
+        minmax(0, 1fr);
+}
+
+#today #todayBuggiesNila .bus-row > *,
+#today #todayBuggiesSahyadri .bus-row > * {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   12. MOBILE
+   Designed around ~320–430 CSS px phones
+   ========================================================= */
+
+@container app (max-width: 50rem) {
+
+    #today .today-summary-card {
+        padding: 0.72rem;
+    }
+
+    #today .today-direction-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 0.5rem;
+    }
+
+    #today .today-direction {
+        padding: 0.55rem 0.4rem;
+    }
+
+    #today .today-meals-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        grid-template-rows:
+            auto auto;
+
+        gap: 0.5rem;
+    }
+
+    #today .today-meal {
+        padding: 0.6rem;
+    }
+
+    #today .today-meal .meal-content {
+        font-size: 0.75rem;
+        line-height: 1.42;
+    }
+
+    #today .today-meal .meal-title {
+        font-size: 0.82rem;
+    }
+
+    #today .direction-title,
+    #buggie .direction-title {
+        font-size: 0.82rem;
+    }
+
+    #today .direction-header,
+    #buggie .direction-header {
+        gap: 0.4rem;
+    }
+
+    #today .direction-header .badge,
+    #buggie .direction-header .badge {
+        font-size: 0.66rem;
+        padding: 0.28rem 0.42rem;
+    }
+
+    #today .bus-row {
+        gap: 0.45rem;
+        padding: 0.55rem;
+    }
+
+    #today .bus-time {
+        font-size: 0.76rem;
+    }
+
+    #today .bus-route {
+        font-size: 0.82rem;
+    }
+
+    #today .route-path {
+        font-size: 0.70rem;
+    }
+}
+
+
+/* =========================================================
+   13. VERY NARROW PHONES
+   ~320–350 CSS px
+   ========================================================= */
+
+@container app (max-width: 22rem) {
+
+    #today .today-summary-card {
+        padding: 0.6rem;
+    }
+
+    #today .today-direction {
+        padding: 0.5rem 0.3rem;
+    }
+
+    #today .today-direction-label {
+        font-size: 0.72rem;
+    }
+
+    #today .today-next-time {
+        font-size: 0.86rem;
+    }
+
+    #today .today-meal {
+        padding: 0.5rem;
+    }
+
+    #today .today-meal .meal-title {
+        font-size: 0.76rem;
+    }
+
+    #today .today-meal .meal-content {
+        font-size: 0.68rem;
+        line-height: 1.38;
+    }
+
+    #today .direction-title,
+    #buggie .direction-title {
+        font-size: 0.76rem;
+    }
+
+    #today .direction-header,
+    #buggie .direction-header {
+        grid-template-columns:
+            minmax(0, 1fr)
+            max-content;
+
+        gap: 0.3rem;
+    }
+
+    #today .direction-header .badge,
+    #buggie .direction-header .badge {
+        font-size: 0.60rem;
+        padding: 0.25rem 0.35rem;
+    }
+
+    #today .bus-row {
+        grid-template-columns:
+            max-content
+            minmax(0, 1fr)
+            max-content;
+
+        gap: 0.35rem;
+        padding: 0.5rem 0.45rem;
+    }
+
+    #today .bus-time {
+        font-size: 0.70rem;
+    }
+
+    #today .bus-route {
+        font-size: 0.76rem;
+    }
+
+    #today .route-path {
+        font-size: 0.66rem;
+    }
+}
+
+
+/* =========================================================
+   14. ABSOLUTE OVERFLOW SAFETY
+   ========================================================= */
+
+#today .today-summary-card,
+#today .today-direction,
+#today .today-meal,
+#today .today-meals-grid,
+#today .bus-row,
+#today .bus-row > *,
+#today .direction-header,
+#today .direction-header > *,
+#today .direction-title,
+#today .bus-route,
+#today .route-path {
+    min-width: 0;
+    max-width: 100%;
+}
 </style>
 
 
@@ -2293,7 +2941,11 @@ button {
                     <div class="today-direction">
 
                         <div class="today-direction-label">
-                            Nila → Sahyadri
+                            <span class="route-text">
+                                <span class="route-name">Nila</span>
+                                <span class="route-arrow">→</span>
+                                <span class="route-name">Sahyadri</span>
+                            </span>
                         </div>
 
                         <div
@@ -2310,7 +2962,11 @@ button {
                     <div class="today-direction">
 
                         <div class="today-direction-label">
-                            Sahyadri → Nila
+                            <span class="route-text">
+                                <span class="route-name">Sahyadri</span>
+                                <span class="route-arrow">→</span>
+                                <span class="route-name">Nila</span>
+                            </span>
                         </div>
 
                         <div
@@ -2351,7 +3007,11 @@ button {
                     <div class="today-direction">
 
                         <div class="today-direction-label">
-                            Nila → Sahyadri
+                            <span class="route-text">
+                                <span class="route-name">Nila</span>
+                                <span class="route-arrow">→</span>
+                                <span class="route-name">Sahyadri</span>
+                            </span>
                         </div>
 
                         <div
@@ -2368,7 +3028,11 @@ button {
                     <div class="today-direction">
 
                         <div class="today-direction-label">
-                            Sahyadri → Nila
+                            <span class="route-text">
+                                <span class="route-name">Sahyadri</span>
+                                <span class="route-arrow">→</span>
+                                <span class="route-name">Nila</span>
+                            </span>
                         </div>
 
                         <div
@@ -2518,7 +3182,11 @@ button {
                     <div class="direction-header">
 
                         <div class="direction-title">
-                            Nila → Sahyadri
+                            <span class="route-text">
+                                <span class="route-name">Nila</span>
+                                <span class="route-arrow">→</span>
+                                <span class="route-name">Sahyadri</span>
+                            </span>
                         </div>
 
                         <div class="badge badge-orange">
@@ -2538,7 +3206,11 @@ button {
                     <div class="direction-header">
 
                         <div class="direction-title">
-                            Sahyadri → Nila
+                            <span class="route-text">
+                                <span class="route-name">Sahyadri</span>
+                                <span class="route-arrow">→</span>
+                                <span class="route-name">Nila</span>
+                            </span>
                         </div>
 
                         <div class="badge badge-orange">
@@ -2660,9 +3332,12 @@ button {
                 <div class="direction-header">
 
                     <div class="direction-title">
-                        Nila → Sahyadri
+                        <span class="route-text">
+                            <span class="route-name">Nila</span>
+                            <span class="route-arrow">→</span>
+                            <span class="route-name">Sahyadri</span>
+                        </span>
                     </div>
-
                     <div class="badge badge-orange">
                         BUGGIE
                     </div>
@@ -2681,7 +3356,11 @@ button {
                 <div class="direction-header">
 
                     <div class="direction-title">
-                        Sahyadri → Nila
+                        <span class="route-text">
+                            <span class="route-name">Sahyadri</span>
+                            <span class="route-arrow">→</span>
+                            <span class="route-name">Nila</span>
+                        </span>
                     </div>
 
                     <div class="badge badge-orange">
@@ -4971,7 +5650,7 @@ function renderBusPage() {
 
                         <div>
                             <div class="bus-route">
-                                ${bus.route}
+                                ${routeHTML(bus.route)}
                             </div>
                         </div>
 
@@ -5895,7 +6574,21 @@ document.addEventListener(
         }
     }
 );
+function routeHTML(route) {
+    const parts = route.split(" → ");
 
+    if (parts.length !== 2) {
+        return route;
+    }
+
+    return `
+        <span class="route-text">
+            <span class="route-name">${parts[0]}</span>
+            <span class="route-arrow">→</span>
+            <span class="route-name">${parts[1]}</span>
+        </span>
+    `;
+}
 
 </script>
 <div
