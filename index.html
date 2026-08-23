@@ -345,16 +345,7 @@ button {
     top: 0;
     z-index: 100;
 }
-@container (max-width: 48rem) {
 
-    .nav {
-        display: none;
-    }
-
-    .mobile-menu-button {
-        display: flex;
-    }
-}
 
 @container (max-width: 30rem) {
 
@@ -736,6 +727,8 @@ button {
 }
 
 .today-summary-card {
+    container-type: inline-size;
+
     min-width: 0;
 
     background: var(--card);
@@ -776,31 +769,65 @@ button {
 .today-direction {
     min-width: 0;
 
-    padding: var(--space-3);
+    padding:
+        clamp(
+            0.65rem,
+            3cqw,
+            1rem
+        );
 
     background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-}
 
-.today-direction-label {
-    font-size: var(--fs-sm);
-    font-weight: var(--weight-semibold);
-    line-height: 1.35;
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
 
     text-align: center;
 }
+.today-direction-label {
+    min-width: 0;
 
-.today-next-time {
-    margin-top: var(--space-2);
+    font-size:
+        clamp(
+            0.72rem,
+            3.8cqw,
+            1rem
+        );
 
-    font-size: clamp(0.95rem, 0.78rem + 0.75vw, 1.22rem);
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-semibold);
+
     line-height: 1.25;
 
     text-align: center;
 
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: clip;
+}
+.today-next-time {
+    margin-top:
+        clamp(
+            0.35rem,
+            2cqw,
+            0.65rem
+        );
+
+    font-size:
+        clamp(
+            0.88rem,
+            4.8cqw,
+            1.22rem
+        );
+
+    font-weight: var(--weight-bold);
+
+    line-height: 1.2;
+
+    text-align: center;
+
+    white-space: nowrap;
 }
 
 .today-mess-card {
@@ -817,34 +844,86 @@ button {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+        repeat(2, minmax(0, 1fr));
 
-    gap: var(--gap);
+    grid-template-rows:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        clamp(
+            0.65rem,
+            2.5cqw,
+            1rem
+        );
+
+    width: 100%;
+    min-width: 0;
 }
 
 .today-meal {
     min-width: 0;
 
-    padding: var(--space-3);
+    padding:
+        clamp(
+            0.70rem,
+            3cqw,
+            1rem
+        );
 
     background: var(--bg);
+
     border: 1px solid var(--border);
+
     border-radius: var(--radius-md);
+
+    min-height:
+        clamp(
+            8rem,
+            24cqw,
+            11rem
+        );
+
+    overflow: hidden;
 }
 
 .today-meal .meal-title {
-    margin-bottom: var(--space-1);
+    margin-bottom:
+        clamp(
+            0.35rem,
+            2cqw,
+            0.60rem
+        );
 
-    font-size: var(--fs-sm);
+    font-size:
+        clamp(
+            0.78rem,
+            3cqw,
+            1rem
+        );
+
     font-weight: var(--weight-bold);
-    line-height: 1.35;
+
+    line-height: 1.25;
+
+    white-space: nowrap;
 }
 
 .today-meal .meal-content {
-    font-size: var(--fs-sm);
-    line-height: var(--leading-relaxed);
-}
+    min-width: 0;
 
+    font-size:
+        clamp(
+            0.70rem,
+            2.7cqw,
+            0.92rem
+        );
+
+    line-height: 1.55;
+
+    overflow-wrap: break-word;
+
+    word-break: normal;
+}
 
 /* =========================================================
    10. DIRECTION CARDS
@@ -924,61 +1003,169 @@ button {
     padding: var(--space-3);
 }
 
+/* =========================================================
+   BUGGIE UPCOMING ROWS
+   ========================================================= */
+
 #buggie .upcoming-direction-grid .bus-row {
+
+    container-type: inline-size;
+
     display: grid;
 
     grid-template-columns:
-        minmax(4.4rem, 0.34fr)
-        minmax(0, 0.66fr);
+        minmax(0, 0.38fr)
+        minmax(0, 0.62fr);
 
     align-items: center;
 
-    gap: clamp(0.55rem, 1.5vw, 0.90rem);
+    gap: clamp(
+        0.45rem,
+        2.2cqw,
+        0.85rem
+    );
 
     width: 100%;
     min-width: 0;
 
-    min-height: clamp(2.75rem, 6vw, 3.35rem);
+    min-height: clamp(
+        3.15rem,
+        12cqw,
+        4.1rem
+    );
 
     padding:
-        clamp(0.50rem, 1.5vw, 0.72rem)
-        clamp(0.60rem, 1.7vw, 0.85rem);
+        clamp(0.55rem, 3cqw, 0.85rem)
+        clamp(0.65rem, 3cqw, 1rem);
 
     margin-bottom: var(--space-2);
 
     background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius-md);
 }
 
-#buggie .upcoming-direction-grid .bus-row:last-child {
-    margin-bottom: 0;
-}
+
+/* TIME */
 
 #buggie .upcoming-direction-grid .bus-time {
+
     min-width: 0;
 
     color: var(--teal);
 
-    font-size: var(--fs-sm);
-    font-weight: var(--weight-bold);
-    line-height: 1.25;
+    font-size:
+        clamp(
+            0.70rem,
+            4.2cqw,
+            0.95rem
+        );
+
+    font-weight:
+        var(--weight-bold);
+
+    line-height: 1.2;
 
     white-space: nowrap;
+
 }
 
+
+/* ROUTE */
+
 #buggie .upcoming-direction-grid .bus-route {
+
     min-width: 0;
 
     color: var(--text);
 
-    font-size: var(--fs-sm);
-    font-weight: var(--weight-semibold);
-    line-height: 1.35;
+    font-size:
+        clamp(
+            0.70rem,
+            4.2cqw,
+            0.98rem
+        );
 
-    overflow-wrap: anywhere;
+    font-weight:
+        var(--weight-semibold);
+
+    line-height: 1.25;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: clip;
+
+}
+/* =========================================================
+   BUGGIE DIRECTION HEADER
+   ========================================================= */
+
+#buggie .direction-card {
+    container-type: inline-size;
+
+    min-width: 0;
+
+    padding:
+        clamp(0.70rem, 3cqw, 1rem);
 }
 
+
+#buggie .direction-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap:
+        clamp(
+            0.35rem,
+            2.5cqw,
+            0.75rem
+        );
+
+    margin-bottom:
+        clamp(
+            0.60rem,
+            3cqw,
+            1rem
+        );
+
+}
+
+
+#buggie .direction-title {
+
+    min-width: 0;
+
+    flex: 1 1 auto;
+
+    font-size:
+        clamp(
+            0.70rem,
+            4.5cqw,
+            1rem
+        );
+
+    font-weight:
+        var(--weight-semibold);
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: clip;
+}
 
 /* Full Buggie timetable */
 
@@ -1847,20 +2034,56 @@ button {
         transition: none;
     }
 }
-.app{
-    container-type: inline-size;
+/* =========================================================
+   RESPONSIVE NAVIGATION
+   Desktop  → normal navigation
+   Narrow   → hamburger navigation
+   ========================================================= */
+
+.app {
+    container: app / inline-size;
 }
 
-@container (max-width: 48rem) {
+/* Desktop default */
+.mobile-menu-button {
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* Narrow layout */
+@container app (max-width: 50rem) {
 
     .app .nav {
         display: none;
     }
 
-    .app.mobile-menu-button {
+    .app .mobile-menu-button {
+        display: grid;
+        place-items: center;
+    }
+
+}
+
+/* Wide layout */
+@container app (min-width: 50.01rem) {
+
+    .app .nav {
         display: flex;
     }
+
+    .app .mobile-menu-button {
+        display: none;
+    }
+
+    .app .mobile-menu {
+        display: none !important;
+    }
+
 }
+
 </style>
 
 
