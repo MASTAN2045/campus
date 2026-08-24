@@ -2377,63 +2377,6 @@ button {
 
 
 /* =========================================================
-   10. NORMAL BUS ROWS
-   ========================================================= */
-
-
-#today .bus-row > * {
-    min-width: 0;
-}
-
-
-/* Time */
-
-#today .bus-time {
-    flex: 0 0 auto;
-
-    white-space: nowrap;
-
-    font-size: var(--fs-sm);
-    font-weight: var(--weight-bold);
-    line-height: 1.25;
-}
-
-
-/* Route */
-
-#today .bus-route {
-    min-width: 0;
-    max-width: 100%;
-
-    white-space: normal;
-
-    overflow-wrap: break-word;
-    word-break: normal;
-
-    font-size: var(--fs-md);
-    line-height: 1.35;
-}
-
-
-/* Route path */
-
-#today .route-path {
-    min-width: 0;
-    max-width: 100%;
-
-    margin-top: 0.15rem;
-
-    font-size: var(--fs-xs);
-    line-height: 1.4;
-
-    white-space: normal;
-
-    overflow-wrap: break-word;
-    word-break: normal;
-}
-
-
-/* =========================================================
    11. BUGGIE ROWS
    ========================================================= */
 
@@ -2712,59 +2655,6 @@ button {
     margin-bottom: 0;
 
 }
-/* =========================================================
-   VERY NARROW PHONES
-   ========================================================= */
-
-@container app (max-width: 22rem) {
-
-    #today .bus-row,
-    #buggie .upcoming-direction-grid .bus-row {
-
-        grid-template-columns:
-            1.85rem
-            minmax(0, 1fr)
-            max-content;
-
-        column-gap: 0.30rem;
-
-        min-height: 2.85rem;
-
-        padding:
-            0.42rem
-            0.45rem;
-    }
-
-
-    #today .bus-number,
-    #buggie .upcoming-direction-grid .bus-number {
-
-        width: 1.85rem;
-        min-width: 1.85rem;
-
-        font-size: 0.68rem;
-    }
-
-
-    #today .bus-time,
-    #buggie .upcoming-direction-grid .bus-time {
-
-        font-size: 0.74rem;
-    }
-
-
-    #today .bus-status .badge,
-    #buggie .upcoming-direction-grid .bus-status .badge {
-
-        font-size: 0.55rem;
-
-        padding:
-            0.22rem
-            0.34rem;
-    }
-}
-
-
 
 
 /* =========================================================
@@ -2882,19 +2772,17 @@ button {
 
     #today .bus-row,
     #buggie .upcoming-direction-grid .bus-row {
+        display: grid;
 
         grid-template-columns:
-            1.75rem
-            max-content
-            1fr;
+            2.15rem
+            5.5rem
+            minmax(0, 1fr)
+            2rem;
 
-        column-gap: 0.30rem;
+        align-items: center;
 
-        min-height: 2.70rem;
-
-        padding:
-            0.42rem
-            0.45rem;
+        column-gap: 0.45rem;
     }
 
 
@@ -2925,26 +2813,46 @@ button {
             0.30rem;
     }
 }
-
 /* =========================================================
-   TODAY — UPCOMING BUS + BUGGIE SERVICES
-   ONE UNIFIED ROW SYSTEM
+   FINAL BUS + BUGGIE ALIGNMENT
+   =========================================================
 
-   Number | Time | Status
+   BUS PAGE:
+   TIME | ROUTE | M
+
+   BUGGIE:
+   NUMBER | TIME | M
+
+   The important part is that TIME and M have fixed
+   columns. Therefore the middle/route column NEVER
+   changes position when M appears or disappears.
    ========================================================= */
 
-#today .bus-row {
+
+/* =========================================================
+   BUS PAGE
+   ========================================================= */
+
+#buses #busList .bus-row {
 
     display: grid;
 
+    /*
+       FIXED:
+       TIME  = 5.5rem
+       ROUTE = remaining space
+       M     = 2.0rem
+
+       Therefore M cannot push or pull the route.
+    */
     grid-template-columns:
-        2.15rem
-        max-content
-        1fr;
+        5.5rem
+        minmax(0, 1fr)
+        2rem;
 
     align-items: center;
 
-    column-gap: 0.45rem;
+    column-gap: 0.55rem;
 
     width: 100%;
     min-width: 0;
@@ -2960,7 +2868,7 @@ button {
 
     box-sizing: border-box;
 
-    background: var(--card);
+    background: var(--bg);
 
     border:
         1px solid
@@ -2974,10 +2882,231 @@ button {
 
 
 /* ---------------------------------------------------------
-   NUMBER
+   BUS TIME
    --------------------------------------------------------- */
 
-#today .bus-row .bus-number {
+#buses #busList .bus-row > .bus-time {
+
+    grid-column: 1;
+
+    width: 5.5rem;
+    min-width: 5.5rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    color: var(--teal);
+
+    font-size: var(--fs-sm);
+
+    font-weight:
+        var(--weight-bold);
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   BUS ROUTE WRAPPER
+   --------------------------------------------------------- */
+
+#buses #busList .bus-row > div:nth-child(2) {
+
+    grid-column: 2;
+
+    min-width: 0;
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+/* ---------------------------------------------------------
+   BUS ROUTE
+   --------------------------------------------------------- */
+
+#buses #busList .bus-row .bus-route {
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: var(--fs-md);
+
+    font-weight:
+        var(--weight-semibold);
+
+    line-height: 1.3;
+
+    white-space: normal;
+
+    overflow: visible;
+}
+
+
+/*
+   Keep each individual route name together.
+*/
+
+#buses #busList .bus-row .bus-route .route-text {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.20em 0.30em;
+
+    text-align: center;
+}
+
+#buses #busList .bus-row .bus-route .route-name,
+#buses #busList .bus-row .bus-route .route-arrow {
+
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   BUS M COLUMN
+   --------------------------------------------------------- */
+
+#buses #busList .bus-row > div:nth-child(3) {
+
+    grid-column: 3;
+
+    width: 2rem;
+    min-width: 2rem;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*
+   M badge
+*/
+
+#buses #busList .bus-row > div:nth-child(3) .badge {
+
+    width: 1.55rem;
+    height: 1.55rem;
+
+    min-width: 1.55rem;
+    min-height: 1.55rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border-radius:
+        0.45rem;
+
+    font-size: 0.70rem;
+
+    font-weight:
+        var(--weight-bold);
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+
+/*
+   IMPORTANT:
+
+   When M does not exist, the third grid column
+   STILL EXISTS because the third wrapper is already
+   generated by renderBusPage().
+
+   Therefore NO pseudo-element is required here.
+*/
+
+
+/* =========================================================
+   BUGGIE — UPCOMING SERVICES
+   =========================================================
+
+   NUMBER | TIME | M
+   ========================================================= */
+
+#buggie .upcoming-direction-grid .bus-row {
+
+    display: grid;
+
+    grid-template-columns:
+        2.15rem
+        minmax(5.5rem, max-content)
+        2rem;
+
+    align-items: center;
+
+    column-gap: 0.55rem;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    min-height: 3.05rem;
+
+    padding:
+        0.55rem
+        0.70rem;
+
+    margin-bottom: 0.55rem;
+
+    box-sizing: border-box;
+
+    background: var(--bg);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius-md);
+
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   BUGGIE NUMBER
+   --------------------------------------------------------- */
+
+#buggie .upcoming-direction-grid .bus-row .bus-number {
+
+    grid-column: 1;
 
     width: 2.15rem;
     min-width: 2.15rem;
@@ -3001,12 +3130,15 @@ button {
 
 
 /* ---------------------------------------------------------
-   TIME
+   BUGGIE TIME
    --------------------------------------------------------- */
 
-#today .bus-row .bus-time {
+#buggie .upcoming-direction-grid .bus-row .bus-time {
 
-    min-width: 0;
+    grid-column: 2;
+
+    width: 5.5rem;
+    min-width: 5.5rem;
 
     display: flex;
 
@@ -3015,12 +3147,7 @@ button {
 
     color: var(--teal);
 
-    font-size:
-        clamp(
-            0.80rem,
-            2.2cqw,
-            1rem
-        );
+    font-size: var(--fs-sm);
 
     font-weight:
         var(--weight-bold);
@@ -3032,46 +3159,53 @@ button {
 
 
 /* ---------------------------------------------------------
-   STATUS / MULTIPLE
+   BUGGIE M COLUMN
    --------------------------------------------------------- */
 
-#today .bus-row .bus-status {
+#buggie .upcoming-direction-grid .bus-row .bus-status {
 
-    min-width: max-content;
+    grid-column: 3;
+
+    width: 2rem;
+    min-width: 2rem;
+
+    height: 100%;
 
     display: flex;
 
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 
-/* ---------------------------------------------------------
-   BADGE
-   --------------------------------------------------------- */
+/* BUGGIE MULTIPLE */
 
-#today .bus-row .bus-status .badge {
+#buggie .upcoming-direction-grid .bus-row .bus-status .badge {
 
-    min-height: 1.45rem;
+    width: 1.55rem;
+    min-width: 1.55rem;
 
-    padding:
-        0.25rem
+    height: 1.55rem;
+    min-height: 1.55rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border-radius:
         0.45rem;
 
-    font-size: 0.65rem;
+    font-size: 0.70rem;
+
+    font-weight:
+        var(--weight-bold);
 
     line-height: 1;
 
     white-space: nowrap;
-}
-
-
-/* ---------------------------------------------------------
-   LAST ROW
-   --------------------------------------------------------- */
-
-#today .bus-row:last-child {
-    margin-bottom: 0;
 }
 
 
@@ -3081,12 +3215,16 @@ button {
 
 @container app (max-width: 50rem) {
 
-    #today .bus-row {
+    /* -------------------------
+       BUS PAGE
+       ------------------------- */
+
+    #buses #busList .bus-row {
 
         grid-template-columns:
-            1.90rem
-            max-content
-            1fr;
+            5.0rem
+            minmax(0, 1fr)
+            1.85rem;
 
         column-gap: 0.40rem;
 
@@ -3095,21 +3233,13 @@ button {
         padding:
             0.48rem
             0.55rem;
-
-        margin-bottom: 0.45rem;
     }
 
 
-    #today .bus-row .bus-number {
+    #buses #busList .bus-row > .bus-time {
 
-        width: 1.90rem;
-        min-width: 1.90rem;
-
-        font-size: 0.74rem;
-    }
-
-
-    #today .bus-row .bus-time {
+        width: 5rem;
+        min-width: 5rem;
 
         font-size:
             clamp(
@@ -3120,73 +3250,23 @@ button {
     }
 
 
-    #today .bus-row .bus-status .badge {
+    #buses #busList .bus-row > div:nth-child(3) {
 
-        min-height: 1.30rem;
-
-        padding:
-            0.22rem
-            0.36rem;
-
-        font-size: 0.56rem;
+        width: 1.85rem;
+        min-width: 1.85rem;
     }
-}
 
 
-/* =========================================================
-   VERY NARROW
-   ========================================================= */
+    /* -------------------------
+       BUGGIE
+       ------------------------- */
 
-@container app (max-width: 22rem) {
-
-    #today .bus-row {
+    #buggie .upcoming-direction-grid .bus-row {
 
         grid-template-columns:
-            1.75rem
-            minmax(4.2rem, max-content)
-            minmax(0, 1fr);
-
-        column-gap: 0.30rem;
-
-        min-height: 2.70rem;
-
-        padding:
-            0.42rem
-            0.45rem;
-    }
-
-
-    #today .bus-row .bus-number {
-
-        width: 1.75rem;
-        min-width: 1.75rem;
-
-        font-size: 0.68rem;
-    }
-
-
-    #today .bus-row .bus-time {
-
-        font-size: 0.70rem;
-    }
-
-
-    #today .bus-row .bus-status .badge {
-
-        font-size: 0.52rem;
-
-        padding:
-            0.20rem
-            0.30rem;
-    }
-}
-@container app (max-width: 50rem) {
-
-    #today .bus-row {
-        grid-template-columns:
-            1.90rem
-            minmax(4.2rem, max-content)
-            minmax(0, 1fr);
+            1.85rem
+            5rem
+            1.85rem;
 
         column-gap: 0.40rem;
 
@@ -3195,44 +3275,54 @@ button {
         padding:
             0.48rem
             0.55rem;
-
-        margin-bottom: 0.45rem;
     }
 
-    #today .bus-row .bus-number {
-        width: 1.90rem;
-        min-width: 1.90rem;
+
+    #buggie .upcoming-direction-grid .bus-row .bus-number {
+
+        width: 1.85rem;
+        min-width: 1.85rem;
+
         font-size: 0.74rem;
     }
 
-    #today .bus-row .bus-time {
-        min-width: 0;
-        font-size: clamp(
-            0.74rem,
-            2.4cqw,
-            0.90rem
-        );
+
+    #buggie .upcoming-direction-grid .bus-row .bus-time {
+
+        width: 5rem;
+        min-width: 5rem;
+
+        font-size:
+            clamp(
+                0.74rem,
+                2.4cqw,
+                0.90rem
+            );
     }
 
-    #today .bus-row .bus-status {
-        min-width: 0;
-    }
 
-    #today .bus-row .bus-status .badge {
-        min-height: 1.30rem;
-        padding: 0.22rem 0.36rem;
-        font-size: 0.56rem;
+    #buggie .upcoming-direction-grid .bus-row .bus-status {
+
+        width: 1.85rem;
+        min-width: 1.85rem;
     }
 }
 
 
+/* =========================================================
+   VERY NARROW PHONES
+   ========================================================= */
+
 @container app (max-width: 22rem) {
 
-    #today .bus-row {
+    /* BUS */
+
+    #buses #busList .bus-row {
+
         grid-template-columns:
-            1.75rem
-            minmax(4rem, max-content)
-            minmax(0, 1fr);
+            4.7rem
+            minmax(0, 1fr)
+            1.75rem;
 
         column-gap: 0.30rem;
 
@@ -3243,22 +3333,91 @@ button {
             0.45rem;
     }
 
-    #today .bus-row .bus-number {
-        width: 1.75rem;
-        min-width: 1.75rem;
-        font-size: 0.68rem;
-    }
 
-    #today .bus-row .bus-time {
-        min-width: 0;
+    #buses #busList .bus-row > .bus-time {
+
+        width: 4.7rem;
+        min-width: 4.7rem;
+
         font-size: 0.70rem;
     }
 
-    #today .bus-row .bus-status .badge {
-        font-size: 0.52rem;
-        padding: 0.20rem 0.30rem;
+
+    #buses #busList .bus-row > div:nth-child(3) {
+
+        width: 1.75rem;
+        min-width: 1.75rem;
+    }
+
+
+    #buses #busList .bus-row > div:nth-child(3) .badge {
+
+        width: 1.35rem;
+        min-width: 1.35rem;
+
+        height: 1.35rem;
+        min-height: 1.35rem;
+
+        font-size: 0.62rem;
+    }
+
+
+    /* BUGGIE */
+
+    #buggie .upcoming-direction-grid .bus-row {
+
+        grid-template-columns:
+            1.75rem
+            4.7rem
+            1.75rem;
+
+        column-gap: 0.30rem;
+
+        min-height: 2.70rem;
+
+        padding:
+            0.42rem
+            0.45rem;
+    }
+
+
+    #buggie .upcoming-direction-grid .bus-row .bus-number {
+
+        width: 1.75rem;
+        min-width: 1.75rem;
+
+        font-size: 0.68rem;
+    }
+
+
+    #buggie .upcoming-direction-grid .bus-row .bus-time {
+
+        width: 4.7rem;
+        min-width: 4.7rem;
+
+        font-size: 0.70rem;
+    }
+
+
+    #buggie .upcoming-direction-grid .bus-row .bus-status {
+
+        width: 1.75rem;
+        min-width: 1.75rem;
+    }
+
+
+    #buggie .upcoming-direction-grid .bus-row .bus-status .badge {
+
+        width: 1.35rem;
+        min-width: 1.35rem;
+
+        height: 1.35rem;
+        min-height: 1.35rem;
+
+        font-size: 0.62rem;
     }
 }
+
 
 </style>
 
@@ -5577,15 +5736,10 @@ function renderHomeBusList(
                         <div class="bus-status">
                             ${
                                 service.multiple
-                                ? `
-                                    <div class="badge badge-orange">
-                                        MULTIPLE
-                                    </div>
-                                `
-                                : ``
+                                    ? `<div class="badge badge-orange multiple-mark">M</div>`
+                                    : `<div class="multiple-mark multiple-mark-empty"></div>`
                             }
                         </div>
-
                     </div>
                 `;
             })
@@ -6147,7 +6301,7 @@ function renderBusPage() {
                                 bus.multiple
                                 ? `
                                     <div class="badge badge-orange">
-                                        MULTIPLE
+                                        M
                                     </div>
                                 `
                                 : ``
