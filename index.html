@@ -2691,7 +2691,6 @@ button {
 #today .bus-time,
 #buggie .upcoming-direction-grid .bus-time {
 
-    min-width: max-content;
 
     display: flex;
 
@@ -3418,7 +3417,319 @@ button {
     }
 }
 
+/* =========================================================
+   TODAY / UPCOMING BUS + BUGGIE ROW
+   Serial Number | Time | M
+   ========================================================= */
 
+#today .bus-row,
+#buggie .upcoming-direction-grid .bus-row {
+
+    display: grid;
+
+    /*
+       Fixed left serial column
+       Flexible time column
+       Fixed right status column
+    */
+    grid-template-columns:
+        2.2rem
+        minmax(0, 1fr)
+        1.8rem;
+
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    column-gap: 0.45rem;
+
+    min-height: 3.05rem;
+
+    padding:
+        0.55rem
+        0.70rem;
+
+    margin-bottom: 0.55rem;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius-md);
+
+    /*
+       Nothing is allowed to escape the row.
+    */
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SERIAL NUMBER
+   ========================================================= */
+
+#today .bus-number,
+#buggie .upcoming-direction-grid .bus-number {
+
+    width: 2.2rem;
+    min-width: 2.2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--muted);
+
+    font-size: 0.82rem;
+    font-weight: var(--weight-semibold);
+
+    line-height: 1;
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TIME
+   ========================================================= */
+
+#today .bus-time,
+#buggie .upcoming-direction-grid .bus-time {
+
+    min-width: 0;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    /*
+       Time stays close to serial number.
+    */
+    justify-content: flex-start;
+
+    color: var(--teal);
+
+    font-size:
+        clamp(
+            0.80rem,
+            2.8cqw,
+            1rem
+        );
+
+    font-weight: var(--weight-bold);
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   M COLUMN
+   ========================================================= */
+
+#today .bus-status,
+#buggie .upcoming-direction-grid .bus-status {
+
+    width: 1.8rem;
+    min-width: 1.8rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    /*
+       Always reserve the M position.
+       This prevents time from moving when M is absent.
+    */
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MULTIPLE = PLAIN "M"
+   ========================================================= */
+
+#today .bus-multiple,
+#buggie .upcoming-direction-grid .bus-multiple {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 1.45rem;
+    height: 1.45rem;
+
+    box-sizing: border-box;
+
+    color: var(--orange);
+
+    font-size:
+        clamp(
+            0.72rem,
+            2.2cqw,
+            0.90rem
+        );
+
+    font-weight: var(--weight-bold);
+
+    line-height: 1;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   LAST ROW
+   ========================================================= */
+
+#today .bus-row:last-child,
+#buggie .upcoming-direction-grid .bus-row:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@container app (max-width: 50rem) {
+
+    #today .bus-row,
+    #buggie .upcoming-direction-grid .bus-row {
+
+        grid-template-columns:
+            2rem
+            minmax(0, 1fr)
+            1.65rem;
+
+        column-gap: 0.40rem;
+
+        min-height: 2.85rem;
+
+        padding:
+            0.48rem
+            0.55rem;
+
+        margin-bottom: 0.45rem;
+    }
+
+
+    #today .bus-number,
+    #buggie .upcoming-direction-grid .bus-number {
+
+        width: 2rem;
+        min-width: 2rem;
+
+        font-size: 0.74rem;
+    }
+
+
+    #today .bus-time,
+    #buggie .upcoming-direction-grid .bus-time {
+
+        font-size:
+            clamp(
+                0.74rem,
+                2.4cqw,
+                0.90rem
+            );
+    }
+
+
+    #today .bus-status,
+    #buggie .upcoming-direction-grid .bus-status {
+
+        width: 1.65rem;
+        min-width: 1.65rem;
+    }
+
+
+    #today .bus-multiple,
+    #buggie .upcoming-direction-grid .bus-multiple {
+
+        width: 1.30rem;
+        height: 1.30rem;
+
+        font-size: 0.72rem;
+    }
+}
+
+
+/* =========================================================
+   VERY NARROW PHONES
+   ========================================================= */
+
+@container app (max-width: 22rem) {
+
+    #today .bus-row,
+    #buggie .upcoming-direction-grid .bus-row {
+
+        grid-template-columns:
+            1.75rem
+            minmax(0, 1fr)
+            1.45rem;
+
+        column-gap: 0.30rem;
+
+        min-height: 2.70rem;
+
+        padding:
+            0.42rem
+            0.45rem;
+    }
+
+
+    #today .bus-number,
+    #buggie .upcoming-direction-grid .bus-number {
+
+        width: 1.75rem;
+        min-width: 1.75rem;
+
+        font-size: 0.68rem;
+    }
+
+
+    #today .bus-time,
+    #buggie .upcoming-direction-grid .bus-time {
+
+        font-size: 0.70rem;
+    }
+
+
+    #today .bus-status,
+    #buggie .upcoming-direction-grid .bus-status {
+
+        width: 1.45rem;
+        min-width: 1.45rem;
+    }
+
+
+    #today .bus-multiple,
+    #buggie .upcoming-direction-grid .bus-multiple {
+
+        width: 1.20rem;
+        height: 1.20rem;
+
+        font-size: 0.68rem;
+    }
+}
 </style>
 
 
@@ -5733,11 +6044,11 @@ function renderHomeBusList(
                             ${convert24To12(service.time)}
                         </div>
 
-                        <div class="bus-status">
+                       <div class="bus-status">
                             ${
                                 service.multiple
-                                    ? `<div class="badge badge-orange multiple-mark">M</div>`
-                                    : `<div class="multiple-mark multiple-mark-empty"></div>`
+                                ? `<span class="bus-multiple">M</span>`
+                                : ``
                             }
                         </div>
                     </div>
